@@ -8,8 +8,10 @@
 import SwiftUI
 
 class VerificationViewControllert: UIViewController {
-    private var resendCodeButton = UIButton(type : .system)
-    private var resendCodeIcon   = UIImageView()
+    
+    private var resendCodeButton   = UIButton(type : .system)
+    private var resendCodeIcon     = UIImageView()
+    private lazy var confirmButton = setupButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
@@ -19,6 +21,9 @@ class VerificationViewControllert: UIViewController {
 private extension VerificationViewControllert {
     @objc func handleResendCode() {
         navigationController?.popViewController(animated: true)
+    }
+    @objc func handleNext() {
+        navigationController?.pushViewController(LookingForViewController(), animated: true)
     }
     func setActions() {
         resendCodeButton.addTarget(self, action: #selector(handleResendCode), for: .touchUpInside)
@@ -48,7 +53,7 @@ private extension VerificationViewControllert {
                         trailing: view.trailingAnchor,
                         padding: .init(top: 100, left: 15, bottom: 0, right: 15))
 
-        let confirmButton = setupButton()
+       
         view.addSubview(confirmButton)
         confirmButton.anchor(top: veriView.bottomAnchor,
                       leading: view.leadingAnchor,
@@ -75,6 +80,7 @@ private extension VerificationViewControllert {
         if let button = sender as? ConfirmButton {
             button.iconView.animateArrow()
             button.pulse()
+            perform(#selector(handleNext), with: self, afterDelay: 0.5)
         }
     }
 }

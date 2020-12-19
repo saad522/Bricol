@@ -88,6 +88,7 @@ extension UIButton {
 }
 extension UIFont {
     static let verdana = UIFont(name: "Verdana-Bold", size: 30)!
+    static let verdanaTitle = UIFont(name: "Verdana-Bold", size: 20)!
     static let verdanaLight = UIFont(name: "Verdana", size: 20)!
     static let verdanaMedium = UIFont(name: "Verdana", size: 25)!
     static let verdanaSmall = UIFont(name: "Verdana", size: 16)!

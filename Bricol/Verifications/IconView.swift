@@ -10,7 +10,8 @@ import UIKit
 class IconView: UIView {
 
     let image = UIImageView(initialImage: #imageLiteral(resourceName: "Image"), useContenMode: .scaleAspectFit)
-
+    let duration : TimeInterval = 0.3
+    
     init(size: CGFloat = 55) {
         super.init(frame: .zero)
 
@@ -25,13 +26,13 @@ class IconView: UIView {
 
     func animateArrow() {
         // swiftlint:disable line_length multiple_closures_with_trailing_closure
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
             self.image.transform = CGAffineTransform(translationX: -10, y: 0 )
         }) { (_) in
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: self.duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
                 self.image.transform = CGAffineTransform(translationX: 60, y: 0)
             }) { (_) in
-                UIView.animate(withDuration: 0.5, delay: 2, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                UIView.animate(withDuration: self.duration, delay: self.duration, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
                     self.image.transform = .identity
                 })
             }
