@@ -23,6 +23,10 @@
 		049E6ABA258D5EBB004FF0AC /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6AB9258D5EBB004FF0AC /* ConfirmButton.swift */; };
 		049E6ABD258D5EE7004FF0AC /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6ABC258D5EE7004FF0AC /* IconView.swift */; };
 		049E6AC1258D60EA004FF0AC /* VerificationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6AC0258D60EA004FF0AC /* VerificationTextField.swift */; };
+		04D7EFF4258F7E35006AC05C /* HomeViewControllert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */; };
+		04D7EFF7258F8D53006AC05C /* CompositionalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */; };
+		04D7EFFA258F8F15006AC05C /* CardPosteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */; };
+		04D7EFFD258FA4F4006AC05C /* CategoriesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7EFFC258FA4F4006AC05C /* CategoriesViewCell.swift */; };
 		04DF6E61258E3295009EC221 /* LookingForViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF6E60258E3295009EC221 /* LookingForViewController.swift */; };
 		04DF6E64258E3A04009EC221 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF6E63258E3A04009EC221 /* CardView.swift */; };
 		04DF6E6B258E68DA009EC221 /* HandymanInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF6E6A258E68DA009EC221 /* HandymanInformationViewController.swift */; };
@@ -48,6 +52,10 @@
 		049E6AB9258D5EBB004FF0AC /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
 		049E6ABC258D5EE7004FF0AC /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		049E6AC0258D60EA004FF0AC /* VerificationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationTextField.swift; sourceTree = "<group>"; };
+		04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllert.swift; sourceTree = "<group>"; };
+		04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalHeader.swift; sourceTree = "<group>"; };
+		04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPosteViewCell.swift; sourceTree = "<group>"; };
+		04D7EFFC258FA4F4006AC05C /* CategoriesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewCell.swift; sourceTree = "<group>"; };
 		04DF6E60258E3295009EC221 /* LookingForViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookingForViewController.swift; sourceTree = "<group>"; };
 		04DF6E63258E3A04009EC221 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		04DF6E6A258E68DA009EC221 /* HandymanInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandymanInformationViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +100,10 @@
 				049E6A51258B99F5004FF0AC /* Info.plist */,
 				049E6AA8258D167E004FF0AC /* LoginViewController.swift */,
 				04DF6E60258E3295009EC221 /* LookingForViewController.swift */,
+				04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */,
+				04D7EFFC258FA4F4006AC05C /* CategoriesViewCell.swift */,
+				04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */,
+				04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */,
 				04DF6E6A258E68DA009EC221 /* HandymanInformationViewController.swift */,
 				04DF6E6F258E7438009EC221 /* ClientInformationViewController.swift */,
 				04DF6E63258E3A04009EC221 /* CardView.swift */,
@@ -196,6 +208,7 @@
 			files = (
 				04DF6E6B258E68DA009EC221 /* HandymanInformationViewController.swift in Sources */,
 				049E6AA9258D167E004FF0AC /* LoginViewController.swift in Sources */,
+				04D7EFF7258F8D53006AC05C /* CompositionalHeader.swift in Sources */,
 				049E6AAF258D427C004FF0AC /* RegisterViewController.swift in Sources */,
 				049E6AA0258D15D0004FF0AC /* UIView+Layout.swift in Sources */,
 				049E6ABD258D5EE7004FF0AC /* IconView.swift in Sources */,
@@ -203,13 +216,16 @@
 				049E6AA1258D15D0004FF0AC /* VerticalStackView.swift in Sources */,
 				049E6A9F258D15D0004FF0AC /* HStackView.swift in Sources */,
 				04DF6E61258E3295009EC221 /* LookingForViewController.swift in Sources */,
+				04D7EFFD258FA4F4006AC05C /* CategoriesViewCell.swift in Sources */,
 				049E6A44258B99F0004FF0AC /* AppDelegate.swift in Sources */,
 				049E6AB7258D5A9B004FF0AC /* VerificationView.swift in Sources */,
 				049E6AA2258D15D0004FF0AC /* Enums.swift in Sources */,
 				049E6ABA258D5EBB004FF0AC /* ConfirmButton.swift in Sources */,
 				049E6AB2258D5379004FF0AC /* VerificationViewControllert.swift in Sources */,
+				04D7EFFA258F8F15006AC05C /* CardPosteViewCell.swift in Sources */,
 				049E6A46258B99F0004FF0AC /* SceneDelegate.swift in Sources */,
 				04DF6E64258E3A04009EC221 /* CardView.swift in Sources */,
+				04D7EFF4258F7E35006AC05C /* HomeViewControllert.swift in Sources */,
 				04DF6E70258E7438009EC221 /* ClientInformationViewController.swift in Sources */,
 				049E6AA3258D15D0004FF0AC /* Extension.swift in Sources */,
 			);

@@ -34,8 +34,12 @@ private extension LoginViewController {
     @objc func handleRegister() {
         navigationController?.pushViewController(RegisterViewController(), animated: true)
     }
+    @objc func handlePrestenHomeScreen() {
+        dismiss(animated: true)
+    }
     func setupActions() {
         registerButton.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(handlePrestenHomeScreen), for: .touchUpInside)
     }
     func dismissKeyBoard() {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))

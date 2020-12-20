@@ -45,6 +45,7 @@ enum SFSymbols {
     static let slecteImage  = "photo.on.rectangle.angled"
     static let saved        = "square.and.arrow.down"
     static let menu         = "text.justify"
+    static let sideMenu     = "text.alignleft"
     static let menu2        = "ellipsis"
     static let resendCode   = "arrowshape.turn.up.left.circle"
     
