@@ -33,7 +33,7 @@ class HomeViewControllert: UICollectionViewController {
                 group.contentInsets.leading = 15
                 group.contentInsets.trailing = 15
                 let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets.top = 40
+//                section.contentInsets.top = 40
                 return section
             } else {
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
@@ -124,30 +124,32 @@ private extension HomeViewControllert {
         print("Side Menu Presented...")
     }
     func setupSideMenuButton() {
-        sideMenuButton.setImage(UIImage(systemName: SFSymbols.sideMenu,withConfiguration:  UIImage.SymbolConfiguration(pointSize: 25, weight: .heavy, scale: .large)), for: .normal)
-        sideMenuButton.tintColor = .label
-        
+//        sideMenuButton.setImage(UIImage(systemName: SFSymbols.sideMenu,withConfiguration:  UIImage.SymbolConfiguration(pointSize: 25, weight: .heavy, scale: .large)), for: .normal)
+//        sideMenuButton.tintColor = .label
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: SFSymbols.sideMenu,withConfiguration:  UIImage.SymbolConfiguration(pointSize: 20, weight: .heavy, scale: .large))?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSideMenu))
+        navigationController?.navigationBar.barTintColor = UIColor.secondarySystemBackground
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     func creatUI() {
         setupSideMenuButton()
         setActions()
-        collectionView.addSubview(sideMenuButton)
-        sideMenuButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            sideMenuButton.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 10),
-            sideMenuButton.bottomAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.topAnchor,constant: 20)
-        ])
+//        collectionView.addSubview(sideMenuButton)
+//        sideMenuButton.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            sideMenuButton.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 10),
+//            sideMenuButton.bottomAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.topAnchor,constant: 20)
+//        ])
     }
 }
 
 struct HomeView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        let controller = HomeViewControllert()
+        let controller = UINavigationController(rootViewController: HomeViewControllert())
         return controller
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
-    
     typealias UIViewControllerType = UIViewController
     
     
