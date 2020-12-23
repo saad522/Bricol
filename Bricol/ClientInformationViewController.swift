@@ -27,13 +27,23 @@ class ClientInformationViewController: UIViewController {
         super.viewDidLoad()
         creatUI()
     }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        print("All Good 👍🏼")
+    }
 }
 private extension ClientInformationViewController {
     @objc func handlePreviousButton() {
         navigationController?.popViewController(animated: true)
     }
+    @objc func handleNext() {
+        dismiss(animated: true)
+    }
     func setActions() {
         previousButton.addTarget(self, action: #selector(handlePreviousButton), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
     }
     func setFullNameContainer() {
         //Container
@@ -43,6 +53,8 @@ private extension ClientInformationViewController {
         fullNameContainer.shadow()
         
         //Text
+        fullName.constrainWidth(constant: 270)
+        fullName.constrainHeight(constant: 59)
         fullName.borderStyle  = .none
         fullName.font = .verdanaLight
         fullName.attributedPlaceholder = NSAttributedString(string: "What’s your Full-Name?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
@@ -61,6 +73,8 @@ private extension ClientInformationViewController {
         livingContainer.shadow()
         
         //Text
+        living.constrainWidth(constant: 270)
+        living.constrainHeight(constant: 59)
         living.borderStyle  = .none
         living.font = .verdanaLight
         living.attributedPlaceholder = NSAttributedString(string: "Where you are living?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
@@ -80,6 +94,8 @@ private extension ClientInformationViewController {
         passwordContainer.shadow()
         
         //Text
+        password.constrainWidth(constant: 270)
+        password.constrainHeight(constant: 59)
         password.isSecureTextEntry = true
         password.borderStyle  = .none
         password.font = .verdanaLight
@@ -144,8 +160,20 @@ private extension ClientInformationViewController {
         setupPreviousButton()
         dismissKeyBoard()
         setActions()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-   
+    @objc func keyboardWillChange(notification : Notification) {
+        print("Keyboard will show : \(notification.name.rawValue)")
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -keyboardRect
+        } else {
+            view.frame.origin.y = .zero
+        }
+        
+    }
     func creatUI() {
         view.backgroundColor = .secondarySystemBackground
         navigationController?.isNavigationBarHidden = true
@@ -158,7 +186,6 @@ private extension ClientInformationViewController {
         
         let buttonStack = HStackView(arrangedSubviews: [previousButton,nextButton], spacing: 10)
         buttonStack.distribution = .equalSpacing
-        view.addSubview(buttonStack)
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
         
         

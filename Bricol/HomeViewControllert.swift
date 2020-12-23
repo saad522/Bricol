@@ -96,8 +96,12 @@ extension HomeViewControllert {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: firstCellID, for: indexPath) as! CardPosteViewCell
             cell.backgroundColor = .systemGreen
-            cell.didPostTapped = {
+            cell.didPostTapped = { [weak self] in
                 print("Did Post Taped")
+                let creatPostViewController = CreatePostViewController()
+                let controller = UINavigationController(rootViewController: creatPostViewController)
+                controller.modalPresentationStyle = .fullScreen
+                self?.present(controller, animated: true)
             }
             return cell
         } else {
@@ -124,8 +128,6 @@ private extension HomeViewControllert {
         print("Side Menu Presented...")
     }
     func setupSideMenuButton() {
-//        sideMenuButton.setImage(UIImage(systemName: SFSymbols.sideMenu,withConfiguration:  UIImage.SymbolConfiguration(pointSize: 25, weight: .heavy, scale: .large)), for: .normal)
-//        sideMenuButton.tintColor = .label
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: SFSymbols.sideMenu,withConfiguration:  UIImage.SymbolConfiguration(pointSize: 20, weight: .heavy, scale: .large))?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSideMenu))
         navigationController?.navigationBar.barTintColor = UIColor.secondarySystemBackground
         navigationController?.navigationBar.isTranslucent = true
@@ -134,12 +136,6 @@ private extension HomeViewControllert {
     func creatUI() {
         setupSideMenuButton()
         setActions()
-//        collectionView.addSubview(sideMenuButton)
-//        sideMenuButton.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            sideMenuButton.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: 10),
-//            sideMenuButton.bottomAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.topAnchor,constant: 20)
-//        ])
     }
 }
 

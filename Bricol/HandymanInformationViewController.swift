@@ -23,18 +23,33 @@ class HandymanInformationViewController: UIViewController {
     private var password          = UITextField()
     private var nextButton        = UIButton(type : .system)
     private var previousButton    = UIButton(type : .system)
+    
+    private var yContainer = UIView()
+    private var y          = UITextField()
+    private var xContainer = UIView()
+    private var x          = UITextField()
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        print("All Good 👍🏼")
     }
 }
 private extension HandymanInformationViewController {
     @objc func handlePreviousButton() {
         navigationController?.popViewController(animated: true)
     }
+    @objc func handleNext() {
+        dismiss(animated: true)
+    }
     func setActions() {
         previousButton.addTarget(self, action: #selector(handlePreviousButton), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
     }
     func setFullNameContainer() {
         //Container
@@ -44,6 +59,8 @@ private extension HandymanInformationViewController {
         fullNameContainer.shadow()
         
         //Text
+        fullName.constrainWidth(constant: 270)
+        fullName.constrainHeight(constant: 59)
         fullName.borderStyle  = .none
         fullName.font = .verdanaLight
         fullName.attributedPlaceholder = NSAttributedString(string: "What’s your Full-Name?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
@@ -62,6 +79,8 @@ private extension HandymanInformationViewController {
         livingContainer.shadow()
         
         //Text
+        living.constrainWidth(constant: 270)
+        living.constrainHeight(constant: 59)
         living.borderStyle  = .none
         living.font = .verdanaLight
         living.attributedPlaceholder = NSAttributedString(string: "Where you are living?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
@@ -80,6 +99,8 @@ private extension HandymanInformationViewController {
         skillsContainer.shadow()
         
         //Text
+        skills.constrainWidth(constant: 270)
+        skills.constrainHeight(constant: 59)
         skills.borderStyle  = .none
         skills.font = .verdanaLight
         skills.attributedPlaceholder = NSAttributedString(string: "What’s your skills?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
@@ -98,6 +119,8 @@ private extension HandymanInformationViewController {
         passwordContainer.shadow()
         
         //Text
+        password.constrainWidth(constant: 270)
+        password.constrainHeight(constant: 59)
         password.isSecureTextEntry = true
         password.borderStyle  = .none
         password.font = .verdanaLight
@@ -151,6 +174,7 @@ private extension HandymanInformationViewController {
         secondeMessage.textColor = .systemGray
     }
     func setupComponents() {
+        
         setupImage()
         setMessage()
         setTitle()
@@ -163,6 +187,9 @@ private extension HandymanInformationViewController {
         setupPreviousButton()
         dismissKeyBoard()
         setActions()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
    
     func creatUI() {
@@ -195,6 +222,16 @@ private extension HandymanInformationViewController {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+    }
+    @objc func keyboardWillChange(notification : Notification) {
+        print("Keyboard will show : \(notification.name.rawValue)")
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -keyboardRect
+        } else {
+            view.frame.origin.y = .zero
+        }
+        
     }
 }
 struct HandymanInformationView: UIViewControllerRepresentable {

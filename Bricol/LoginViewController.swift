@@ -55,6 +55,8 @@ private extension LoginViewController {
         
         //Text
         password.isSecureTextEntry = true
+        password.constrainWidth(constant: 270)
+        password.constrainHeight(constant: 59)
         password.borderStyle  = .none
         password.font = .verdanaLight
         password.attributedPlaceholder = NSAttributedString(string: "•••••••••••", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
@@ -79,6 +81,9 @@ private extension LoginViewController {
         phoneContainer.shadow()
         
         //Text
+//        phone.backgroundColor = .blue
+        phone.constrainWidth(constant: 270)
+        phone.constrainHeight(constant: 59)
         phone.keyboardType = .phonePad
         phone.borderStyle  = .none
         phone.font = .verdanaLight

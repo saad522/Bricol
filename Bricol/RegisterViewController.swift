@@ -70,6 +70,8 @@ private extension RegisterViewController {
         phone.keyboardType = .phonePad
         phone.borderStyle  = .none
         phone.font = .verdanaLight
+        phone.constrainWidth(constant: 270)
+        phone.constrainHeight(constant: 59)
         phone.attributedPlaceholder = NSAttributedString(string: "Enter phone number...", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
         
 

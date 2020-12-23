@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		045A032E259358DD0080EC80 /* PicturesCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A032D259358DD0080EC80 /* PicturesCellController.swift */; };
+		045A033125935CDB0080EC80 /* PicturesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033025935CDB0080EC80 /* PicturesViewCell.swift */; };
+		045A033725936BF60080EC80 /* MoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033625936BF60080EC80 /* MoreDetailsViewController.swift */; };
+		045A033A25936E570080EC80 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033925936E570080EC80 /* HeaderView.swift */; };
+		045A033D259370590080EC80 /* PicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033C259370590080EC80 /* PicturesViewController.swift */; };
+		04718E2F259097E30011E74D /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E2E259097E30011E74D /* CreatePostViewController.swift */; };
+		04718E322590A4A10011E74D /* AddPicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E312590A4A10011E74D /* AddPicturesViewController.swift */; };
+		04718E352590BC2C0011E74D /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E342590BC2C0011E74D /* AddBudgetViewController.swift */; };
+		04718E382590EA330011E74D /* MoreInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E372590EA330011E74D /* MoreInformationViewController.swift */; };
 		049E6A44258B99F0004FF0AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6A43258B99F0004FF0AC /* AppDelegate.swift */; };
 		049E6A46258B99F0004FF0AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6A45258B99F0004FF0AC /* SceneDelegate.swift */; };
 		049E6A4D258B99F5004FF0AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049E6A4C258B99F5004FF0AC /* Assets.xcassets */; };
@@ -31,9 +40,22 @@
 		04DF6E64258E3A04009EC221 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF6E63258E3A04009EC221 /* CardView.swift */; };
 		04DF6E6B258E68DA009EC221 /* HandymanInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF6E6A258E68DA009EC221 /* HandymanInformationViewController.swift */; };
 		04DF6E70258E7438009EC221 /* ClientInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DF6E6F258E7438009EC221 /* ClientInformationViewController.swift */; };
+		04F953F32591EDF800BC78F8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F953F22591EDF800BC78F8 /* MainTabBarController.swift */; };
+		04F953F62591EE6200BC78F8 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F953F52591EE6200BC78F8 /* OffersViewController.swift */; };
+		04F953F9259215E900BC78F8 /* OfferViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F953F8259215E900BC78F8 /* OfferViewCell.swift */; };
+		04FA31D82593959900F05BB2 /* DetailsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA31D72593959900F05BB2 /* DetailsViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		045A032D259358DD0080EC80 /* PicturesCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCellController.swift; sourceTree = "<group>"; };
+		045A033025935CDB0080EC80 /* PicturesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesViewCell.swift; sourceTree = "<group>"; };
+		045A033625936BF60080EC80 /* MoreDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDetailsViewController.swift; sourceTree = "<group>"; };
+		045A033925936E570080EC80 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		045A033C259370590080EC80 /* PicturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesViewController.swift; sourceTree = "<group>"; };
+		04718E2E259097E30011E74D /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		04718E312590A4A10011E74D /* AddPicturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicturesViewController.swift; sourceTree = "<group>"; };
+		04718E342590BC2C0011E74D /* AddBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
+		04718E372590EA330011E74D /* MoreInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInformationViewController.swift; sourceTree = "<group>"; };
 		049E6A40258B99F0004FF0AC /* Bricol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bricol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049E6A43258B99F0004FF0AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049E6A45258B99F0004FF0AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +82,10 @@
 		04DF6E63258E3A04009EC221 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		04DF6E6A258E68DA009EC221 /* HandymanInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandymanInformationViewController.swift; sourceTree = "<group>"; };
 		04DF6E6F258E7438009EC221 /* ClientInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInformationViewController.swift; sourceTree = "<group>"; };
+		04F953F22591EDF800BC78F8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		04F953F52591EE6200BC78F8 /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
+		04F953F8259215E900BC78F8 /* OfferViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferViewCell.swift; sourceTree = "<group>"; };
+		04FA31D72593959900F05BB2 /* DetailsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +127,19 @@
 				049E6AA8258D167E004FF0AC /* LoginViewController.swift */,
 				04DF6E60258E3295009EC221 /* LookingForViewController.swift */,
 				04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */,
+				04718E2E259097E30011E74D /* CreatePostViewController.swift */,
+				04718E312590A4A10011E74D /* AddPicturesViewController.swift */,
+				04718E342590BC2C0011E74D /* AddBudgetViewController.swift */,
+				04718E372590EA330011E74D /* MoreInformationViewController.swift */,
+				04F953F22591EDF800BC78F8 /* MainTabBarController.swift */,
+				04F953F52591EE6200BC78F8 /* OffersViewController.swift */,
+				04F953F8259215E900BC78F8 /* OfferViewCell.swift */,
+				045A033625936BF60080EC80 /* MoreDetailsViewController.swift */,
+				04FA31D72593959900F05BB2 /* DetailsViewCell.swift */,
+				045A033925936E570080EC80 /* HeaderView.swift */,
+				045A032D259358DD0080EC80 /* PicturesCellController.swift */,
+				045A033C259370590080EC80 /* PicturesViewController.swift */,
+				045A033025935CDB0080EC80 /* PicturesViewCell.swift */,
 				04D7EFFC258FA4F4006AC05C /* CategoriesViewCell.swift */,
 				04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */,
 				04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */,
@@ -207,21 +246,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				04DF6E6B258E68DA009EC221 /* HandymanInformationViewController.swift in Sources */,
+				04FA31D82593959900F05BB2 /* DetailsViewCell.swift in Sources */,
 				049E6AA9258D167E004FF0AC /* LoginViewController.swift in Sources */,
+				04718E382590EA330011E74D /* MoreInformationViewController.swift in Sources */,
 				04D7EFF7258F8D53006AC05C /* CompositionalHeader.swift in Sources */,
 				049E6AAF258D427C004FF0AC /* RegisterViewController.swift in Sources */,
+				04F953F62591EE6200BC78F8 /* OffersViewController.swift in Sources */,
 				049E6AA0258D15D0004FF0AC /* UIView+Layout.swift in Sources */,
+				045A033A25936E570080EC80 /* HeaderView.swift in Sources */,
 				049E6ABD258D5EE7004FF0AC /* IconView.swift in Sources */,
+				045A033D259370590080EC80 /* PicturesViewController.swift in Sources */,
+				045A032E259358DD0080EC80 /* PicturesCellController.swift in Sources */,
 				049E6AC1258D60EA004FF0AC /* VerificationTextField.swift in Sources */,
 				049E6AA1258D15D0004FF0AC /* VerticalStackView.swift in Sources */,
+				04718E2F259097E30011E74D /* CreatePostViewController.swift in Sources */,
 				049E6A9F258D15D0004FF0AC /* HStackView.swift in Sources */,
 				04DF6E61258E3295009EC221 /* LookingForViewController.swift in Sources */,
 				04D7EFFD258FA4F4006AC05C /* CategoriesViewCell.swift in Sources */,
+				04F953F9259215E900BC78F8 /* OfferViewCell.swift in Sources */,
 				049E6A44258B99F0004FF0AC /* AppDelegate.swift in Sources */,
 				049E6AB7258D5A9B004FF0AC /* VerificationView.swift in Sources */,
+				045A033725936BF60080EC80 /* MoreDetailsViewController.swift in Sources */,
+				04718E352590BC2C0011E74D /* AddBudgetViewController.swift in Sources */,
 				049E6AA2258D15D0004FF0AC /* Enums.swift in Sources */,
 				049E6ABA258D5EBB004FF0AC /* ConfirmButton.swift in Sources */,
 				049E6AB2258D5379004FF0AC /* VerificationViewControllert.swift in Sources */,
+				04718E322590A4A10011E74D /* AddPicturesViewController.swift in Sources */,
+				04F953F32591EDF800BC78F8 /* MainTabBarController.swift in Sources */,
+				045A033125935CDB0080EC80 /* PicturesViewCell.swift in Sources */,
 				04D7EFFA258F8F15006AC05C /* CardPosteViewCell.swift in Sources */,
 				049E6A46258B99F0004FF0AC /* SceneDelegate.swift in Sources */,
 				04DF6E64258E3A04009EC221 /* CardView.swift in Sources */,
@@ -367,6 +419,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3HC9ZUJB9G;
 				INFOPLIST_FILE = Bricol/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -385,6 +438,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3HC9ZUJB9G;
 				INFOPLIST_FILE = Bricol/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

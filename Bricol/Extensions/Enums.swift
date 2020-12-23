@@ -48,7 +48,10 @@ enum SFSymbols {
     static let sideMenu     = "text.alignleft"
     static let menu2        = "ellipsis"
     static let resendCode   = "arrowshape.turn.up.left.circle"
-    
+    static let dismissPost  = "multiply.circle"
+    static let addImage     = "plus.rectangle.fill.on.rectangle.fill"
+    static let house        = "house"
+    static let flame        = "flame"
 }
 
 enum Keys {
