@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,11 @@
 		049E6ABA258D5EBB004FF0AC /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6AB9258D5EBB004FF0AC /* ConfirmButton.swift */; };
 		049E6ABD258D5EE7004FF0AC /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6ABC258D5EE7004FF0AC /* IconView.swift */; };
 		049E6AC1258D60EA004FF0AC /* VerificationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6AC0258D60EA004FF0AC /* VerificationTextField.swift */; };
+		04A5C7BB259761E600906AC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04A5C7BA259761E600906AC6 /* GoogleService-Info.plist */; };
+		04A5C7C025976D5E00906AC6 /* MountainsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5C7BF25976D5E00906AC6 /* MountainsController.swift */; };
+		04A5C7C325976D9100906AC6 /* mountainsRawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5C7C225976D9100906AC6 /* mountainsRawData.swift */; };
+		04A5C7C62597712500906AC6 /* CityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5C7C52597712500906AC6 /* CityController.swift */; };
+		04A5C7C92597715900906AC6 /* citiesRowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5C7C82597715900906AC6 /* citiesRowData.swift */; };
 		04D7EFF4258F7E35006AC05C /* HomeViewControllert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */; };
 		04D7EFF7258F8D53006AC05C /* CompositionalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */; };
 		04D7EFFA258F8F15006AC05C /* CardPosteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */; };
@@ -44,6 +49,7 @@
 		04F953F62591EE6200BC78F8 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F953F52591EE6200BC78F8 /* OffersViewController.swift */; };
 		04F953F9259215E900BC78F8 /* OfferViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F953F8259215E900BC78F8 /* OfferViewCell.swift */; };
 		04FA31D82593959900F05BB2 /* DetailsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FA31D72593959900F05BB2 /* DetailsViewCell.swift */; };
+		47A4DA7F4215E1D26BC2CD5E /* Pods_Bricol.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E04D5B19D30AF0370056A2 /* Pods_Bricol.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +80,11 @@
 		049E6AB9258D5EBB004FF0AC /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
 		049E6ABC258D5EE7004FF0AC /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		049E6AC0258D60EA004FF0AC /* VerificationTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationTextField.swift; sourceTree = "<group>"; };
+		04A5C7BA259761E600906AC6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		04A5C7BF25976D5E00906AC6 /* MountainsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountainsController.swift; sourceTree = "<group>"; };
+		04A5C7C225976D9100906AC6 /* mountainsRawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mountainsRawData.swift; sourceTree = "<group>"; };
+		04A5C7C52597712500906AC6 /* CityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityController.swift; sourceTree = "<group>"; };
+		04A5C7C82597715900906AC6 /* citiesRowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = citiesRowData.swift; sourceTree = "<group>"; };
 		04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllert.swift; sourceTree = "<group>"; };
 		04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalHeader.swift; sourceTree = "<group>"; };
 		04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPosteViewCell.swift; sourceTree = "<group>"; };
@@ -86,6 +97,9 @@
 		04F953F52591EE6200BC78F8 /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		04F953F8259215E900BC78F8 /* OfferViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferViewCell.swift; sourceTree = "<group>"; };
 		04FA31D72593959900F05BB2 /* DetailsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewCell.swift; sourceTree = "<group>"; };
+		1FAD175903FE37A8E0382802 /* Pods-Bricol.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bricol.debug.xcconfig"; path = "Target Support Files/Pods-Bricol/Pods-Bricol.debug.xcconfig"; sourceTree = "<group>"; };
+		32E04D5B19D30AF0370056A2 /* Pods_Bricol.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bricol.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB512C7D0BDD4B094E63CF90 /* Pods-Bricol.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bricol.release.xcconfig"; path = "Target Support Files/Pods-Bricol/Pods-Bricol.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A4DA7F4215E1D26BC2CD5E /* Pods_Bricol.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				049E6A42258B99F0004FF0AC /* Bricol */,
+				EF80E70C342B992F4ED80E47 /* Frameworks */,
+				AE4FEE887598033EA2D90F56 /* Pods */,
 				049E6A41258B99F0004FF0AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,37 +135,42 @@
 		049E6A42258B99F0004FF0AC /* Bricol */ = {
 			isa = PBXGroup;
 			children = (
-				049E6A8D258D15A4004FF0AC /* Extensions */,
+				04718E342590BC2C0011E74D /* AddBudgetViewController.swift */,
+				04718E312590A4A10011E74D /* AddPicturesViewController.swift */,
 				049E6A43258B99F0004FF0AC /* AppDelegate.swift */,
-				049E6A45258B99F0004FF0AC /* SceneDelegate.swift */,
 				049E6A4C258B99F5004FF0AC /* Assets.xcassets */,
-				049E6A4E258B99F5004FF0AC /* LaunchScreen.storyboard */,
+				04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */,
+				04DF6E63258E3A04009EC221 /* CardView.swift */,
+				04D7EFFC258FA4F4006AC05C /* CategoriesViewCell.swift */,
+				04DF6E6F258E7438009EC221 /* ClientInformationViewController.swift */,
+				04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */,
+				04718E2E259097E30011E74D /* CreatePostViewController.swift */,
+				04FA31D72593959900F05BB2 /* DetailsViewCell.swift */,
+				049E6A8D258D15A4004FF0AC /* Extensions */,
+				04A5C7BA259761E600906AC6 /* GoogleService-Info.plist */,
+				04DF6E6A258E68DA009EC221 /* HandymanInformationViewController.swift */,
+				04A5C7BF25976D5E00906AC6 /* MountainsController.swift */,
+				04A5C7C52597712500906AC6 /* CityController.swift */,
+				04A5C7C82597715900906AC6 /* citiesRowData.swift */,
+				04A5C7C225976D9100906AC6 /* mountainsRawData.swift */,
+				045A033925936E570080EC80 /* HeaderView.swift */,
+				04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */,
 				049E6A51258B99F5004FF0AC /* Info.plist */,
+				049E6A4E258B99F5004FF0AC /* LaunchScreen.storyboard */,
 				049E6AA8258D167E004FF0AC /* LoginViewController.swift */,
 				04DF6E60258E3295009EC221 /* LookingForViewController.swift */,
-				04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */,
-				04718E2E259097E30011E74D /* CreatePostViewController.swift */,
-				04718E312590A4A10011E74D /* AddPicturesViewController.swift */,
-				04718E342590BC2C0011E74D /* AddBudgetViewController.swift */,
-				04718E372590EA330011E74D /* MoreInformationViewController.swift */,
 				04F953F22591EDF800BC78F8 /* MainTabBarController.swift */,
+				045A033625936BF60080EC80 /* MoreDetailsViewController.swift */,
+				04718E372590EA330011E74D /* MoreInformationViewController.swift */,
 				04F953F52591EE6200BC78F8 /* OffersViewController.swift */,
 				04F953F8259215E900BC78F8 /* OfferViewCell.swift */,
-				045A033625936BF60080EC80 /* MoreDetailsViewController.swift */,
-				04FA31D72593959900F05BB2 /* DetailsViewCell.swift */,
-				045A033925936E570080EC80 /* HeaderView.swift */,
 				045A032D259358DD0080EC80 /* PicturesCellController.swift */,
-				045A033C259370590080EC80 /* PicturesViewController.swift */,
 				045A033025935CDB0080EC80 /* PicturesViewCell.swift */,
-				04D7EFFC258FA4F4006AC05C /* CategoriesViewCell.swift */,
-				04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */,
-				04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */,
-				04DF6E6A258E68DA009EC221 /* HandymanInformationViewController.swift */,
-				04DF6E6F258E7438009EC221 /* ClientInformationViewController.swift */,
-				04DF6E63258E3A04009EC221 /* CardView.swift */,
+				045A033C259370590080EC80 /* PicturesViewController.swift */,
 				049E6AAE258D427C004FF0AC /* RegisterViewController.swift */,
-				049E6AB1258D5379004FF0AC /* VerificationViewControllert.swift */,
+				049E6A45258B99F0004FF0AC /* SceneDelegate.swift */,
 				049E6ABF258D60CE004FF0AC /* Verifications */,
+				049E6AB1258D5379004FF0AC /* VerificationViewControllert.swift */,
 			);
 			path = Bricol;
 			sourceTree = "<group>";
@@ -176,6 +198,23 @@
 			path = Verifications;
 			sourceTree = "<group>";
 		};
+		AE4FEE887598033EA2D90F56 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1FAD175903FE37A8E0382802 /* Pods-Bricol.debug.xcconfig */,
+				DB512C7D0BDD4B094E63CF90 /* Pods-Bricol.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EF80E70C342B992F4ED80E47 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32E04D5B19D30AF0370056A2 /* Pods_Bricol.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,9 +222,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 049E6A54258B99F5004FF0AC /* Build configuration list for PBXNativeTarget "Bricol" */;
 			buildPhases = (
+				EF9F3097D1DD403CC142D5C0 /* [CP] Check Pods Manifest.lock */,
 				049E6A3C258B99F0004FF0AC /* Sources */,
 				049E6A3D258B99F0004FF0AC /* Frameworks */,
 				049E6A3E258B99F0004FF0AC /* Resources */,
+				E2C22F66E87E1404E11FFEF2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,10 +276,53 @@
 			files = (
 				049E6A50258B99F5004FF0AC /* LaunchScreen.storyboard in Resources */,
 				049E6A4D258B99F5004FF0AC /* Assets.xcassets in Resources */,
+				04A5C7BB259761E600906AC6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E2C22F66E87E1404E11FFEF2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bricol/Pods-Bricol-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bricol/Pods-Bricol-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bricol/Pods-Bricol-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF9F3097D1DD403CC142D5C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bricol-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		049E6A3C258B99F0004FF0AC /* Sources */ = {
@@ -247,6 +331,8 @@
 			files = (
 				04DF6E6B258E68DA009EC221 /* HandymanInformationViewController.swift in Sources */,
 				04FA31D82593959900F05BB2 /* DetailsViewCell.swift in Sources */,
+				04A5C7C92597715900906AC6 /* citiesRowData.swift in Sources */,
+				04A5C7C025976D5E00906AC6 /* MountainsController.swift in Sources */,
 				049E6AA9258D167E004FF0AC /* LoginViewController.swift in Sources */,
 				04718E382590EA330011E74D /* MoreInformationViewController.swift in Sources */,
 				04D7EFF7258F8D53006AC05C /* CompositionalHeader.swift in Sources */,
@@ -256,11 +342,13 @@
 				045A033A25936E570080EC80 /* HeaderView.swift in Sources */,
 				049E6ABD258D5EE7004FF0AC /* IconView.swift in Sources */,
 				045A033D259370590080EC80 /* PicturesViewController.swift in Sources */,
+				04A5C7C62597712500906AC6 /* CityController.swift in Sources */,
 				045A032E259358DD0080EC80 /* PicturesCellController.swift in Sources */,
 				049E6AC1258D60EA004FF0AC /* VerificationTextField.swift in Sources */,
 				049E6AA1258D15D0004FF0AC /* VerticalStackView.swift in Sources */,
 				04718E2F259097E30011E74D /* CreatePostViewController.swift in Sources */,
 				049E6A9F258D15D0004FF0AC /* HStackView.swift in Sources */,
+				04A5C7C325976D9100906AC6 /* mountainsRawData.swift in Sources */,
 				04DF6E61258E3295009EC221 /* LookingForViewController.swift in Sources */,
 				04D7EFFD258FA4F4006AC05C /* CategoriesViewCell.swift in Sources */,
 				04F953F9259215E900BC78F8 /* OfferViewCell.swift in Sources */,
@@ -415,6 +503,7 @@
 		};
 		049E6A55258B99F5004FF0AC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FAD175903FE37A8E0382802 /* Pods-Bricol.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -434,6 +523,7 @@
 		};
 		049E6A56258B99F5004FF0AC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB512C7D0BDD4B094E63CF90 /* Pods-Bricol.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

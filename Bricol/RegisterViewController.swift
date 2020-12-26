@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
     
@@ -31,7 +32,20 @@ private extension RegisterViewController {
         navigationController?.popViewController(animated: true)
     }
     @objc func handelVerify() {
-        navigationController?.pushViewController(VerificationViewControllert(), animated: true)
+        guard let code = codeCountry.text, let number = phone.text else { return }
+        let codePlusPhoneNumber = code + number
+        print("Phone number with code country : ",codePlusPhoneNumber)
+        Auth.auth().languageCode = "fr"
+        PhoneAuthProvider.provider().verifyPhoneNumber(codePlusPhoneNumber, uiDelegate: nil) { (verificationID, error) in
+            if let error = error {
+                print("DEBUG: Failed To verify This Phone Number reason : ",error.localizedDescription)
+                return
+            }
+            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+            print("DEBUG: Code Has Sent")
+            self.navigationController?.pushViewController(VerificationViewControllert(), animated: true)
+        }
+       
     }
     func setupActions() {
         loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
@@ -120,7 +134,7 @@ private extension RegisterViewController {
         setupCodeCountry()
         setLoginButton()
         dismissKeyBoard()
-        setReggisterButton()
+//        setReggisterButton()
         setupActions()
     }
     func creatUI() {

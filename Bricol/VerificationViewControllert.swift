@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 class VerificationViewControllert: UIViewController {
-    
+    let verificationId = UserDefaults.standard.string(forKey: "authVerificationID")
     private var resendCodeButton   = UIButton(type : .system)
     private var resendCodeIcon     = UIImageView()
+    let veriView = VerificationView(numberOfDigits: 6)
     private lazy var confirmButton = setupButton()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +48,7 @@ private extension VerificationViewControllert {
         setActions()
         view.backgroundColor = .secondarySystemBackground
         navigationController?.isNavigationBarHidden = true
-        let veriView = VerificationView(numberOfDigits: 6)
+       
         view.addSubview(veriView)
         veriView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                         leading: view.leadingAnchor,
@@ -80,9 +83,50 @@ private extension VerificationViewControllert {
         if let button = sender as? ConfirmButton {
             button.iconView.animateArrow()
             button.pulse()
-            perform(#selector(handleNext), with: self, afterDelay: 0.5)
+            guard let verificationID = verificationId else { return  }
+            let verificationCode = veriView.getCode()
+            Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+            let credential = PhoneAuthProvider.provider().credential(
+                withVerificationID: verificationID,
+                verificationCode: verificationCode)
+            Auth.auth().signIn(with: credential) { [weak self] (authData, error) in
+                if let error = error {
+                    print("Error To Sign in User reason ",error.localizedDescription)
+                    return
+                }
+                guard let getPhone = authData?.user.phoneNumber else { return }
+                let database = Firestore.firestore()
+                guard let userID = authData?.user.uid else {return }
+                database.collection(DB_Keys.collectionKey).document(userID).getDocument { (documentSnapshot, error) in
+                    if let error = error {
+                        print("Error : ",error.localizedDescription)
+                        return
+                    }
+                    if documentSnapshot?.exists == true {
+                        self?.dismiss(animated: true)
+                        print("Cods get Tapped : ",self?.veriView.getCode() ?? "")
+                    } else {
+                        let values : [String:Any] = ["phone":getPhone,"userId":userID]
+                        database.collection(DB_Keys.collectionKey).document(userID).setData(values) { (error) in
+                            if let error = error {
+                                print("Failed To set Data 👎🏻 reason : ",error.localizedDescription)
+                                return
+                            }
+                            print("We did it 👍🏿")
+                            let vc = LookingForViewController()
+                            self?.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                }
+
+
+            }
         }
     }
+}
+
+enum DB_Keys {
+    static let collectionKey = "users"
 }
 struct VerificationViews: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {

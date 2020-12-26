@@ -46,7 +46,7 @@ class VerificationView: UIView {
         return textFields
     }
 
-    private func getCode() -> String {
+     func getCode() -> String {
         var code = ""
         for textField in textFields {
             code.append(textField.text ?? "")

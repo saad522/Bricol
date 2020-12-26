@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import FirebaseAuth
 class HomeViewControllert: UICollectionViewController {
     //MARK: Properties
     private let firstCellID    = "firstCellID"
@@ -61,13 +61,14 @@ class HomeViewControllert: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollevtionView()
-        setDevelopmentPresnted()
+//        setDevelopmentPresnted()
+        checkIfUserLoggedIn()
     }
     func setDevelopmentPresnted() {
         perform(#selector(handlePresent), with: self, afterDelay: 0)
     }
     @objc func handlePresent() {
-        let loginViewController = LoginViewController()
+        let loginViewController = RegisterViewController()
         let controller = UINavigationController(rootViewController: loginViewController)
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
@@ -124,8 +125,25 @@ private extension HomeViewControllert {
     func setActions() {
         sideMenuButton.addTarget(self, action: #selector(handleSideMenu), for: .touchUpInside)
     }
+    func checkIfUserLoggedIn() {
+        if Auth.auth().currentUser?.uid == nil {
+            let loginController = RegisterViewController()
+            let controller = UINavigationController(rootViewController: loginController)
+            controller.modalPresentationStyle = .overFullScreen
+            present(controller, animated: true)
+        }
+    }
     @objc func handleSideMenu() {
         print("Side Menu Presented...")
+        signOut()
+    }
+     func signOut() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
     func setupSideMenuButton() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: SFSymbols.sideMenu,withConfiguration:  UIImage.SymbolConfiguration(pointSize: 20, weight: .heavy, scale: .large))?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSideMenu))

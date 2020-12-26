@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
+import FirebaseAuth
 
 class HandymanInformationViewController: UIViewController {
     //MARK: Properties
@@ -18,16 +20,19 @@ class HandymanInformationViewController: UIViewController {
     private var livingContainer   = UIView()
     private var living            = UITextField()
     private var skillsContainer   = UIView()
-    private var skills            = UITextField()
+    private var skill            = UITextField()
     private var passwordContainer = UIView()
     private var password          = UITextField()
     private var nextButton        = UIButton(type : .system)
     private var previousButton    = UIButton(type : .system)
+    //UIPickeView
+    var pickerViewCities = UIPickerView()
+    let cities = CityController().generateMountains()
+    var titlesOfCities : [String] = []
     
-    private var yContainer = UIView()
-    private var y          = UITextField()
-    private var xContainer = UIView()
-    private var x          = UITextField()
+    let skills = MountainsController().generateMountains()
+    var titles : [String] = []
+    var pickerView = UIPickerView()
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +45,103 @@ class HandymanInformationViewController: UIViewController {
         print("All Good 👍🏼")
     }
 }
+//MARK: Setup Firebase
+extension HandymanInformationViewController {
+    
+    @objc func handleNext() {
+        guard let name = fullName.text, let city = living.text, let metier = skill.text else { return }
+        let isClient = 0
+        
+        let values : [String:Any] = ["name":name,
+                                     "city":city,
+                                     "metier":metier,
+                                     "isClient":isClient]
+        guard let uiserID = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        db.collection(DB_Keys.collectionKey).document(uiserID).setData(values, merge: true) { [weak self] (error) in
+            if let error = error {
+                print("Failed to set Data 👎🏻 reason ",error.localizedDescription)
+                
+                return
+            }
+            
+            print("Its's Done ✅")
+            self?.dismiss(animated: true)
+           
+        }
+    }
+}
+//MARK: SetUp UIPickeView
+extension HandymanInformationViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+      
+        return component == 0 ? cities.count : skills.count
+    }
+     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            cities.forEach({titlesOfCities.append($0.name)})
+            living.text = titlesOfCities[row]
+        } else {
+            skills.forEach({titles.append($0.name)})
+            skill.text = titles[row]
+        }
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            cities.forEach({titlesOfCities.append($0.name)})
+            return titlesOfCities[row]
+        } else {
+            skills.forEach({titles.append($0.name)})
+            return titles[row]
+            
+        }
+       
+    }
+    fileprivate func setupPickeView() {
+        pickerViewCities.delegate    = self
+        pickerViewCities.dataSource  = self
+        living.inputView = pickerView
+        
+        pickerView.delegate    = self
+        pickerView.dataSource  = self
+        skill.inputView = pickerView
+    }
+}
+//MARK: SetUp UIPickeView
+extension HandymanInformationViewController {
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        return skills.count
+//    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        skills.forEach({titles.append($0.name)})
+//        skill.text = titles[row]
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        skills.forEach({titles.append($0.name)})
+//        return titles[row]
+//    }
+//    fileprivate func setupPickeView() {
+//        pickerView.delegate    = self
+//        pickerView.dataSource  = self
+//        skill.inputView = pickerView
+//    }
+}
 private extension HandymanInformationViewController {
     @objc func handlePreviousButton() {
         navigationController?.popViewController(animated: true)
     }
-    @objc func handleNext() {
-        dismiss(animated: true)
-    }
+
     func setActions() {
         previousButton.addTarget(self, action: #selector(handlePreviousButton), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
@@ -99,16 +194,16 @@ private extension HandymanInformationViewController {
         skillsContainer.shadow()
         
         //Text
-        skills.constrainWidth(constant: 270)
-        skills.constrainHeight(constant: 59)
-        skills.borderStyle  = .none
-        skills.font = .verdanaLight
-        skills.attributedPlaceholder = NSAttributedString(string: "What’s your skills?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
-        skillsContainer.addSubview(skills)
-        skills.translatesAutoresizingMaskIntoConstraints = false
+        skill.constrainWidth(constant: 270)
+        skill.constrainHeight(constant: 59)
+        skill.borderStyle  = .none
+        skill.font = .verdanaLight
+        skill.attributedPlaceholder = NSAttributedString(string: "What’s your skills?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
+        skillsContainer.addSubview(skill)
+        skill.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            skills.leadingAnchor.constraint(equalTo: skillsContainer.leadingAnchor,constant: 16),
-            skills.centerYAnchor.constraint(equalTo: skillsContainer.centerYAnchor)
+            skill.leadingAnchor.constraint(equalTo: skillsContainer.leadingAnchor,constant: 16),
+            skill.centerYAnchor.constraint(equalTo: skillsContainer.centerYAnchor)
         ])
     }
     func setPasswordContainer() {
@@ -174,7 +269,7 @@ private extension HandymanInformationViewController {
         secondeMessage.textColor = .systemGray
     }
     func setupComponents() {
-        
+        setupPickeView()
         setupImage()
         setMessage()
         setTitle()
@@ -182,16 +277,18 @@ private extension HandymanInformationViewController {
         setFullNameContainer()
         setLivingContainer()
         setSkillsContainer()
-        setPasswordContainer()
+//        setPasswordContainer()
         setupNextButton()
         setupPreviousButton()
         dismissKeyBoard()
         setActions()
+        notificationCenter()
+    }
+    func notificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
-   
     func creatUI() {
         view.backgroundColor = .secondarySystemBackground
         navigationController?.isNavigationBarHidden = true
@@ -208,7 +305,7 @@ private extension HandymanInformationViewController {
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
         
         
-        let vStack = VerticalStackView(arrangedSubviews: [stack,fullNameContainer,livingContainer,skillsContainer,passwordContainer,buttonStack], spacing: 25)
+        let vStack = VerticalStackView(arrangedSubviews: [stack,fullNameContainer,livingContainer,skillsContainer,buttonStack], spacing: 25)
         vStack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(vStack)
         
@@ -226,10 +323,12 @@ private extension HandymanInformationViewController {
     @objc func keyboardWillChange(notification : Notification) {
         print("Keyboard will show : \(notification.name.rawValue)")
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
-        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
-            view.frame.origin.y = -keyboardRect
-        } else {
-            view.frame.origin.y = .zero
+        if password.isFirstResponder == true {
+            if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+                view.frame.origin.y = -keyboardRect
+            } else {
+                view.frame.origin.y = .zero
+            }
         }
         
     }

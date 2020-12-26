@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
+
 class ClientInformationViewController: UIViewController {
     //MARK: Properties
     private var logo              = UIImageView()
@@ -20,12 +23,16 @@ class ClientInformationViewController: UIViewController {
     private var password          = UITextField()
     private var nextButton        = UIButton(type : .system)
     private var previousButton    = UIButton(type : .system)
-    
+    //UIPickeView
+    var pickerView = UIPickerView()
+    let cities = CityController().generateMountains()
+    var titles : [String] = []
     
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
+        setupPickeView()
     }
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -34,12 +41,57 @@ class ClientInformationViewController: UIViewController {
         print("All Good 👍🏼")
     }
 }
+//MARK: Setup Firebase
+extension ClientInformationViewController {
+    @objc func handleNext() {
+        guard let name = fullName.text, let city = living.text else { return }
+        let isClient = 1
+        
+        let values : [String:Any] = ["name":name,
+                                     "city":city,
+                                     "isClient":isClient]
+        guard let uiserID = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        db.collection(DB_Keys.collectionKey).document(uiserID).setData(values, merge: true) { [weak self] (error) in
+            if let error = error {
+                print("Failed to set Data 👎🏻 reason ",error.localizedDescription)
+                
+                return
+            }
+            
+            print("Its's Done ✅")
+            self?.dismiss(animated: true)
+           
+        }
+    }
+}
+//MARK: SetUp UIPickeView
+extension ClientInformationViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return cities.count
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        cities.forEach({titles.append($0.name)})
+        living.text = titles[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        cities.forEach({titles.append($0.name)})
+        return titles[row]
+    }
+    fileprivate func setupPickeView() {
+        pickerView.delegate    = self
+        pickerView.dataSource  = self
+        living.inputView = pickerView
+    }
+}
 private extension ClientInformationViewController {
     @objc func handlePreviousButton() {
         navigationController?.popViewController(animated: true)
-    }
-    @objc func handleNext() {
-        dismiss(animated: true)
     }
     func setActions() {
         previousButton.addTarget(self, action: #selector(handlePreviousButton), for: .touchUpInside)
@@ -155,11 +207,15 @@ private extension ClientInformationViewController {
         setSecondeMessage()
         setFullNameContainer()
         setLivingContainer()
-        setPasswordContainer()
+//        setPasswordContainer()
         setupNextButton()
         setupPreviousButton()
         dismissKeyBoard()
         setActions()
+        notificationCenter()
+       
+    }
+    func notificationCenter() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -167,11 +223,15 @@ private extension ClientInformationViewController {
     @objc func keyboardWillChange(notification : Notification) {
         print("Keyboard will show : \(notification.name.rawValue)")
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
-        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
-            view.frame.origin.y = -keyboardRect
-        } else {
-            view.frame.origin.y = .zero
+        
+        if password.isFirstResponder == true {
+            if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+                view.frame.origin.y = -keyboardRect
+            } else {
+                view.frame.origin.y = .zero
+            }
         }
+        
         
     }
     func creatUI() {
@@ -189,7 +249,7 @@ private extension ClientInformationViewController {
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
         
         
-        let vStack = VerticalStackView(arrangedSubviews: [stack,fullNameContainer,livingContainer,passwordContainer,buttonStack], spacing: 25)
+        let vStack = VerticalStackView(arrangedSubviews: [stack,fullNameContainer,livingContainer,buttonStack], spacing: 25)
         vStack.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(vStack)
         
