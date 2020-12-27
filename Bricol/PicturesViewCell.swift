@@ -7,9 +7,13 @@
 
 import UIKit
 
-
+//struct Picture {
+//    let picture : String
+//}
 class PicturesViewCell: UICollectionViewCell {
-    let picture = UIImageView(image : #imageLiteral(resourceName: "broken-pipe-water"))
+    let imageOfProblem = UIImageView(image : #imageLiteral(resourceName: "broken-pipe-water"))
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,9 +27,18 @@ class PicturesViewCell: UICollectionViewCell {
 
 private extension PicturesViewCell {
     func  creatUI() {
-        addSubview(picture)
-        picture.contentMode = .scaleAspectFit
-        picture.fillSuperview()
+        addSubview(imageOfProblem)
+        imageOfProblem.contentMode = .scaleAspectFill
+        imageOfProblem.clipsToBounds = true
+        imageOfProblem.constrainHeight(constant: 200)
+        imageOfProblem.constrainWidth(constant: 200)
+        imageOfProblem.fillSuperview(padding: .init(top: 10, left: 10, bottom: 10, right: 10))
+//        imageOfProblem.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            imageOfProblem.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+//            imageOfProblem.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 5),
+//            imageOfProblem.topAnchor.constraint(equalTo: topAnchor, constant: 10)
+//        ])
         
     }
 }

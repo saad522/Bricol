@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseStorage
+import FirebaseAuth
+import FirebaseFirestore
 
 class AddPicturesViewController: UIViewController {
     
@@ -30,18 +33,64 @@ class AddPicturesViewController: UIViewController {
     private let addTreeLabel = UILabel()
     private let addFourLabel = UILabel()
     private let addFiveLabel = UILabel()
+    
+    let storage = ServiceStorage.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
+    }
+}
+//MARK: Setup FireStorage
+extension AddPicturesViewController {
+    @objc func handleNext() {
+        
+        guard
+            let userID = Auth.auth().currentUser?.uid,
+            let phoneNumber = Auth.auth().currentUser?.phoneNumber,
+            let handymanSelected = UserDefaults.standard.string(forKey: "handymanSelected")
+        else { return  }
+        print("Tha HadyMane Not Here ",handymanSelected)
+        guard
+            let imageOne  = imageOne.image,
+            let imageTwo  = imageTwo.image,
+            let imageTree = imageTree.image,
+            let imageFour = imageFour.image
+        else { return  }
+        print("Tha HadyMane We Pass Thar ",handymanSelected)
+        let postID = UUID().uuidString
+        
+        let images : [UIImage] = [imageOne,imageTwo,imageTree,imageFour]
+        
+        storage.uploadMutliImages(images) { [weak self] (urlPaths, error) in
+            if let error = error {
+                print("Failed To Upload Images reason : ",error.localizedDescription)
+                return
+            }
+            
+            guard let pictures = urlPaths else { return }
+       
+            
+            let values : [String : Any] = ["postID"      : postID,
+                                           "userID"      : userID,
+                                           "phoneNumber" : phoneNumber,
+                                           "lookingFor"  : handymanSelected,
+                                           "imageOne"    : pictures[0],
+                                           "imageTwo"    : pictures[1],
+                                           "imageTree"  : pictures[2],
+                                           "imageFour"   : pictures[3]]
+//            self?.uploadUserData(values: values)
+            let addBudgetViewController = AddBudgetViewController(values: values)
+            self?.navigationController?.pushViewController(addBudgetViewController, animated: true)
+        }
+       
     }
 }
 private extension AddPicturesViewController {
     @objc func handlePrevious() {
         navigationController?.popViewController(animated: true)
     }
-    @objc func handleNext() {
-        navigationController?.pushViewController(AddBudgetViewController(), animated: true)
-    }
+   
     func setActions() {
         previousButton.addTarget(self, action: #selector(handlePrevious), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)

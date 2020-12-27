@@ -9,6 +9,8 @@ import SwiftUI
 
 class OffersViewController: UICollectionViewController {
     private let cellID = "cellID"
+    var posts = [Post]()
+    
     //init: ComposotionalLayout
     init() {
         
@@ -36,11 +38,24 @@ class OffersViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        fetchUserData()
     }
 }
 
 //MARK: Configuretion of CollectionView
 extension OffersViewController {
+    func fetchUserData() {
+        ServiceDatabase.shared.fetchUsersData { (posts, error) in
+            if let error = error {
+                print("Failed To Fetch Posts reason : ",error.localizedDescription)
+                return
+            }
+            self.posts = posts ?? []
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
     func setupCollectionView() {
         collectionView.register(OfferViewCell.self, forCellWithReuseIdentifier: cellID)
     }
@@ -49,19 +64,20 @@ extension OffersViewController {
 //    }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! OfferViewCell
+        let post = posts[indexPath.item]
+        cell.post = post
+        
         cell.shadow()
         cell.layer.cornerRadius = 3
         cell.backgroundColor = .tertiarySystemBackground
         cell.didTapped = { [weak self] in
             let controller = MoreDetailsViewController()
-    //        controller.modalPresentationStyle = .fullScreen
-    //        present(controller, animated: true)
             self?.navigationController?.pushViewController(controller, animated: true)
         }
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return posts.count
     }
 }
 //MARK: creatUI

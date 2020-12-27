@@ -18,6 +18,7 @@ class VerificationViewControllert: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
+        
     }
 }
 
@@ -97,7 +98,7 @@ private extension VerificationViewControllert {
                 guard let getPhone = authData?.user.phoneNumber else { return }
                 let database = Firestore.firestore()
                 guard let userID = authData?.user.uid else {return }
-                database.collection(DB_Keys.collectionKey).document(userID).getDocument { (documentSnapshot, error) in
+                database.collection(DB_Keys.usersCollectionKey).document(userID).getDocument { (documentSnapshot, error) in
                     if let error = error {
                         print("Error : ",error.localizedDescription)
                         return
@@ -107,7 +108,7 @@ private extension VerificationViewControllert {
                         print("Cods get Tapped : ",self?.veriView.getCode() ?? "")
                     } else {
                         let values : [String:Any] = ["phone":getPhone,"userId":userID]
-                        database.collection(DB_Keys.collectionKey).document(userID).setData(values) { (error) in
+                        database.collection(DB_Keys.usersCollectionKey).document(userID).setData(values) { (error) in
                             if let error = error {
                                 print("Failed To set Data 👎🏻 reason : ",error.localizedDescription)
                                 return
@@ -126,7 +127,8 @@ private extension VerificationViewControllert {
 }
 
 enum DB_Keys {
-    static let collectionKey = "users"
+    static let usersCollectionKey = "users"
+    static let postsCollectionKey = "posts"
 }
 struct VerificationViews: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {

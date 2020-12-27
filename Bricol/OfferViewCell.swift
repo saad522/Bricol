@@ -16,7 +16,22 @@ pressure in your pipes can cause it to burst
 """
 class OfferViewCell : UICollectionViewCell {
     var didTapped : () -> () = {}
-    
+    var post : Post! {
+        didSet {
+            maxPriceLabel.text = "\(post.Max).00 DH"
+            minPriceLabel.text = "\(post.Min).00 DH"
+            descrptionLabel.text = post.about
+            if post.isNegotiable == true {
+                yesLabel.text = "Yes"
+            } else if post.isNegotiable == false {
+                yesLabel.text = "No"
+            }
+            
+            let  picturesURL : [String] = [post.imageOne,post.imageTwo,post.imageTree,post.imageFour]
+            picturesCellController.values = picturesURL
+        }
+    }
+     
     private let contactMeButton      = UIButton(type : .system)
     private var moreDetailsButton    = UIButton(type : .system)
     private let picture = UIImageView(image : #imageLiteral(resourceName: "jamal"))
@@ -37,11 +52,12 @@ class OfferViewCell : UICollectionViewCell {
     
     private let yesLabel  = UILabel(text: " Yes ", font: .systemFont(ofSize: 20, weight: .semibold), textColor: .white)
     
-    private let pictures = PicturesCellController()
+    private lazy var picturesCellController = PicturesCellController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         creatUI()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -134,10 +150,10 @@ private extension OfferViewCell {
         vStackCenter.anchor(top: hStackTop.safeAreaLayoutGuide.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor,padding: .init(allInset: 15))
         let buttonStack = HStackView(arrangedSubviews: [moreDetailsButton,contactMeButton], spacing: 10)
         buttonStack.distribution = .equalSpacing
-        let vStackBottom = VerticalStackView(arrangedSubviews: [pictures.view,buttonStack], spacing: 5)
+        let vStackBottom = VerticalStackView(arrangedSubviews: [picturesCellController.view,buttonStack], spacing: 5)
         
         addSubview(vStackBottom)
-        pictures.view.constrainHeight(constant: 110)
+        picturesCellController.view.constrainHeight(constant: 110)
         
         vStackBottom.anchor(top: vStackCenter.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor,padding: .init(allInset: 10))
       

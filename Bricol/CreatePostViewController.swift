@@ -16,15 +16,45 @@ class CreatePostViewController: UIViewController {
     private let icon          = UILabel()
     private let line          = UIView(.gray)
     private let nextButton    = UIButton(type : .system)
-    
+    let skills = MountainsController().generateMountains()
+    var titles : [String] = []
+    var pickerView = UIPickerView()
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
     }
 }
+//MARK: SetUp UIPickeView
+typealias PickerConfiguer = UIPickerViewDelegate & UIPickerViewDataSource
 
+extension CreatePostViewController :  PickerConfiguer {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return skills.count
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        skills.forEach({titles.append($0.name)})
+        textField.text = titles[row]
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        skills.forEach({titles.append($0.name)})
+        return titles[row]
+    }
+    fileprivate func setupPickeView() {
+        pickerView.delegate    = self
+        pickerView.dataSource  = self
+        textField.inputView = pickerView
+    }
+}
 private extension CreatePostViewController {
     @objc func handlePrevious() {
+        guard let handymanSelected = textField.text else { return }
+        UserDefaults.standard.set(handymanSelected, forKey: "handymanSelected")
+        
         navigationController?.pushViewController(AddPicturesViewController(), animated: true)
     }
     func setActions() {
@@ -81,6 +111,7 @@ private extension CreatePostViewController {
         setupNextButton()
         dismissKeyBoard()
         setActions()
+        setupPickeView()
     }
     func creatUI() {
         view.backgroundColor = .secondarySystemBackground

@@ -6,18 +6,21 @@
 //
 
 import SwiftUI
+import SDWebImage
 
 class PicturesCellController: UICollectionViewController {
     private let cellID = "cellID"
+ 
+    var values : [String] = [String]()
+
     //init: ComposotionalLayout
     init() {
-        
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         item.contentInsets.trailing = 10
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.4), heightDimension: .absolute(120)), subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPaging
+        section.orthogonalScrollingBehavior = .continuous
         section.contentInsets.leading = 10
         let layout = UICollectionViewCompositionalLayout(section: section)
         
@@ -41,10 +44,13 @@ extension PicturesCellController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! PicturesViewCell
+       
+        let imagePath = values[indexPath.item]
+        cell.imageOfProblem.sd_setImage(with: URL(string: imagePath))
         return cell
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        9
+        return values.count
     }
 }
 struct PicturesCell: UIViewControllerRepresentable {

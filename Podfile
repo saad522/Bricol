@@ -8,4 +8,5 @@ target 'Bricol' do
   # Pods for Bricol
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
+pod 'Firebase/Storage'
 end

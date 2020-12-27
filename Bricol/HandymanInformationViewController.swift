@@ -58,7 +58,7 @@ extension HandymanInformationViewController {
                                      "isClient":isClient]
         guard let uiserID = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
-        db.collection(DB_Keys.collectionKey).document(uiserID).setData(values, merge: true) { [weak self] (error) in
+        db.collection(DB_Keys.usersCollectionKey).document(uiserID).setData(values, merge: true) { [weak self] (error) in
             if let error = error {
                 print("Failed to set Data 👎🏻 reason ",error.localizedDescription)
                 

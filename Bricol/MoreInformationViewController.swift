@@ -6,9 +6,19 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 class MoreInformationViewController: UIViewController {
+    let values : [String : Any]?
+    init(values : [String : Any]?) {
+        self.values = values
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     private let titleLabel     = UILabel()
     private let messageLabel   = UILabel()
     private let posterButton   = UIButton(type : .system)
@@ -21,15 +31,32 @@ class MoreInformationViewController: UIViewController {
         creatUI()
     }
 }
-
+//MARK: setUp Firebase
+extension MoreInformationViewController {
+    @objc func handleNext() {
+        guard var data = values else { return  }
+        guard let descrpition = describeText.text else { return  }
+        data["about"] = descrpition
+        uploadUserData(data)
+    }
+    private func uploadUserData(_ values : [String:Any]) {
+        let db = Firestore.firestore()
+        db.collection(DB_Keys.postsCollectionKey).document().setData(values) { [weak self] (error) in
+            if let error = error {
+                print("Failed to set Data 👎🏻 reason ",error.localizedDescription)
+                return
+            }
+            print("Its's Done ✅")
+            self?.dismiss(animated: true)
+        }
+    }
+}
 private extension MoreInformationViewController {
     
     @objc func handlePrevious() {
         navigationController?.popViewController(animated: true)
     }
-    @objc func handleNext() {
-       dismiss(animated: true)
-    }
+    
     func setActions() {
         previousButton.addTarget(self, action: #selector(handlePrevious), for: .touchUpInside)
         posterButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
@@ -147,7 +174,7 @@ extension MoreInformationViewController :  UITextViewDelegate {
 }
 struct MoreInformationView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        let controller = MoreInformationViewController()
+        let controller = MoreInformationViewController(values: nil)
         return controller
     }
     

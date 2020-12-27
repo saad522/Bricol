@@ -6,9 +6,19 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 class AddBudgetViewController: UIViewController {
+    let values : [String : Any]?
+    init(values : [String : Any]?) {
+        self.values = values
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     private let titleLabel      = UILabel()
     private let nextButton      = UIButton(type : .system)
     private let previousButton  = UIButton(type : .system)
@@ -21,14 +31,30 @@ class AddBudgetViewController: UIViewController {
     private let negotiableLabel = UILabel()
     private let yesLabel        = UILabel()
     private let notLabel        = UILabel()
-    private let isNegotiable    = UIButton(with: SFSymbols.selected)
+    private let yesNegotiable   = UIButton(with: SFSymbols.selected)
     private let notNegotiable   = UIButton(with: SFSymbols.selected)
     private var buttons         = [UIButton]()
-    
+    private var isNegotiable    : Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
     }
+}
+//MARK: setuo Firebase
+extension AddBudgetViewController {
+    @objc func handleNext() {
+        guard var data = values else { return  }
+        guard
+            let max = maxPrice.text,
+            let min = minPrice.text
+        else { return  }
+        data["Max"] = max
+        data["Min"] = min
+        data["isNegotiable"] = isNegotiable
+        let moreInformationViewController = MoreInformationViewController(values: data)
+        navigationController?.pushViewController(moreInformationViewController, animated: true)
+    }
+
 }
 private extension AddBudgetViewController {
     func buttonAction(sender: UIButton!){
@@ -42,7 +68,7 @@ private extension AddBudgetViewController {
         sender.tintColor = UIColor(Color.buttonsColor)
     }
     func setUpNegotiable() {
-        buttons.append(isNegotiable)
+        buttons.append(yesNegotiable)
         buttons.append(notNegotiable)
         negotiableLabel.text = "Negotiable"
         negotiableLabel.font = .systemFont(ofSize: 16, weight: .semibold)
@@ -114,19 +140,19 @@ private extension AddBudgetViewController {
     @objc func handlePrevious() {
         navigationController?.popViewController(animated: true)
     }
-    @objc func handleNext() {
-        navigationController?.pushViewController(MoreInformationViewController(), animated: true)
-    }
+    
     func setActions() {
         nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         previousButton.addTarget(self, action: #selector(handlePrevious), for: .touchUpInside)
-        isNegotiable.addTarget(self, action: #selector(handleYes), for: .touchUpInside)
+        yesNegotiable.addTarget(self, action: #selector(handleYes), for: .touchUpInside)
         notNegotiable.addTarget(self, action: #selector(handleNot), for: .touchUpInside)
     }
     @objc func handleYes() {
-        buttonAction(sender: isNegotiable)
+        isNegotiable.toggle()
+        buttonAction(sender: yesNegotiable)
     }
     @objc func handleNot() {
+        isNegotiable.toggle()
         buttonAction(sender: notNegotiable)
     }
     func setupNextButton() {
@@ -177,7 +203,7 @@ private extension AddBudgetViewController {
         buttonStack.translatesAutoresizingMaskIntoConstraints = false
         
        
-        let hstackYes = HStackView(arrangedSubviews: [yesLabel,isNegotiable], spacing: 3)
+        let hstackYes = HStackView(arrangedSubviews: [yesLabel,yesNegotiable], spacing: 3)
         let hstackNo = HStackView(arrangedSubviews: [notLabel,notNegotiable], spacing: 3)
         let hStack = HStackView(arrangedSubviews: [negotiableLabel,hstackYes,hstackNo], spacing: 10)
         
@@ -201,7 +227,7 @@ private extension AddBudgetViewController {
 }
 struct AddBudgetView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        let controller = AddBudgetViewController()
+        let controller = AddBudgetViewController(values: nil)
         return controller
     }
     
