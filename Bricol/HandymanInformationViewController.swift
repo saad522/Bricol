@@ -64,8 +64,9 @@ extension HandymanInformationViewController {
                 
                 return
             }
-            
-            print("Its's Done ✅")
+            UserDefaults.standard.set(name, forKey: "name")
+            print("The Name here is ",name)
+            print("Its's Done ✅ ")
             self?.dismiss(animated: true)
            
         }
@@ -113,30 +114,7 @@ extension HandymanInformationViewController : UIPickerViewDelegate, UIPickerView
         skill.inputView = pickerView
     }
 }
-//MARK: SetUp UIPickeView
-extension HandymanInformationViewController {
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return skills.count
-//    }
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        skills.forEach({titles.append($0.name)})
-//        skill.text = titles[row]
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        skills.forEach({titles.append($0.name)})
-//        return titles[row]
-//    }
-//    fileprivate func setupPickeView() {
-//        pickerView.delegate    = self
-//        pickerView.dataSource  = self
-//        skill.inputView = pickerView
-//    }
-}
+
 private extension HandymanInformationViewController {
     @objc func handlePreviousButton() {
         navigationController?.popViewController(animated: true)
@@ -323,7 +301,7 @@ private extension HandymanInformationViewController {
     @objc func keyboardWillChange(notification : Notification) {
         print("Keyboard will show : \(notification.name.rawValue)")
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
-        if password.isFirstResponder == true {
+        if skill.isFirstResponder == true {
             if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
                 view.frame.origin.y = -keyboardRect
             } else {

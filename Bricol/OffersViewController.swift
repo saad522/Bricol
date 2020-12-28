@@ -10,10 +10,10 @@ import SwiftUI
 class OffersViewController: UICollectionViewController {
     private let cellID = "cellID"
     var posts = [Post]()
-    
+    fileprivate let industry: String?
     //init: ComposotionalLayout
-    init() {
-        
+    init(industry: String?) {
+        self.industry = industry
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(500)), subitems: [item])
@@ -39,13 +39,16 @@ class OffersViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
         fetchUserData()
+        let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
+        mainTabBarController?.viewControllers![1].tabBarItem.badgeValue = nil
     }
 }
 
 //MARK: Configuretion of CollectionView
 extension OffersViewController {
     func fetchUserData() {
-        ServiceDatabase.shared.fetchUsersData { (posts, error) in
+        guard let industry = industry else { return  }
+        ServiceDatabase.shared.fetchPostsData(industry: industry) { (posts, error) in
             if let error = error {
                 print("Failed To Fetch Posts reason : ",error.localizedDescription)
                 return
@@ -66,12 +69,15 @@ extension OffersViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! OfferViewCell
         let post = posts[indexPath.item]
         cell.post = post
+        let pictures : [String] = [post.imageOne,post.imageTwo,post.imageTree,post.imageFour]
         
         cell.shadow()
         cell.layer.cornerRadius = 3
         cell.backgroundColor = .tertiarySystemBackground
         cell.didTapped = { [weak self] in
             let controller = MoreDetailsViewController()
+            controller.pictures = pictures
+            controller.values = self?.posts ?? []
             self?.navigationController?.pushViewController(controller, animated: true)
         }
         return cell
@@ -90,7 +96,7 @@ private extension OffersViewController {
 }
 struct OffersView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        let controller = UINavigationController(rootViewController: OffersViewController())
+        let controller = UINavigationController(rootViewController: OffersViewController(industry: nil))
         return controller
     }
     

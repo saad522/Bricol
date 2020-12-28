@@ -12,16 +12,18 @@ class CreatePostViewController: UIViewController {
     private let design        = UIImageView()
     private let dismissButton = UIButton(type : .system)
     private let titleLabel    = UILabel()
-    private let textField     = UITextField()
+    private let skill     = UITextField()
     private let icon          = UILabel()
     private let line          = UIView(.gray)
     private let nextButton    = UIButton(type : .system)
     let skills = MountainsController().generateMountains()
     var titles : [String] = []
     var pickerView = UIPickerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
+        setupPickeView()
     }
 }
 //MARK: SetUp UIPickeView
@@ -29,7 +31,7 @@ typealias PickerConfiguer = UIPickerViewDelegate & UIPickerViewDataSource
 
 extension CreatePostViewController :  PickerConfiguer {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+         1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -37,7 +39,9 @@ extension CreatePostViewController :  PickerConfiguer {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         skills.forEach({titles.append($0.name)})
-        textField.text = titles[row]
+        skill.text = titles[row]
+        print(" Selected  Row : ",titles[row])
+        print(" Selected Text : ",skill.text!)
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -47,18 +51,18 @@ extension CreatePostViewController :  PickerConfiguer {
     fileprivate func setupPickeView() {
         pickerView.delegate    = self
         pickerView.dataSource  = self
-        textField.inputView = pickerView
+        skill.inputView = pickerView
     }
 }
 private extension CreatePostViewController {
-    @objc func handlePrevious() {
-        guard let handymanSelected = textField.text else { return }
+    @objc func handleNext() {
+        guard let handymanSelected = skill.text else { return }
         UserDefaults.standard.set(handymanSelected, forKey: "handymanSelected")
         
         navigationController?.pushViewController(AddPicturesViewController(), animated: true)
     }
     func setActions() {
-        nextButton.addTarget(self, action: #selector(handlePrevious), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
     }
     func setupNextButton() {
         nextButton.backgroundColor = UIColor(Color.buttonsColor)
@@ -70,11 +74,11 @@ private extension CreatePostViewController {
     }
     func setupTextField() {
         //Text
-        textField.constrainWidth(constant: 270)
-        textField.constrainHeight(constant: 59)
-        textField.borderStyle  = .none
-        textField.font = .verdanaLight
-        textField.attributedPlaceholder = NSAttributedString(string: "Plombier", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
+        skill.constrainWidth(constant: 270)
+        skill.constrainHeight(constant: 59)
+        skill.borderStyle  = .none
+        skill.font = .verdanaLight
+        skill.attributedPlaceholder = NSAttributedString(string: "Plombier", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
         //Label icon 👨🏻‍🔧
         icon.text = "👨🏻‍🔧"
 
@@ -111,7 +115,7 @@ private extension CreatePostViewController {
         setupNextButton()
         dismissKeyBoard()
         setActions()
-        setupPickeView()
+        
     }
     func creatUI() {
         view.backgroundColor = .secondarySystemBackground
@@ -125,7 +129,7 @@ private extension CreatePostViewController {
         vStack.translatesAutoresizingMaskIntoConstraints = false
         
         
-        let hSatck = HStackView(arrangedSubviews: [icon,textField,UIView()], spacing: 5)
+        let hSatck = HStackView(arrangedSubviews: [icon,skill,UIView()], spacing: 5)
         let vStackLine = VerticalStackView(arrangedSubviews: [hSatck,line], spacing: 10)
         let vStackMain = VerticalStackView(arrangedSubviews: [vStackLine,nextButton], spacing: 40)
         

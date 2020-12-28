@@ -8,6 +8,19 @@
 import SwiftUI
 
 class DetailsViewCell: UICollectionViewCell {
+    var post : Post! {
+        didSet {
+            maxPriceLabel.text = " \(post.Max) DH "
+            minPriceLabel.text = " \(post.Min) DH "
+            descrptionLabel.text = post.about
+            if post.isNegotiable == true {
+                yesLabel.text = " Yes "
+            } else if post.isNegotiable == false {
+                yesLabel.text = " No "
+            }
+        }
+    }
+    
     private let adresse = UILabel(text: "Maroc,Casablanca Street N° 15 Rue Boulvard", font: .systemFont(ofSize: 14, weight: .semibold), textColor: .secondary)
     
     private let location = UILabel(text: "Location", font: .systemFont(ofSize: 14, weight: .semibold), textColor: .black)

@@ -47,8 +47,13 @@ extension MoreInformationViewController {
                 return
             }
             print("Its's Done ✅")
+            self?.showBadgeHighlight(1)
             self?.dismiss(animated: true)
         }
+    }
+    fileprivate func showBadgeHighlight(_ index : Int) {
+        let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
+        mainTabBarController?.viewControllers![index].tabBarItem.badgeValue = "Offer"
     }
 }
 private extension MoreInformationViewController {

@@ -42,7 +42,7 @@ class VerificationTextField: UITextField {
     }
 
     fileprivate func isFocused(isFocused: Bool = false) {
-        backgroundColor = isFocused ? UIColor.white :.tertiarySystemBackground
+        backgroundColor = isFocused ? UIColor.secondarySystemFill :.secondarySystemFill
         textColor = isFocused ? UIColor.black : UIColor(Color.titlesColor)
     }
 

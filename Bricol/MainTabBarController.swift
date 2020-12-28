@@ -21,7 +21,7 @@ extension MainTabBarController {
     fileprivate func setFunctions() {
         viewControllers = [
             setControllers(HomeViewControllert(), "Home", SFSymbols.house),
-            setControllers(OffersViewController(), "Offres", SFSymbols.flame)
+            setControllers(IndustryViewController(), "Offres", SFSymbols.flame)
         ]
     }
     fileprivate func setControllers(_ viewController : UIViewController, _ title : String,_ icon : String) -> UIViewController {

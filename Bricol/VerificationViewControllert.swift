@@ -13,6 +13,9 @@ class VerificationViewControllert: UIViewController {
     let verificationId = UserDefaults.standard.string(forKey: "authVerificationID")
     private var resendCodeButton   = UIButton(type : .system)
     private var resendCodeIcon     = UIImageView()
+    let image = UIImageView()
+    let message = UILabel()
+    
     let veriView = VerificationView(numberOfDigits: 6)
     private lazy var confirmButton = setupButton()
     override func viewDidLoad() {
@@ -23,6 +26,18 @@ class VerificationViewControllert: UIViewController {
 }
 
 private extension VerificationViewControllert {
+    func setupImagge() {
+        image.image = #imageLiteral(resourceName: "logo-1")
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
+        image.constrainWidth(constant: 100)
+        image.constrainHeight(constant: 100)
+        message.text = "Enter the code you get From SMS"
+        message.font = .verdanaTitle
+        message.textColor = UIColor(Color.titlesColor)
+        message.textAlignment = .center
+        message.numberOfLines = 2
+    }
     @objc func handleResendCode() {
         navigationController?.popViewController(animated: true)
     }
@@ -34,32 +49,36 @@ private extension VerificationViewControllert {
     }
     func setupResendCodeButton() {
         //Resend Code Icon
-        resendCodeIcon = UIImageView(SFSymbols.resendCode,size: 16,UIColor(Color.buttonsColor))
+        resendCodeIcon = UIImageView(SFSymbols.resendCode,size: 16,#colorLiteral(red: 0.2510487437, green: 0.7235888243, blue: 0.7010781169, alpha: 1))
         let attributes: [NSAttributedString.Key: Any] = [
               .font: UIFont.verdanaLight,
-            .foregroundColor: UIColor(Color.buttonsColor),
+            .foregroundColor: #colorLiteral(red: 0.2510487437, green: 0.7235888243, blue: 0.7010781169, alpha: 1),
               .underlineStyle: NSUnderlineStyle.single.rawValue]
         resendCodeButton.setTitle("Resend Code", for: .normal)
-        resendCodeButton.setTitleColor(UIColor(Color.buttonsColor), for: .normal)
+        resendCodeButton.setTitleColor(#colorLiteral(red: 0.2510487437, green: 0.7235888243, blue: 0.7010781169, alpha: 1), for: .normal)
         let attributeString = NSMutableAttributedString(string: "Resend Code", attributes: attributes)
         resendCodeButton.setAttributedTitle(attributeString, for: .normal)
     }
     func creatUI() {
         setupResendCodeButton()
         setActions()
-        view.backgroundColor = .secondarySystemBackground
+        setupImagge()
+        view.backgroundColor = .systemBackground
         navigationController?.isNavigationBarHidden = true
-       
-        view.addSubview(veriView)
-        veriView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+        let vStackImagge = VerticalStackView(arrangedSubviews: [image,message], spacing: 5)
+        
+        let stack = VerticalStackView(arrangedSubviews: [vStackImagge,veriView], spacing: 15)
+        
+        view.addSubview(stack)
+        stack.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                         leading: view.leadingAnchor,
                         bottom: nil,
                         trailing: view.trailingAnchor,
-                        padding: .init(top: 100, left: 15, bottom: 0, right: 15))
+                        padding: .init(top: 15, left: 15, bottom: 0, right: 15))
 
        
         view.addSubview(confirmButton)
-        confirmButton.anchor(top: veriView.bottomAnchor,
+        confirmButton.anchor(top: stack.bottomAnchor,
                       leading: view.leadingAnchor,
                       bottom: nil,
                       trailing: view.trailingAnchor,

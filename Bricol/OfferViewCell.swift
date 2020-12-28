@@ -18,13 +18,13 @@ class OfferViewCell : UICollectionViewCell {
     var didTapped : () -> () = {}
     var post : Post! {
         didSet {
-            maxPriceLabel.text = "\(post.Max).00 DH"
-            minPriceLabel.text = "\(post.Min).00 DH"
+            maxPriceLabel.text = " \(post.Max) DH "
+            minPriceLabel.text = " \(post.Min) DH "
             descrptionLabel.text = post.about
             if post.isNegotiable == true {
-                yesLabel.text = "Yes"
+                yesLabel.text = " Yes "
             } else if post.isNegotiable == false {
-                yesLabel.text = "No"
+                yesLabel.text = " No "
             }
             
             let  picturesURL : [String] = [post.imageOne,post.imageTwo,post.imageTree,post.imageFour]

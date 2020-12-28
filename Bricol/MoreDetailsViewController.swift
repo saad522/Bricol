@@ -11,6 +11,8 @@ class MoreDetailsViewController: UICollectionViewController {
     
     fileprivate let cellId = "cellId"
     private let secondCellID = "secondCellID"
+    var pictures : [String] = [String]()
+    var values = [Post]()
     
     fileprivate let padding: CGFloat = 16
     init() {
@@ -59,12 +61,11 @@ class MoreDetailsViewController: UICollectionViewController {
 
 extension MoreDetailsViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
         return 2
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return section == 0 ? 10 : 1
+        return section == 0 ? pictures.count : 1
     }
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .secondarySystemBackground
@@ -82,6 +83,8 @@ extension MoreDetailsViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PicturesCellViews
+            let picture = pictures[indexPath.item]
+            cell.picture.sd_setImage(with: URL(string: picture))
             cell.backgroundColor = .tertiarySystemBackground
             cell.didTappedDismiss = { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
@@ -90,7 +93,8 @@ extension MoreDetailsViewController {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCellID, for: indexPath) as! DetailsViewCell
-//            cell.layer.
+            let post = values[indexPath.item]
+            cell.post = post
             return cell
         }
         

@@ -7,9 +7,7 @@
 
 import UIKit
 
-//struct Picture {
-//    let picture : String
-//}
+
 class PicturesViewCell: UICollectionViewCell {
     let imageOfProblem = UIImageView(image : #imageLiteral(resourceName: "broken-pipe-water"))
     
@@ -61,16 +59,20 @@ class PicturesCellViews: UICollectionViewCell {
 private extension PicturesCellViews {
     func  creatUI() {
         addSubview(picture)
-        picture.contentMode = .scaleAspectFit
-        picture.layer.cornerRadius = 12
+        picture.contentMode = .scaleAspectFill
         picture.clipsToBounds = true
         dismissButton.tintColor = .black
         dismissButton.constrainWidth(constant: 35)
         dismissButton.constrainHeight(constant: 35)
         picture.isUserInteractionEnabled = true
-//        picture.constrainWidth(constant: 450)
+        picture.constrainWidth(constant: 450)
 //        picture.constrainHeight(constant: 450)
-        picture.centerInSuperview(size: .init(width: 450, height: 450))
+        picture.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            picture.topAnchor.constraint(equalTo: topAnchor),
+            picture.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        
         picture.addSubview(dismissButton)
         dismissButton.anchor(top: safeAreaLayoutGuide.topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil,padding: .init(allInset: 5))
         dismissButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)

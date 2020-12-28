@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041D22712599F975007AD4FD /* IndustryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D22702599F975007AD4FD /* IndustryViewController.swift */; };
+		041D22742599FB7A007AD4FD /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D22732599FB7A007AD4FD /* SearchViewCell.swift */; };
 		045A032E259358DD0080EC80 /* PicturesCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A032D259358DD0080EC80 /* PicturesCellController.swift */; };
 		045A033125935CDB0080EC80 /* PicturesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033025935CDB0080EC80 /* PicturesViewCell.swift */; };
 		045A033725936BF60080EC80 /* MoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033625936BF60080EC80 /* MoreDetailsViewController.swift */; };
@@ -57,6 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041D22702599F975007AD4FD /* IndustryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndustryViewController.swift; sourceTree = "<group>"; };
+		041D22732599FB7A007AD4FD /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
 		045A032D259358DD0080EC80 /* PicturesCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCellController.swift; sourceTree = "<group>"; };
 		045A033025935CDB0080EC80 /* PicturesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesViewCell.swift; sourceTree = "<group>"; };
 		045A033625936BF60080EC80 /* MoreDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDetailsViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 				049E6A45258B99F0004FF0AC /* SceneDelegate.swift */,
 				049E6ABF258D60CE004FF0AC /* Verifications */,
 				049E6AB1258D5379004FF0AC /* VerificationViewControllert.swift */,
+				041D22702599F975007AD4FD /* IndustryViewController.swift */,
+				041D22732599FB7A007AD4FD /* SearchViewCell.swift */,
 				04C615EE2599017A00EE88E6 /* ServiceStorage.swift */,
 				04C615F52599264A00EE88E6 /* ServiceDatabase.swift */,
 				04C615F8259926A700EE88E6 /* Post.swift */,
@@ -357,6 +363,7 @@
 				04F953F62591EE6200BC78F8 /* OffersViewController.swift in Sources */,
 				049E6AA0258D15D0004FF0AC /* UIView+Layout.swift in Sources */,
 				045A033A25936E570080EC80 /* HeaderView.swift in Sources */,
+				041D22712599F975007AD4FD /* IndustryViewController.swift in Sources */,
 				049E6ABD258D5EE7004FF0AC /* IconView.swift in Sources */,
 				045A033D259370590080EC80 /* PicturesViewController.swift in Sources */,
 				04C615EF2599017A00EE88E6 /* ServiceStorage.swift in Sources */,
@@ -373,6 +380,7 @@
 				049E6A44258B99F0004FF0AC /* AppDelegate.swift in Sources */,
 				049E6AB7258D5A9B004FF0AC /* VerificationView.swift in Sources */,
 				045A033725936BF60080EC80 /* MoreDetailsViewController.swift in Sources */,
+				041D22742599FB7A007AD4FD /* SearchViewCell.swift in Sources */,
 				04718E352590BC2C0011E74D /* AddBudgetViewController.swift in Sources */,
 				049E6AA2258D15D0004FF0AC /* Enums.swift in Sources */,
 				049E6ABA258D5EBB004FF0AC /* ConfirmButton.swift in Sources */,

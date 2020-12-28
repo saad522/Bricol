@@ -14,9 +14,9 @@ class ServiceDatabase {
     let db = Firestore.firestore()
     lazy var collection = db.collection(DB_Keys.postsCollectionKey)
     
-    func fetchUsersData(completion : @escaping([Post]?,Error?)->Void) {
+    func fetchPostsData(industry : String,completion : @escaping([Post]?,Error?)->Void) {
        
-        collection.addSnapshotListener { (querySnapshot, error) in
+        collection.whereField("lookingFor", isEqualTo: industry).addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print("Error : ",error.localizedDescription)
                 completion(nil,error)

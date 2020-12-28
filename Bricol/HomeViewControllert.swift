@@ -19,7 +19,7 @@ class HomeViewControllert: UICollectionViewController {
         .init(image: #imageLiteral(resourceName: "Handyman"), title: "Teinturier"),
         .init(image: #imageLiteral(resourceName: "XMLID_83_"), title: "Charpentier")
     ]
-    
+    let name = UserDefaults.standard.string(forKey: "name") ?? "Othman"
     //init: ComposotionalLayout
     init() {
         
@@ -64,6 +64,7 @@ class HomeViewControllert: UICollectionViewController {
 //        setDevelopmentPresnted()
         checkIfUserLoggedIn()
     }
+    
     func setDevelopmentPresnted() {
         perform(#selector(handlePresent), with: self, afterDelay: 0)
     }
@@ -96,6 +97,9 @@ extension HomeViewControllert {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: firstCellID, for: indexPath) as! CardPosteViewCell
+          
+            print("The Name is : ",name)
+            cell.name.text = "Bonjour,\(name)"
             cell.backgroundColor = .systemGreen
             cell.didPostTapped = { [weak self] in
                 print("Did Post Taped")
