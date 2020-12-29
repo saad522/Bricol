@@ -118,7 +118,15 @@ extension HomeViewControllert {
         }
     }
    
-        
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            print("Tapped")
+        }
+        else if indexPath.section == 1 {
+            let controller =  CategoryViewController()
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as! CompositionalHeader
         return header

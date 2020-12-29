@@ -148,11 +148,11 @@ private extension AddBudgetViewController {
         notNegotiable.addTarget(self, action: #selector(handleNot), for: .touchUpInside)
     }
     @objc func handleYes() {
-        isNegotiable.toggle()
+        isNegotiable = true
         buttonAction(sender: yesNegotiable)
     }
     @objc func handleNot() {
-        isNegotiable.toggle()
+        isNegotiable = false
         buttonAction(sender: notNegotiable)
     }
     func setupNextButton() {

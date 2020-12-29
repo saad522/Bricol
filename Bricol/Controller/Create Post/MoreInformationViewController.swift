@@ -37,27 +37,37 @@ extension MoreInformationViewController {
         guard var data = values else { return  }
         guard let descrpition = describeText.text else { return  }
         data["about"] = descrpition
-        uploadUserData(data)
+        ServiceDatabase.shared.fetchUserInfo { [weak self] (user, error) in
+            if let error = error {
+                print("DEBUG: Failed to get user Data reason : ",error.localizedDescription)
+                return
+            }
+            guard let user = user else { return }
+            data["fullName"] = user.name
+            data["city"]     = user.city
+            print("DEBUG: We Close")
+            self?.uploadUserData(data)
+        }
     }
     private func uploadUserData(_ values : [String:Any]) {
         let db = Firestore.firestore()
         db.collection(DB_Keys.postsCollectionKey).document().setData(values) { [weak self] (error) in
             if let error = error {
-                print("Failed to set Data 👎🏻 reason ",error.localizedDescription)
+                print("DEBUG: Failed to set Data 👎🏻 reason ",error.localizedDescription)
                 return
             }
-            print("Its's Done ✅")
+            print("DEBUG: Its's Done ✅")
             self?.showBadgeHighlight(1)
             self?.dismiss(animated: true)
         }
     }
-    fileprivate func showBadgeHighlight(_ index : Int) {
-        let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
-        mainTabBarController?.viewControllers![index].tabBarItem.badgeValue = "Offer"
-    }
+     
 }
 private extension MoreInformationViewController {
-    
+    func showBadgeHighlight(_ index : Int) {
+       let mainTabBarController = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController as? MainTabBarController
+       mainTabBarController?.viewControllers![index].tabBarItem.badgeValue = "Offer"
+   }
     @objc func handlePrevious() {
         navigationController?.popViewController(animated: true)
     }

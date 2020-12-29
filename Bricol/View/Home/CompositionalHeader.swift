@@ -8,7 +8,7 @@
 import SwiftUI
 class CompositionalHeader: UICollectionReusableView {
     
-    private let label = UILabel(text: "Categories", font: .verdana, textColor: Color.titlesColor)
+     let label = UILabel(text: "Categories", font: .verdana, textColor: Color.titlesColor)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

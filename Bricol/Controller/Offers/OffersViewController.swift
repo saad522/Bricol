@@ -77,7 +77,7 @@ extension OffersViewController {
         cell.didTapped = { [weak self] in
             let controller = MoreDetailsViewController()
             controller.pictures = pictures
-            controller.values = self?.posts ?? []
+            controller.values = self?.posts[indexPath.item]
             self?.navigationController?.pushViewController(controller, animated: true)
         }
         return cell

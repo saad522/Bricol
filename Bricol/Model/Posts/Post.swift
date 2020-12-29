@@ -19,6 +19,9 @@ struct Post: Hashable {
     let postID       : String
     let phoneNumber  : String
     let lookingFor   : String
+    let city         : String
+    let fullName     : String
+    
     
    
     init(dectionary : [String : Any]) {
@@ -34,5 +37,7 @@ struct Post: Hashable {
         self.postID       = dectionary["postID"]       as? String ?? ""
         self.phoneNumber  = dectionary["phoneNumber"]  as? String ?? ""
         self.lookingFor   = dectionary["lookingFor"]   as? String ?? ""
+        self.fullName     = dectionary["fullName"]     as? String ?? ""
+        self.city         = dectionary["city"]         as? String ?? ""
     }
 }

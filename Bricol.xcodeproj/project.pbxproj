@@ -18,6 +18,8 @@
 		04718E322590A4A10011E74D /* AddPicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E312590A4A10011E74D /* AddPicturesViewController.swift */; };
 		04718E352590BC2C0011E74D /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E342590BC2C0011E74D /* AddBudgetViewController.swift */; };
 		04718E382590EA330011E74D /* MoreInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E372590EA330011E74D /* MoreInformationViewController.swift */; };
+		04846954259BB69A008320E4 /* HandymanProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04846953259BB69A008320E4 /* HandymanProfileViewController.swift */; };
+		04846958259BBC90008320E4 /* HandymanProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04846957259BBC90008320E4 /* HandymanProfileViewCell.swift */; };
 		049E6A44258B99F0004FF0AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6A43258B99F0004FF0AC /* AppDelegate.swift */; };
 		049E6A46258B99F0004FF0AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6A45258B99F0004FF0AC /* SceneDelegate.swift */; };
 		049E6A4D258B99F5004FF0AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049E6A4C258B99F5004FF0AC /* Assets.xcassets */; };
@@ -39,6 +41,9 @@
 		04A5C7C325976D9100906AC6 /* mountainsRawData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5C7C225976D9100906AC6 /* mountainsRawData.swift */; };
 		04A5C7C62597712500906AC6 /* CityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5C7C52597712500906AC6 /* CityController.swift */; };
 		04A5C7C92597715900906AC6 /* citiesRowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A5C7C82597715900906AC6 /* citiesRowData.swift */; };
+		04A675B6259B2B760064184E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A675B5259B2B760064184E /* User.swift */; };
+		04A675D2259B42760064184E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A675D1259B42760064184E /* CategoryViewController.swift */; };
+		04A675D7259B47180064184E /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A675D6259B47180064184E /* CategoryViewCell.swift */; };
 		04C615EF2599017A00EE88E6 /* ServiceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C615EE2599017A00EE88E6 /* ServiceStorage.swift */; };
 		04C615F32599261A00EE88E6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 04C615F22599261A00EE88E6 /* SDWebImage */; };
 		04C615F62599264A00EE88E6 /* ServiceDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C615F52599264A00EE88E6 /* ServiceDatabase.swift */; };
@@ -70,6 +75,8 @@
 		04718E312590A4A10011E74D /* AddPicturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicturesViewController.swift; sourceTree = "<group>"; };
 		04718E342590BC2C0011E74D /* AddBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
 		04718E372590EA330011E74D /* MoreInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInformationViewController.swift; sourceTree = "<group>"; };
+		04846953259BB69A008320E4 /* HandymanProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandymanProfileViewController.swift; sourceTree = "<group>"; };
+		04846957259BBC90008320E4 /* HandymanProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandymanProfileViewCell.swift; sourceTree = "<group>"; };
 		049E6A40258B99F0004FF0AC /* Bricol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bricol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049E6A43258B99F0004FF0AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049E6A45258B99F0004FF0AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +100,9 @@
 		04A5C7C225976D9100906AC6 /* mountainsRawData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mountainsRawData.swift; sourceTree = "<group>"; };
 		04A5C7C52597712500906AC6 /* CityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityController.swift; sourceTree = "<group>"; };
 		04A5C7C82597715900906AC6 /* citiesRowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = citiesRowData.swift; sourceTree = "<group>"; };
+		04A675B5259B2B760064184E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		04A675D1259B42760064184E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		04A675D6259B47180064184E /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		04C615EE2599017A00EE88E6 /* ServiceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStorage.swift; sourceTree = "<group>"; };
 		04C615F52599264A00EE88E6 /* ServiceDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDatabase.swift; sourceTree = "<group>"; };
 		04C615F8259926A700EE88E6 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -126,6 +136,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04846952259BB670008320E4 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				04846953259BB69A008320E4 /* HandymanProfileViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		04846956259BBC5B008320E4 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				04846957259BBC90008320E4 /* HandymanProfileViewCell.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		049E6A37258B99EF004FF0AC = {
 			isa = PBXGroup;
 			children = (
@@ -147,47 +173,15 @@
 		049E6A42258B99F0004FF0AC /* Bricol */ = {
 			isa = PBXGroup;
 			children = (
-				04718E342590BC2C0011E74D /* AddBudgetViewController.swift */,
-				04718E312590A4A10011E74D /* AddPicturesViewController.swift */,
-				049E6A43258B99F0004FF0AC /* AppDelegate.swift */,
-				049E6A4C258B99F5004FF0AC /* Assets.xcassets */,
-				04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */,
-				04DF6E63258E3A04009EC221 /* CardView.swift */,
-				04D7EFFC258FA4F4006AC05C /* CategoriesViewCell.swift */,
-				04DF6E6F258E7438009EC221 /* ClientInformationViewController.swift */,
-				04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */,
-				04718E2E259097E30011E74D /* CreatePostViewController.swift */,
-				04FA31D72593959900F05BB2 /* DetailsViewCell.swift */,
-				049E6A8D258D15A4004FF0AC /* Extensions */,
-				04A5C7BA259761E600906AC6 /* GoogleService-Info.plist */,
-				04DF6E6A258E68DA009EC221 /* HandymanInformationViewController.swift */,
-				04A5C7BF25976D5E00906AC6 /* MountainsController.swift */,
-				04A5C7C52597712500906AC6 /* CityController.swift */,
-				04A5C7C82597715900906AC6 /* citiesRowData.swift */,
-				04A5C7C225976D9100906AC6 /* mountainsRawData.swift */,
-				045A033925936E570080EC80 /* HeaderView.swift */,
-				04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */,
-				049E6A51258B99F5004FF0AC /* Info.plist */,
+				04A675A3259B26CC0064184E /* Support Files */,
+				04A675A2259B26BD0064184E /* Networking */,
+				04A675A1259B26B50064184E /* Model */,
+				04A675A0259B26AB0064184E /* Controller */,
+				04A6759F259B26A30064184E /* View */,
 				049E6A4E258B99F5004FF0AC /* LaunchScreen.storyboard */,
 				049E6AA8258D167E004FF0AC /* LoginViewController.swift */,
-				04DF6E60258E3295009EC221 /* LookingForViewController.swift */,
-				04F953F22591EDF800BC78F8 /* MainTabBarController.swift */,
-				045A033625936BF60080EC80 /* MoreDetailsViewController.swift */,
-				04718E372590EA330011E74D /* MoreInformationViewController.swift */,
-				04F953F52591EE6200BC78F8 /* OffersViewController.swift */,
-				04F953F8259215E900BC78F8 /* OfferViewCell.swift */,
-				045A032D259358DD0080EC80 /* PicturesCellController.swift */,
-				045A033025935CDB0080EC80 /* PicturesViewCell.swift */,
 				045A033C259370590080EC80 /* PicturesViewController.swift */,
-				049E6AAE258D427C004FF0AC /* RegisterViewController.swift */,
-				049E6A45258B99F0004FF0AC /* SceneDelegate.swift */,
-				049E6ABF258D60CE004FF0AC /* Verifications */,
-				049E6AB1258D5379004FF0AC /* VerificationViewControllert.swift */,
-				041D22702599F975007AD4FD /* IndustryViewController.swift */,
-				041D22732599FB7A007AD4FD /* SearchViewCell.swift */,
-				04C615EE2599017A00EE88E6 /* ServiceStorage.swift */,
-				04C615F52599264A00EE88E6 /* ServiceDatabase.swift */,
-				04C615F8259926A700EE88E6 /* Post.swift */,
+				04A5C7BA259761E600906AC6 /* GoogleService-Info.plist */,
 			);
 			path = Bricol;
 			sourceTree = "<group>";
@@ -213,6 +207,219 @@
 				049E6ABC258D5EE7004FF0AC /* IconView.swift */,
 			);
 			path = Verifications;
+			sourceTree = "<group>";
+		};
+		04A6759F259B26A30064184E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04A675AE259B279C0064184E /* Create Post */,
+				04A675AA259B273F0064184E /* Home */,
+				04A675A8259B27240064184E /* Offers */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04A675A0259B26AB0064184E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04A675AD259B27920064184E /* Create Post */,
+				04A675AB259B27470064184E /* Registration */,
+				04A675A7259B270D0064184E /* Base Main Tab Bar */,
+				04A675A6259B26FF0064184E /* Home */,
+				04A675A4259B26DC0064184E /* Offers */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04A675A1259B26B50064184E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04A675B4259B2B620064184E /* Users */,
+				04A675B2259B29990064184E /* Skills */,
+				04A675B1259B298C0064184E /* Cities */,
+				04A675B0259B29800064184E /* Posts */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04A675A2259B26BD0064184E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				04C615EE2599017A00EE88E6 /* ServiceStorage.swift */,
+				04C615F52599264A00EE88E6 /* ServiceDatabase.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		04A675A3259B26CC0064184E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				049E6A4C258B99F5004FF0AC /* Assets.xcassets */,
+				049E6A43258B99F0004FF0AC /* AppDelegate.swift */,
+				049E6A45258B99F0004FF0AC /* SceneDelegate.swift */,
+				049E6A51258B99F5004FF0AC /* Info.plist */,
+				049E6A8D258D15A4004FF0AC /* Extensions */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		04A675A4259B26DC0064184E /* Offers */ = {
+			isa = PBXGroup;
+			children = (
+				041D22702599F975007AD4FD /* IndustryViewController.swift */,
+				04F953F52591EE6200BC78F8 /* OffersViewController.swift */,
+				045A032D259358DD0080EC80 /* PicturesCellController.swift */,
+				04A675A5259B26E40064184E /* Detail Of Offer */,
+			);
+			path = Offers;
+			sourceTree = "<group>";
+		};
+		04A675A5259B26E40064184E /* Detail Of Offer */ = {
+			isa = PBXGroup;
+			children = (
+				045A033625936BF60080EC80 /* MoreDetailsViewController.swift */,
+			);
+			path = "Detail Of Offer";
+			sourceTree = "<group>";
+		};
+		04A675A6259B26FF0064184E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04A675D0259B42510064184E /* Category */,
+				04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		04A675A7259B270D0064184E /* Base Main Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				04F953F22591EDF800BC78F8 /* MainTabBarController.swift */,
+			);
+			path = "Base Main Tab Bar";
+			sourceTree = "<group>";
+		};
+		04A675A8259B27240064184E /* Offers */ = {
+			isa = PBXGroup;
+			children = (
+				041D22732599FB7A007AD4FD /* SearchViewCell.swift */,
+				04F953F8259215E900BC78F8 /* OfferViewCell.swift */,
+				045A033025935CDB0080EC80 /* PicturesViewCell.swift */,
+				04A675A9259B272E0064184E /* Detail Of Offer */,
+			);
+			path = Offers;
+			sourceTree = "<group>";
+		};
+		04A675A9259B272E0064184E /* Detail Of Offer */ = {
+			isa = PBXGroup;
+			children = (
+				04FA31D72593959900F05BB2 /* DetailsViewCell.swift */,
+				045A033925936E570080EC80 /* HeaderView.swift */,
+			);
+			path = "Detail Of Offer";
+			sourceTree = "<group>";
+		};
+		04A675AA259B273F0064184E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04A675D5259B46C00064184E /* Category */,
+				04D7EFFC258FA4F4006AC05C /* CategoriesViewCell.swift */,
+				04D7EFF6258F8D53006AC05C /* CompositionalHeader.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		04A675AB259B27470064184E /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				049E6AAE258D427C004FF0AC /* RegisterViewController.swift */,
+				049E6AB1258D5379004FF0AC /* VerificationViewControllert.swift */,
+				049E6ABF258D60CE004FF0AC /* Verifications */,
+				04A675AC259B277E0064184E /* Complete Info */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		04A675AC259B277E0064184E /* Complete Info */ = {
+			isa = PBXGroup;
+			children = (
+				04DF6E6F258E7438009EC221 /* ClientInformationViewController.swift */,
+				04DF6E6A258E68DA009EC221 /* HandymanInformationViewController.swift */,
+			);
+			path = "Complete Info";
+			sourceTree = "<group>";
+		};
+		04A675AD259B27920064184E /* Create Post */ = {
+			isa = PBXGroup;
+			children = (
+				04718E2E259097E30011E74D /* CreatePostViewController.swift */,
+				04DF6E60258E3295009EC221 /* LookingForViewController.swift */,
+				04718E342590BC2C0011E74D /* AddBudgetViewController.swift */,
+				04718E312590A4A10011E74D /* AddPicturesViewController.swift */,
+				04718E372590EA330011E74D /* MoreInformationViewController.swift */,
+			);
+			path = "Create Post";
+			sourceTree = "<group>";
+		};
+		04A675AE259B279C0064184E /* Create Post */ = {
+			isa = PBXGroup;
+			children = (
+				04D7EFF9258F8F15006AC05C /* CardPosteViewCell.swift */,
+				04DF6E63258E3A04009EC221 /* CardView.swift */,
+			);
+			path = "Create Post";
+			sourceTree = "<group>";
+		};
+		04A675B0259B29800064184E /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				04C615F8259926A700EE88E6 /* Post.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		04A675B1259B298C0064184E /* Cities */ = {
+			isa = PBXGroup;
+			children = (
+				04A5C7C82597715900906AC6 /* citiesRowData.swift */,
+				04A5C7C52597712500906AC6 /* CityController.swift */,
+			);
+			path = Cities;
+			sourceTree = "<group>";
+		};
+		04A675B2259B29990064184E /* Skills */ = {
+			isa = PBXGroup;
+			children = (
+				04A5C7C225976D9100906AC6 /* mountainsRawData.swift */,
+				04A5C7BF25976D5E00906AC6 /* MountainsController.swift */,
+			);
+			path = Skills;
+			sourceTree = "<group>";
+		};
+		04A675B4259B2B620064184E /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				04A675B5259B2B760064184E /* User.swift */,
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		04A675D0259B42510064184E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				04846952259BB670008320E4 /* Detail */,
+				04A675D1259B42760064184E /* CategoryViewController.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		04A675D5259B46C00064184E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				04846956259BBC5B008320E4 /* Detail */,
+				04A675D6259B47180064184E /* CategoryViewCell.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		AE4FEE887598033EA2D90F56 /* Pods */ = {
@@ -360,14 +567,17 @@
 				04718E382590EA330011E74D /* MoreInformationViewController.swift in Sources */,
 				04D7EFF7258F8D53006AC05C /* CompositionalHeader.swift in Sources */,
 				049E6AAF258D427C004FF0AC /* RegisterViewController.swift in Sources */,
+				04A675D2259B42760064184E /* CategoryViewController.swift in Sources */,
 				04F953F62591EE6200BC78F8 /* OffersViewController.swift in Sources */,
 				049E6AA0258D15D0004FF0AC /* UIView+Layout.swift in Sources */,
 				045A033A25936E570080EC80 /* HeaderView.swift in Sources */,
 				041D22712599F975007AD4FD /* IndustryViewController.swift in Sources */,
 				049E6ABD258D5EE7004FF0AC /* IconView.swift in Sources */,
+				04846954259BB69A008320E4 /* HandymanProfileViewController.swift in Sources */,
 				045A033D259370590080EC80 /* PicturesViewController.swift in Sources */,
 				04C615EF2599017A00EE88E6 /* ServiceStorage.swift in Sources */,
 				04A5C7C62597712500906AC6 /* CityController.swift in Sources */,
+				04A675D7259B47180064184E /* CategoryViewCell.swift in Sources */,
 				045A032E259358DD0080EC80 /* PicturesCellController.swift in Sources */,
 				049E6AC1258D60EA004FF0AC /* VerificationTextField.swift in Sources */,
 				049E6AA1258D15D0004FF0AC /* VerticalStackView.swift in Sources */,
@@ -375,6 +585,7 @@
 				049E6A9F258D15D0004FF0AC /* HStackView.swift in Sources */,
 				04A5C7C325976D9100906AC6 /* mountainsRawData.swift in Sources */,
 				04DF6E61258E3295009EC221 /* LookingForViewController.swift in Sources */,
+				04A675B6259B2B760064184E /* User.swift in Sources */,
 				04D7EFFD258FA4F4006AC05C /* CategoriesViewCell.swift in Sources */,
 				04F953F9259215E900BC78F8 /* OfferViewCell.swift in Sources */,
 				049E6A44258B99F0004FF0AC /* AppDelegate.swift in Sources */,
@@ -390,6 +601,7 @@
 				04C615F9259926A700EE88E6 /* Post.swift in Sources */,
 				045A033125935CDB0080EC80 /* PicturesViewCell.swift in Sources */,
 				04C615F62599264A00EE88E6 /* ServiceDatabase.swift in Sources */,
+				04846958259BBC90008320E4 /* HandymanProfileViewCell.swift in Sources */,
 				04D7EFFA258F8F15006AC05C /* CardPosteViewCell.swift in Sources */,
 				049E6A46258B99F0004FF0AC /* SceneDelegate.swift in Sources */,
 				04DF6E64258E3A04009EC221 /* CardView.swift in Sources */,
@@ -537,7 +749,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3HC9ZUJB9G;
-				INFOPLIST_FILE = Bricol/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Bricol/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -557,7 +769,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3HC9ZUJB9G;
-				INFOPLIST_FILE = Bricol/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Bricol/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

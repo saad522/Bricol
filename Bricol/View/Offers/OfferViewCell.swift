@@ -26,7 +26,8 @@ class OfferViewCell : UICollectionViewCell {
             } else if post.isNegotiable == false {
                 yesLabel.text = " No "
             }
-            
+            name.text = post.fullName
+            adresse.text = "Maroc,\(post.city)"
             let  picturesURL : [String] = [post.imageOne,post.imageTwo,post.imageTree,post.imageFour]
             picturesCellController.values = picturesURL
         }

@@ -10,6 +10,7 @@ import SwiftUI
 class DetailsViewCell: UICollectionViewCell {
     var post : Post! {
         didSet {
+            descrptionLabel.text = post.about
             maxPriceLabel.text = " \(post.Max) DH "
             minPriceLabel.text = " \(post.Min) DH "
             descrptionLabel.text = post.about

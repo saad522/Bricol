@@ -74,7 +74,7 @@ extension UIButton {
     convenience init(with icons: String) {
         self.init(type: .custom)
         self.tintColor = .label
-        let configuration = UIImage.SymbolConfiguration(pointSize: 25, weight: .light, scale: .large)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 25, weight: .heavy, scale: .large)
         self.setImage(UIImage(systemName: icons, withConfiguration: configuration)?.withRenderingMode(.alwaysTemplate), for: .normal)
     }
 }

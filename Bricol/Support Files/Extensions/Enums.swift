@@ -52,6 +52,10 @@ enum SFSymbols {
     static let addImage     = "plus.rectangle.fill.on.rectangle.fill"
     static let house        = "house"
     static let flame        = "flame"
+    static let star         = "star.fill"
+    static let call         = "phone"
+    static let message      = "message"
+    static let back         = "arrow.left"
 }
 
 enum Keys {

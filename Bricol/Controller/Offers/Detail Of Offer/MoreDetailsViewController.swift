@@ -12,7 +12,7 @@ class MoreDetailsViewController: UICollectionViewController {
     fileprivate let cellId = "cellId"
     private let secondCellID = "secondCellID"
     var pictures : [String] = [String]()
-    var values = [Post]()
+    var values : Post?
     
     fileprivate let padding: CGFloat = 16
     init() {
@@ -93,7 +93,7 @@ extension MoreDetailsViewController {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCellID, for: indexPath) as! DetailsViewCell
-            let post = values[indexPath.item]
+            let post = values
             cell.post = post
             return cell
         }
