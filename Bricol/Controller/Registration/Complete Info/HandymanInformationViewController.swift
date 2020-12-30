@@ -51,11 +51,19 @@ extension HandymanInformationViewController {
     @objc func handleNext() {
         guard let name = fullName.text, let city = living.text, let metier = skill.text else { return }
         let isClient = 0
+        let work = "0"
+        let review = "0"
+        let status = false
+        let aboutMe = ""
         
         let values : [String:Any] = ["name":name,
                                      "city":city,
                                      "metier":metier,
-                                     "isClient":isClient]
+                                     "isClient":isClient,
+                                     "work":work,
+                                     "review":review,
+                                     "status":status,
+                                     "aboutMe":aboutMe]
         guard let uiserID = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
         db.collection(DB_Keys.usersCollectionKey).document(uiserID).setData(values, merge: true) { [weak self] (error) in
@@ -64,8 +72,6 @@ extension HandymanInformationViewController {
                 
                 return
             }
-            UserDefaults.standard.set(name, forKey: "name")
-            print("The Name here is ",name)
             print("Its's Done ✅ ")
             self?.dismiss(animated: true)
            

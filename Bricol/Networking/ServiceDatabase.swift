@@ -49,4 +49,22 @@ class ServiceDatabase {
             
         }
     }
+    func fetchHandymanInfo(metier : String, completion : @escaping([User]?,Error?)->Void) {
+        userCollection
+            .whereField("isClient", isEqualTo: 0)
+            .whereField("metier", isEqualTo: metier)
+            .addSnapshotListener { (querySnapshot, error) in
+                if let error = error {
+                    print("Error : ",error.localizedDescription)
+                    completion(nil,error)
+                    return
+                }
+                guard let documents = querySnapshot?.documents else { return }
+                let user = documents.map { (snpashot) -> User in
+                    let dectionary = snpashot.data()
+                    return User(dectionary: dectionary)
+                }
+                completion(user,nil)
+            }
+    }
 }

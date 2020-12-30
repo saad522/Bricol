@@ -28,7 +28,7 @@ class HandymanProfileViewController: UICollectionViewController {
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
                 item.contentInsets.leading = 8
                 item.contentInsets.trailing = 8
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(300)), subitems: [item])
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(200)), subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .groupPaging
                 let kind = UICollectionView.elementKindSectionHeader
@@ -61,6 +61,10 @@ extension HandymanProfileViewController {
             cell.didPopTapped = { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
             }
+            cell.didCallTapped = {
+                let url = URL(string: "TEL://0694565607")
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            }
             cell.backgroundColor = .secondarySystemBackground
             return cell
         } else {
@@ -81,7 +85,7 @@ extension HandymanProfileViewController {
     }
     private func cellRegistration() {
         collectionView.register(HandymanProfileViewCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: secondCellID)
+        collectionView.register(ReviewsViewCell.self, forCellWithReuseIdentifier: secondCellID)
         collectionView.register(CompositionalHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
     }
 }

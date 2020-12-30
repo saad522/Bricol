@@ -11,7 +11,7 @@ class CardPosteViewCell: UICollectionViewCell {
     var didPostTapped : () -> () = {}
     
     let profile = UIImageView()
-    var name = UILabel(text: "Bonjour, Othman", font: .verdanaTitle, textColor: Color.white)
+    var name = UILabel(text: "Bonjour, Othman", font: .verdanaTitle,numberOfLines: 1, textColor: Color.white)
     let question = UILabel(text: "Puis je vous aider ? 👨🏻‍🔧", font: .systemFont(ofSize: 20, weight: .bold), textColor: Color.white)
     let message = UILabel(text: "Postez votre problème et attendez les réponses de nos bricoleurs", font: .systemFont(ofSize: 20, weight: .regular),numberOfLines: 2, textColor: Color.white)
     let postButton = UIButton(type : .system)
@@ -57,7 +57,7 @@ private extension CardPosteViewCell {
         setupImage()
         addSubview(view)
         view.fillSuperview()
-        let hStack = HStackView(arrangedSubviews: [name,UIView(),profile], spacing: 0)
+        let hStack = HStackView(arrangedSubviews: [name,profile], spacing: 0)
         
         let vStack = VerticalStackView(arrangedSubviews: [hStack,question,message,postButton], spacing: 20)
         view.addSubview(vStack)

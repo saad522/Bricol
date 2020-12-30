@@ -12,14 +12,10 @@ class HomeViewControllert: UICollectionViewController {
     private let firstCellID    = "firstCellID"
     private let headerID       = "headerID"
     private let secondeCellID  = "secondeCellID"
+    private var user : User?
+    let skills = MountainsController()
     private let sideMenuButton = UIButton(type : .system)
-    private var categories : [Categorie]  = [
-        .init(image: #imageLiteral(resourceName: "Handyman3"), title: "Plombier"),
-        .init(image: #imageLiteral(resourceName: "Handyman2"), title: "Électrique"),
-        .init(image: #imageLiteral(resourceName: "Handyman"), title: "Teinturier"),
-        .init(image: #imageLiteral(resourceName: "XMLID_83_"), title: "Charpentier")
-    ]
-    let name = UserDefaults.standard.string(forKey: "name") ?? "Othman"
+     
     //init: ComposotionalLayout
     init() {
         
@@ -37,8 +33,8 @@ class HomeViewControllert: UICollectionViewController {
                 return section
             } else {
                 let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
-                item.contentInsets = .init(top: 15, leading: 15, bottom: 15, trailing: 15)
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(250)), subitems: [item])
+                item.contentInsets = .init(top: 15, leading: 10, bottom: 5, trailing: 10)
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(120)), subitems: [item])
                 
                 let section = NSCollectionLayoutSection(group: group)
                 let kind = UICollectionView.elementKindSectionHeader
@@ -61,18 +57,13 @@ class HomeViewControllert: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollevtionView()
-//        setDevelopmentPresnted()
         checkIfUserLoggedIn()
+        fetchUserData()
     }
     
-    func setDevelopmentPresnted() {
-        perform(#selector(handlePresent), with: self, afterDelay: 0)
-    }
-    @objc func handlePresent() {
-        let loginViewController = RegisterViewController()
-        let controller = UINavigationController(rootViewController: loginViewController)
-        controller.modalPresentationStyle = .fullScreen
-        present(controller, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
 }
 
@@ -92,14 +83,13 @@ extension HomeViewControllert {
     override func numberOfSections(in collectionView: UICollectionView) -> Int { 2 }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return section == 0 ? 1 : 4
+        return section == 0 ? 1 : skills.mountains.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: firstCellID, for: indexPath) as! CardPosteViewCell
-          
-            print("The Name is : ",name)
-            cell.name.text = "Bonjour,\(name)"
+            cell.name.text = "Bonjour,\(user?.name ?? "")"
+            print("DEBUG:",user?.name ?? "Nadi Canadi")
             cell.backgroundColor = .systemGreen
             cell.didPostTapped = { [weak self] in
                 print("Did Post Taped")
@@ -111,9 +101,11 @@ extension HomeViewControllert {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondeCellID, for: indexPath) as! CategoriesViewCell
-            cell.backgroundColor = .tertiarySystemBackground
-            let categorie = categories[indexPath.item]
-            cell.categorie = categorie
+            cell.title.text = skills.generateMountains()[indexPath.item].name
+            let random = Int.random(in: 1..<45)
+        
+                cell.count.text = "\(random) \(skills.generateMountains()[indexPath.item].name)s"
+            
             return cell
         }
     }
@@ -134,6 +126,20 @@ extension HomeViewControllert {
 }
 //MARK: Create UI
 private extension HomeViewControllert {
+    
+    func fetchUserData() {
+        ServiceDatabase.shared.fetchUserInfo { [weak self] (user, error) in
+            if let error = error {
+                print("Failed To Load User Information reason : ",error.localizedDescription)
+                return
+            }
+            self?.user = user
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+           
+        }
+    }
     func setActions() {
         sideMenuButton.addTarget(self, action: #selector(handleSideMenu), for: .touchUpInside)
     }

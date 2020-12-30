@@ -10,7 +10,7 @@ import SwiftUI
 class CategoryViewCell: UICollectionViewCell {
     
     var didProfilTapped : () -> () = {}
-    
+    var didCallTapped : () -> Void = {}
     private let picture  = UIImageView(image : #imageLiteral(resourceName: "FaceTwo"))
     private let cityIcon = UIImageView(SFSymbols.location)
     private let star     = UIImageView(SFSymbols.star,.systemOrange)
@@ -53,8 +53,12 @@ private extension CategoryViewCell {
     @objc func handlePrfile() {
         didProfilTapped()
     }
+    @objc func handleCall() {
+        didCallTapped()
+    }
     func setAction() {
         profile.addTarget(self, action: #selector(handlePrfile), for: .touchUpInside)
+        callIcon.addTarget(self, action: #selector(handleCall), for: .touchUpInside)
     }
     func setupCircles() {
         let size : CGFloat = 45

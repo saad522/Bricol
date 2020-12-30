@@ -56,6 +56,7 @@ enum SFSymbols {
     static let call         = "phone"
     static let message      = "message"
     static let back         = "arrow.left"
+    static let tools        = "wrench.and.screwdriver"
 }
 
 enum Keys {

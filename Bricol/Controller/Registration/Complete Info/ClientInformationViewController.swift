@@ -58,8 +58,6 @@ extension ClientInformationViewController {
                 
                 return
             }
-            UserDefaults.standard.set(name, forKey: "name")
-            print("The Name here is ",name)
             print("Its's Done ✅")
             self?.dismiss(animated: true)
            

@@ -49,6 +49,12 @@ extension CategoryViewController {
         cell.didProfilTapped = { [weak self] in
             self?.navigationController?.pushViewController(HandymanProfileViewController(), animated: true)
         }
+        cell.didCallTapped = {
+            let phoneNumber = "0694565607"
+            
+            let url = URL(string: "TEL://\(phoneNumber)")
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        }
         cell.shadow()
         return cell
     }
