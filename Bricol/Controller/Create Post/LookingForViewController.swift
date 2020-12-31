@@ -10,6 +10,8 @@ import SwiftUI
 class LookingForViewController: UIViewController {
     
     //MARK: Properties
+    var homeViewController : HomeViewControllert?
+
     private var logo              = UIImageView()
     private var name              = UILabel()
     private var message           = UILabel()
@@ -69,9 +71,13 @@ private extension LookingForViewController {
     }
     @objc func handleNext() {
         if isClientSelected {
+            let handyManInformationViewController = HandymanInformationViewController()
+            handyManInformationViewController.homeViewController = homeViewController
             navigationController?.pushViewController(HandymanInformationViewController(), animated: true)
         } else {
-            navigationController?.pushViewController(ClientInformationViewController(), animated: true)
+            let clinetInformationViewController = ClientInformationViewController()
+            clinetInformationViewController.homeViewController = homeViewController
+            navigationController?.pushViewController(clinetInformationViewController, animated: true)
         }
         
     }
@@ -146,7 +152,7 @@ private extension LookingForViewController {
         
         hStack.anchor(top: stack.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(allInset: 20))
         
-        let buttonStack = HStackView(arrangedSubviews: [previousButton,nextButton], spacing: 10)
+        let buttonStack = HStackView(arrangedSubviews: [nextButton], spacing: 10)
         buttonStack.distribution = .equalSpacing
         view.addSubview(buttonStack)
         buttonStack.translatesAutoresizingMaskIntoConstraints = false

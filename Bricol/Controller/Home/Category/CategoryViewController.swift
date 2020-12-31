@@ -10,8 +10,14 @@ import SwiftUI
 class CategoryViewController: UICollectionViewController {
     //MARK:  Properties
     private let cellID = "cellID"
+    private var users  = [User]()
+    var city   = ""
+    var metier = ""
+    
     //init: ComposotionalLayout
-    init() {
+    init(city : String?, metier : String?) {
+        self.city = city ?? ""
+        self.metier = metier ?? ""
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         item.contentInsets.bottom = 15
         let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(210)), subitems: [item])
@@ -36,18 +42,42 @@ class CategoryViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        fetchHadymans()
+    }
+    deinit {
+        print("All looks  good ✅ ")
     }
 }
+//MARK: setup Firebase
+extension CategoryViewController {
+    func fetchHadymans() {
+        ServiceDatabase.shared.fetchHandymanInfo(city: city, metier: metier) { [weak self] (users, error) in
+            if let error = error {
+                print("Failed To Load All Handymans Data reason : ",error.localizedDescription)
+                return
+            }
+            self?.users = users ?? []
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+}
+
 //MARK: setup CollectionView
 extension CategoryViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        users.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! CategoryViewCell
+        let user = users[indexPath.item]
+        cell.user = user
         cell.backgroundColor = .tertiarySystemBackground
         cell.didProfilTapped = { [weak self] in
-            self?.navigationController?.pushViewController(HandymanProfileViewController(), animated: true)
+            let user = self?.users[indexPath.item]
+            let hadymanProfileViewController = HandymanProfileViewController(user: user)
+            self?.navigationController?.pushViewController(hadymanProfileViewController, animated: true)
         }
         cell.didCallTapped = {
             let phoneNumber = "0694565607"
@@ -58,6 +88,7 @@ extension CategoryViewController {
         cell.shadow()
         return cell
     }
+    
    private func creatUI() {
         collectionView.backgroundColor = .secondarySystemBackground
     navigationController?.navigationBar.prefersLargeTitles = true
@@ -70,7 +101,7 @@ extension CategoryViewController {
 }
 struct CategoryView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        let controller = UINavigationController(rootViewController: CategoryViewController())
+        let controller = UINavigationController(rootViewController: CategoryViewController(city: nil, metier: nil))
         return controller
     }
     

@@ -11,6 +11,8 @@ import FirebaseAuth
 class RegisterViewController: UIViewController {
     
     //MARK: Properties
+    var homeViewController : HomeViewControllert?
+
     private var logo              = UIImageView()
     private var name              = UILabel()
     private var message           = UILabel()
@@ -36,14 +38,16 @@ private extension RegisterViewController {
         let codePlusPhoneNumber = code + number
         print("Phone number with code country : ",codePlusPhoneNumber)
         Auth.auth().languageCode = "fr"
-        PhoneAuthProvider.provider().verifyPhoneNumber(codePlusPhoneNumber, uiDelegate: nil) { (verificationID, error) in
+        PhoneAuthProvider.provider().verifyPhoneNumber(codePlusPhoneNumber, uiDelegate: nil) { [weak self] (verificationID, error) in
             if let error = error {
                 print("DEBUG: Failed To verify This Phone Number reason : ",error.localizedDescription)
                 return
             }
             UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
             print("DEBUG: Code Has Sent")
-            self.navigationController?.pushViewController(VerificationViewControllert(), animated: true)
+            let verficationViewController = VerificationViewControllert()
+            verficationViewController.homeViewController = self?.homeViewController
+            self?.navigationController?.pushViewController(VerificationViewControllert(), animated: true)
         }
        
     }

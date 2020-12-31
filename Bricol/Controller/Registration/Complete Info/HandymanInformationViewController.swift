@@ -10,7 +10,10 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class HandymanInformationViewController: UIViewController {
+    
     //MARK: Properties
+    var homeViewController : HomeViewControllert?
+
     private var logo              = UIImageView()
     private var firstMessage      = UILabel()
     private var message           = UILabel()
@@ -55,8 +58,11 @@ extension HandymanInformationViewController {
         let review = "0"
         let status = false
         let aboutMe = ""
-        
-        let values : [String:Any] = ["name":name,
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        guard let getPhone = Auth.auth().currentUser?.phoneNumber else { return }
+        let values : [String:Any] = ["phone":getPhone,
+                                     "userId":userID,
+                                     "name":name,
                                      "city":city,
                                      "metier":metier,
                                      "isClient":isClient,
@@ -64,15 +70,16 @@ extension HandymanInformationViewController {
                                      "review":review,
                                      "status":status,
                                      "aboutMe":aboutMe]
-        guard let uiserID = Auth.auth().currentUser?.uid else { return }
+        
         let db = Firestore.firestore()
-        db.collection(DB_Keys.usersCollectionKey).document(uiserID).setData(values, merge: true) { [weak self] (error) in
+        db.collection(DB_Keys.usersCollectionKey).document(userID).setData(values) { [weak self] (error) in
             if let error = error {
                 print("Failed to set Data 👎🏻 reason ",error.localizedDescription)
                 
                 return
             }
             print("Its's Done ✅ ")
+            self?.homeViewController?.fetchUserData()
             self?.dismiss(animated: true)
            
         }
@@ -307,7 +314,7 @@ private extension HandymanInformationViewController {
     @objc func keyboardWillChange(notification : Notification) {
         print("Keyboard will show : \(notification.name.rawValue)")
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
-        if skill.isFirstResponder == true && fullName.isFirstResponder == true {
+        if skill.isFirstResponder == true || fullName.isFirstResponder == true || living.isFirstResponder == true {
             if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
                 view.frame.origin.y = -keyboardRect
             } else {

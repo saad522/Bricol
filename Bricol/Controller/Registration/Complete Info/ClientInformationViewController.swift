@@ -10,7 +10,10 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class ClientInformationViewController: UIViewController {
+    
     //MARK: Properties
+    var homeViewController : HomeViewControllert?
+    
     private var logo              = UIImageView()
     private var firstMessage      = UILabel()
     private var message           = UILabel()
@@ -46,21 +49,24 @@ extension ClientInformationViewController {
     @objc func handleNext() {
         guard let name = fullName.text, let city = living.text else { return }
         let isClient = 1
-        
-        let values : [String:Any] = ["name":name,
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        guard let getPhone = Auth.auth().currentUser?.phoneNumber else { return }
+        let values : [String:Any] = ["phone":getPhone,
+                                     "userId":userID,
+                                     "name":name,
                                      "city":city,
                                      "isClient":isClient]
-        guard let uiserID = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
-        db.collection(DB_Keys.usersCollectionKey).document(uiserID).setData(values, merge: true) { [weak self] (error) in
+        db.collection(DB_Keys.usersCollectionKey).document(userID).setData(values) { [weak self] (error) in
             if let error = error {
                 print("Failed to set Data 👎🏻 reason ",error.localizedDescription)
                 
                 return
             }
             print("Its's Done ✅")
+            self?.homeViewController?.fetchUserData()
             self?.dismiss(animated: true)
-           
+            
         }
     }
 }
@@ -136,7 +142,6 @@ private extension ClientInformationViewController {
             living.centerYAnchor.constraint(equalTo: livingContainer.centerYAnchor)
         ])
     }
-    
     func setPasswordContainer() {
         //Container
         passwordContainer.backgroundColor = .tertiarySystemBackground
@@ -223,7 +228,7 @@ private extension ClientInformationViewController {
         print("Keyboard will show : \(notification.name.rawValue)")
         guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else { return }
         
-        if password.isFirstResponder == true && fullName.isFirstResponder == true {
+        if password.isFirstResponder == true {
             if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
                 view.frame.origin.y = -keyboardRect
             } else {

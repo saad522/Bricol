@@ -10,6 +10,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class VerificationViewControllert: UIViewController {
+    var homeViewController : HomeViewControllert?
+
     let verificationId = UserDefaults.standard.string(forKey: "authVerificationID")
     private var resendCodeButton   = UIButton(type : .system)
     private var resendCodeIcon     = UIImageView()
@@ -42,7 +44,9 @@ private extension VerificationViewControllert {
         navigationController?.popViewController(animated: true)
     }
     @objc func handleNext() {
-        navigationController?.pushViewController(LookingForViewController(), animated: true)
+        let lookingForViewController = LookingForViewController()
+        lookingForViewController.homeViewController = homeViewController
+        navigationController?.pushViewController(lookingForViewController, animated: true)
     }
     func setActions() {
         resendCodeButton.addTarget(self, action: #selector(handleResendCode), for: .touchUpInside)
@@ -111,10 +115,9 @@ private extension VerificationViewControllert {
                 verificationCode: verificationCode)
             Auth.auth().signIn(with: credential) { [weak self] (authData, error) in
                 if let error = error {
-                    print("Error To Sign in User reason ",error.localizedDescription)
+                    print("Error To Sign in User reason :",error.localizedDescription)
                     return
                 }
-                guard let getPhone = authData?.user.phoneNumber else { return }
                 let database = Firestore.firestore()
                 guard let userID = authData?.user.uid else {return }
                 database.collection(DB_Keys.usersCollectionKey).document(userID).getDocument { (documentSnapshot, error) in
@@ -123,23 +126,16 @@ private extension VerificationViewControllert {
                         return
                     }
                     if documentSnapshot?.exists == true {
+                        self?.homeViewController?.fetchUserData()
                         self?.dismiss(animated: true)
                         print("Cods get Tapped : ",self?.veriView.getCode() ?? "")
                     } else {
-                        let values : [String:Any] = ["phone":getPhone,"userId":userID]
-                        database.collection(DB_Keys.usersCollectionKey).document(userID).setData(values) { (error) in
-                            if let error = error {
-                                print("Failed To set Data 👎🏻 reason : ",error.localizedDescription)
-                                return
-                            }
                             print("We did it 👍🏿")
                             let vc = LookingForViewController()
+                       
                             self?.navigationController?.pushViewController(vc, animated: true)
-                        }
                     }
                 }
-
-
             }
         }
     }

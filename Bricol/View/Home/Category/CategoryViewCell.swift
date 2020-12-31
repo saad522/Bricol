@@ -9,8 +9,24 @@ import SwiftUI
 
 class CategoryViewCell: UICollectionViewCell {
     
+    var user : User? {
+        didSet {
+            name.text = user?.name
+            location.text = "Maroc, \(user?.city ?? "")"
+            if user?.status == true {
+                status.text = "Available"
+                status.textColor = UIColor(Color.buttonsColor)
+            } else if user?.status == false {
+                status.text = "Busy"
+                status.textColor = .systemRed
+            }
+            reviews.text = "\(user?.review ?? "") reviews"
+        }
+    }
+    
     var didProfilTapped : () -> () = {}
     var didCallTapped : () -> Void = {}
+    
     private let picture  = UIImageView(image : #imageLiteral(resourceName: "FaceTwo"))
     private let cityIcon = UIImageView(SFSymbols.location)
     private let star     = UIImageView(SFSymbols.star,.systemOrange)
@@ -24,7 +40,7 @@ class CategoryViewCell: UICollectionViewCell {
     private let statusLabel =
         UILabel(text: "Status", font: .systemFont(ofSize: 16, weight: .semibold), textColor: .gray)
     private let status      =
-        UILabel(text: "Available", font: .verdanaSmall, textColor: .buttonsColor)
+        UILabel(text: "Available", font: .systemFont(ofSize: 16, weight: .black), textColor: .buttonsColor)
    
     
     private let callIcon = UIButton(with : SFSymbols.call)

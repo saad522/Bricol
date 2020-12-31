@@ -13,9 +13,11 @@ class HandymanProfileViewController: UICollectionViewController {
     private let cellID       = "cellID"
     private let secondCellID = "secondCellID"
     private let headerID     = "headerID"
+    var user : User?
+    
     //init: ComposotionalLayout
-    init() {
-
+    init(user : User?) {
+        self.user = user
         let layout = UICollectionViewCompositionalLayout { (numberOfsection, _) -> NSCollectionLayoutSection? in
             
             if numberOfsection == 0 {
@@ -50,6 +52,9 @@ class HandymanProfileViewController: UICollectionViewController {
         super.viewDidLoad()
         creatUI()
     }
+    deinit {
+        print("All looks  good ✅ ")
+    }
 }
 //MARK: setup CollectionView
 extension HandymanProfileViewController {
@@ -58,6 +63,7 @@ extension HandymanProfileViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! HandymanProfileViewCell
+            cell.user = user
             cell.didPopTapped = { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
             }
@@ -91,7 +97,7 @@ extension HandymanProfileViewController {
 }
 struct HandymanProfileView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        let controller = UINavigationController(rootViewController: HandymanProfileViewController())
+        let controller = UINavigationController(rootViewController: HandymanProfileViewController(user: nil))
         
         return controller
     }

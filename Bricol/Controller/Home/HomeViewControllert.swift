@@ -7,6 +7,8 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseFirestore
+
 class HomeViewControllert: UICollectionViewController {
     //MARK: Properties
     private let firstCellID    = "firstCellID"
@@ -58,12 +60,16 @@ class HomeViewControllert: UICollectionViewController {
         super.viewDidLoad()
         setupCollevtionView()
         checkIfUserLoggedIn()
-        fetchUserData()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        fetchUserData()
+    }
+    deinit {
+        print("All looks  good ✅ ")
     }
 }
 
@@ -115,7 +121,10 @@ extension HomeViewControllert {
             print("Tapped")
         }
         else if indexPath.section == 1 {
-            let controller =  CategoryViewController()
+            let city = user?.city
+            let metier = skills.generateMountains()[indexPath.item].name
+            
+            let controller =  CategoryViewController(city: city, metier: metier)
             navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -125,7 +134,7 @@ extension HomeViewControllert {
     }
 }
 //MARK: Create UI
-private extension HomeViewControllert {
+ extension HomeViewControllert {
     
     func fetchUserData() {
         ServiceDatabase.shared.fetchUserInfo { [weak self] (user, error) in
@@ -137,7 +146,6 @@ private extension HomeViewControllert {
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }
-           
         }
     }
     func setActions() {
@@ -146,6 +154,7 @@ private extension HomeViewControllert {
     func checkIfUserLoggedIn() {
         if Auth.auth().currentUser?.uid == nil {
             let loginController = RegisterViewController()
+            loginController.homeViewController = self
             let controller = UINavigationController(rootViewController: loginController)
             controller.modalPresentationStyle = .overFullScreen
             present(controller, animated: true)
