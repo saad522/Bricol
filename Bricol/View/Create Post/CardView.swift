@@ -25,7 +25,7 @@ class CardView: UIView {
         
         let icon = UIImageView(image : image)
         
-        label = UILabel.init(text: name, font: .verdanaMedium, textColor: .gray)
+        label = UILabel.init(text: name, font: .systemFont(ofSize: 20, weight: .black), textColor: .gray)
         label.textAlignment = .center
         
         

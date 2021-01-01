@@ -15,7 +15,7 @@ class LookingForViewController: UIViewController {
     private var logo              = UIImageView()
     private var name              = UILabel()
     private var message           = UILabel()
-    private var cardClient        = CardView(image: #imageLiteral(resourceName: "TargetCustomer"), name: "Client", sizes: .init(width: 146, height: 134))
+    private var cardClient        = CardView(image: #imageLiteral(resourceName: "business-3d-businessman-thumbs-up"), name: "Client", sizes: .init(width: 146, height: 134))
     private var cardHandyman      = CardView(image: #imageLiteral(resourceName: "Handyman3"), name: "Bricoleur",sizes: .init(width: 146, height: 134))
     private var nextButton        = UIButton(type : .system)
     private var previousButton    = UIButton(type : .system)
