@@ -45,6 +45,7 @@
 		04A675B6259B2B760064184E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A675B5259B2B760064184E /* User.swift */; };
 		04A675D2259B42760064184E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A675D1259B42760064184E /* CategoryViewController.swift */; };
 		04A675D7259B47180064184E /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A675D6259B47180064184E /* CategoryViewCell.swift */; };
+		04B6DF4425A0F17F00D632D2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6DF4325A0F17F00D632D2 /* ProfileViewController.swift */; };
 		04C615EF2599017A00EE88E6 /* ServiceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C615EE2599017A00EE88E6 /* ServiceStorage.swift */; };
 		04C615F32599261A00EE88E6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 04C615F22599261A00EE88E6 /* SDWebImage */; };
 		04C615F62599264A00EE88E6 /* ServiceDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C615F52599264A00EE88E6 /* ServiceDatabase.swift */; };
@@ -105,6 +106,7 @@
 		04A675B5259B2B760064184E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		04A675D1259B42760064184E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		04A675D6259B47180064184E /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
+		04B6DF4325A0F17F00D632D2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		04C615EE2599017A00EE88E6 /* ServiceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStorage.swift; sourceTree = "<group>"; };
 		04C615F52599264A00EE88E6 /* ServiceDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDatabase.swift; sourceTree = "<group>"; };
 		04C615F8259926A700EE88E6 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		04A675A6259B26FF0064184E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				04B6DF4225A0F15400D632D2 /* Profile */,
 				04A675D0259B42510064184E /* Category */,
 				04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */,
 			);
@@ -423,6 +426,14 @@
 				04A675D6259B47180064184E /* CategoryViewCell.swift */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		04B6DF4225A0F15400D632D2 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				04B6DF4325A0F17F00D632D2 /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		AE4FEE887598033EA2D90F56 /* Pods */ = {
@@ -586,6 +597,7 @@
 				049E6AC1258D60EA004FF0AC /* VerificationTextField.swift in Sources */,
 				049E6AA1258D15D0004FF0AC /* VerticalStackView.swift in Sources */,
 				04718E2F259097E30011E74D /* CreatePostViewController.swift in Sources */,
+				04B6DF4425A0F17F00D632D2 /* ProfileViewController.swift in Sources */,
 				049E6A9F258D15D0004FF0AC /* HStackView.swift in Sources */,
 				04A5C7C325976D9100906AC6 /* mountainsRawData.swift in Sources */,
 				04DF6E61258E3295009EC221 /* LookingForViewController.swift in Sources */,
