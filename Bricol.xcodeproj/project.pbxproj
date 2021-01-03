@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		041D22712599F975007AD4FD /* IndustryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D22702599F975007AD4FD /* IndustryViewController.swift */; };
 		041D22742599FB7A007AD4FD /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D22732599FB7A007AD4FD /* SearchViewCell.swift */; };
+		0444147525A228F6006D6D68 /* LeaveReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */; };
 		04540FB7259C836100F4A009 /* ReviewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04540FB6259C836100F4A009 /* ReviewsViewCell.swift */; };
 		045A032E259358DD0080EC80 /* PicturesCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A032D259358DD0080EC80 /* PicturesCellController.swift */; };
 		045A033125935CDB0080EC80 /* PicturesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033025935CDB0080EC80 /* PicturesViewCell.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		041D22702599F975007AD4FD /* IndustryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndustryViewController.swift; sourceTree = "<group>"; };
 		041D22732599FB7A007AD4FD /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
+		0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveReviewViewController.swift; sourceTree = "<group>"; };
 		04540FB6259C836100F4A009 /* ReviewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewCell.swift; sourceTree = "<group>"; };
 		045A032D259358DD0080EC80 /* PicturesCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCellController.swift; sourceTree = "<group>"; };
 		045A033025935CDB0080EC80 /* PicturesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				04846953259BB69A008320E4 /* HandymanProfileViewController.swift */,
+				0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				04D7EFFA258F8F15006AC05C /* CardPosteViewCell.swift in Sources */,
 				049E6A46258B99F0004FF0AC /* SceneDelegate.swift in Sources */,
 				04DF6E64258E3A04009EC221 /* CardView.swift in Sources */,
+				0444147525A228F6006D6D68 /* LeaveReviewViewController.swift in Sources */,
 				04D7EFF4258F7E35006AC05C /* HomeViewControllert.swift in Sources */,
 				04DF6E70258E7438009EC221 /* ClientInformationViewController.swift in Sources */,
 				049E6AA3258D15D0004FF0AC /* Extension.swift in Sources */,

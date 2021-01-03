@@ -71,6 +71,14 @@ extension HandymanProfileViewController {
                 let url = URL(string: "TEL://0694565607")
                 UIApplication.shared.open(url!, options: [:], completionHandler: nil)
             }
+            cell.didLeaveReview = { [weak self] in
+                let hostingHeader = UIHostingController(rootView: LeaveReviewViewController())
+                hostingHeader.modalPresentationStyle = .fullScreen
+                hostingHeader.rootView.dismiss = { [weak self] in
+                    self?.dismiss(animated: true)
+                }
+                self?.present(hostingHeader, animated: true)
+            }
             cell.backgroundColor = .secondarySystemBackground
             return cell
         } else {
