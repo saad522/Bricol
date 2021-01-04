@@ -19,9 +19,12 @@ class MainTabBarController: UITabBarController {
 //MARK: Setup TabarFunctions
 extension MainTabBarController {
     fileprivate func setFunctions() {
+        let hostingController = UIHostingController(rootView: ProfileViewController())
+        
         viewControllers = [
             setControllers(HomeViewControllert(), "Home", SFSymbols.house),
-            setControllers(IndustryViewController(), "Offres", SFSymbols.flame)
+            setControllers(IndustryViewController(), "Offres", SFSymbols.flame),
+            setControllersWithoutNavigationBar(hostingController, "Profile", "rectangle.stack.person.crop")
         ]
     }
     fileprivate func setControllers(_ viewController : UIViewController, _ title : String,_ icon : String) -> UIViewController {
@@ -35,5 +38,12 @@ extension MainTabBarController {
         
     }
  
-    
+    fileprivate func setControllersWithoutNavigationBar(_ viewController : UIViewController, _ title : String,_ icon : String) -> UIViewController {
+        let controller =   viewController
+        controller.tabBarItem.title = title
+        controller.tabBarItem.image = UIImage(systemName: icon)
+        UITabBar.appearance().tintColor = UIColor(Color.buttonsColor)
+        return controller
+        
+    }
 }

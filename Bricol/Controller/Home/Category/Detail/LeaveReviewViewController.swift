@@ -13,7 +13,6 @@ struct LeaveReviewViewController: View {
             UITextView.appearance().backgroundColor = .clear
         }
     @State private var isAnimated : Bool = false
-    @State private var isStar     : Bool = false
     @State private var rating: Int?
     @State private var profileText: String = "Tell us more about your expierence with Zakaria Lahrach"
     var body: some View {
@@ -69,12 +68,14 @@ struct LeaveReviewViewController: View {
                
                     
                 VStack {
-                    RatingView(rating: $rating)
-                    Spacer().frame(width: 0, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     Image("face-\(rating ?? 3)")
                         .resizable()
                         .frame(width: 100, height: 100, alignment: .center)
                         .animation(.spring(response: 0.55, dampingFraction: 0.55, blendDuration: 0))
+                    
+                    Spacer().frame(width: 0, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    RatingView(rating: $rating)
+                    
                 }
                 .padding(.bottom, 15)
                 VStack {

@@ -9,7 +9,322 @@ import SwiftUI
 
 struct ProfileViewController: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/).foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+        ZStack(alignment: .top) {
+            Color(UIColor.secondarySystemBackground)
+                .ignoresSafeArea()
+            VStack(alignment : .leading) {
+                VStack(alignment:  .center) {
+                    Spacer().frame(width: 0, height: 25, alignment: .center)
+                    HStack {
+                        VStack(alignment : .leading) {
+                                        HStack {
+                                            Image(systemName: "person.crop.circle.fill")
+                                                .resizable()
+                                                .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                                .foregroundColor(.green)
+                                            Text("Saad Saissi Hassni")
+                                                .font(.title2)
+                                                .fontWeight(.black)
+                                                .foregroundColor(.titlesColor)
+                                        }
+                                        .padding(.vertical)
+                                        HStack {
+                                            Image(systemName: SFSymbols.location)
+                                                .resizable()
+                                                .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                                .foregroundColor(.green)
+                                            Text("MAroc,Tangier")
+                                                .font(.callout)
+                                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                                .foregroundColor(.gray)
+                                        }
+                                        HStack {
+                                            Image(systemName: SFSymbols.phone)
+                                                .resizable()
+                                                .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                                .foregroundColor(.green)
+                                            Text("+212694374544")
+                                                .font(.callout)
+                                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                                .foregroundColor(.gray)
+                                        }
+                        }
+                        VStack {
+                            Image(uiImage: #imageLiteral(resourceName: "jamal"))
+                                .resizable()
+                                .frame(width: 85, height: 85, alignment: .center)
+                                
+                                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                                .overlay(Circle()
+                                            .stroke(Color.green,lineWidth: 3.0))
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Text("Edit Profile")
+                                    .foregroundColor(.white)
+                                    .padding(7)
+                                    .background(Color.green)
+                                    .cornerRadius(5)
+                            })
+                        }
+                        
+                    }.padding()
+                    Spacer()
+                        .frame(width: UIScreen.main.bounds.size.width, height: 1.5, alignment: .center)
+                        .background(Color.green)
+                    HStack(alignment : .center) {
+                        Spacer()
+                        VStack {
+                            HStack {
+                                Image(systemName: "wrench.and.screwdriver.fill")
+                                    .resizable()
+                                    .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .foregroundColor(.green)
+                                Text("59")
+                                    .font(.title2)
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                    .foregroundColor(.green)
+                            }
+                            Text("Work")
+                                .font(.title2)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(.gray)
+                        }.padding()
+                        Spacer()
+                        Spacer()
+                            .frame(width: 1, height: 100, alignment: .center)
+                            .background(Color.green)
+                        Spacer()
+                        VStack {
+                            HStack {
+                                Image(systemName: SFSymbols.starFill)
+                                    .resizable()
+                                    .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .foregroundColor(.green)
+                                Text("59")
+                                    .font(.title2)
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                    .foregroundColor(.green)
+                            }
+                            Text("Rivews")
+                                .font(.title2)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(.gray)
+                        }.padding()
+                        Spacer()
+                    }.padding(.vertical,-5)
+                    Spacer()
+                        .frame(width: UIScreen.main.bounds.size.width, height: 1.5, alignment: .center)
+                        .background(Color.green)
+                        
+                }
+                .background(Color.white).ignoresSafeArea(edges: .top)
+                VStack(alignment : .leading) {
+                    HStack {
+                        Image(systemName: SFSymbols.setting)
+                            .resizable()
+                            .frame(width: 35, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.titlesColor)
+                        Text("Settings")
+                            .font(.largeTitle)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.titlesColor)
+                    }
+                    .padding(.leading,15)
+                    HStack {
+                        Spacer()
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                VStack {
+                                
+                                    Image(systemName: "doc.plaintext.fill")
+                                        .resizable()
+                                        .frame(width: 20, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .background(Color(#colorLiteral(red: 0, green: 0.7135828733, blue: 0.9728543162, alpha: 1)))
+                                        .cornerRadius(5.0)
+                                    Text("Invoice")
+                                        .font(.callout)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0.7135828733, blue: 0.9728543162, alpha: 1)))
+                                    
+                                }.frame(width: 100, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .padding(5)
+                                .background(Color.white)
+                                .cornerRadius(10.0)
+                        }).padding(3)
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                VStack {
+                                
+                                    Image(systemName: "chart.bar.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .background(Color(#colorLiteral(red: 0, green: 0.7530556321, blue: 0.3568419218, alpha: 1)))
+                                        .cornerRadius(5.0)
+                                    Text("Dashboard")
+                                        .font(.callout)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0.7530556321, blue: 0.3568419218, alpha: 1)))
+                                    
+                                }.frame(width: 100, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .padding(5)
+                                .background(Color.white)
+                                .cornerRadius(10.0)
+                        }).padding(3)
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                VStack {
+                                
+                                    Image(systemName: "bell.fill")
+                                        .resizable()
+                                        .frame(width: 20, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .background(Color(#colorLiteral(red: 0.1805053353, green: 0.4249719381, blue: 0.9956683517, alpha: 1)))
+                                        .cornerRadius(5.0)
+                                    Text("Notification")
+                                        .font(.callout)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 0.1744393706, green: 0.4250463843, blue: 0.9956803918, alpha: 1)))
+                                    
+                                }.frame(width: 100, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .padding(3)
+                                .background(Color.white)
+                                .cornerRadius(10.0)
+                        }).padding(5)
+                        Spacer()
+                    }
+                    .padding(.leading,-45)
+                    .padding(.trailing,-45)
+                    HStack {
+                        Spacer()
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                VStack {
+                                
+                                    Image(systemName: "star.circle")
+                                        .resizable()
+                                        .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .background(Color(#colorLiteral(red: 1, green: 0.7082486749, blue: 0, alpha: 1)))
+                                        .cornerRadius(5.0)
+                                    Text("Subscription")
+                                        .font(.callout)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 1, green: 0.7082486749, blue: 0, alpha: 1)))
+                                    
+                                }.frame(width: 100, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .padding(5)
+                                .background(Color.white)
+                                .cornerRadius(10.0)
+                        }).padding(3)
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                VStack {
+                                
+                                    Image(systemName: "hand.thumbsup.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .background(Color(#colorLiteral(red: 0.5930123925, green: 0.6183419228, blue: 0.7479338646, alpha: 1)))
+                                        .cornerRadius(5.0)
+                                    Text("Rate us")
+                                        .font(.callout)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 0.5763781667, green: 0.6068079472, blue: 0.7319768071, alpha: 1)))
+                                    
+                                }.frame(width: 100, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .padding(5)
+                                .background(Color.white)
+                                .cornerRadius(10.0)
+                        }).padding(3)
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                VStack {
+                                
+                                    Image(systemName: "power")
+                                        .resizable()
+                                        .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .background(Color(#colorLiteral(red: 1, green: 0.2902308702, blue: 0.2394391298, alpha: 1)))
+                                        .cornerRadius(5.0)
+                                    Text("Notification")
+                                        .font(.callout)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 0.9982815385, green: 0.2885649502, blue: 0.2402693927, alpha: 1)))
+                                    
+                                }.frame(width: 100, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .padding(3)
+                                .background(Color.white)
+                                .cornerRadius(10.0)
+                        }).padding(5)
+                        Spacer()
+                    }
+                    .padding(.leading,-45)
+                    .padding(.trailing,-45)
+                    HStack {
+                        Spacer()
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                VStack {
+                                
+                                    Image(systemName: "hand.point.up.braille.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .background(Color(#colorLiteral(red: 0.1695019901, green: 0.6566048265, blue: 1, alpha: 1)))
+                                        .cornerRadius(5.0)
+                                    Text("Share")
+                                        .font(.callout)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 0.1695019901, green: 0.6566048265, blue: 1, alpha: 1)))
+                                    
+                                }.frame(width: 100, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .padding(5)
+                                .background(Color.white)
+                                .cornerRadius(10.0)
+                        }).padding(3)
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                VStack {
+                                
+                                    Image(systemName: "info.circle.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                        .padding(5)
+                                        .background(Color(#colorLiteral(red: 0, green: 0.7187286019, blue: 0.7162085772, alpha: 1)))
+                                        .cornerRadius(5.0)
+                                    Text("Get help")
+                                        .font(.callout)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                        .foregroundColor(Color(#colorLiteral(red: 0, green: 0.7187286019, blue: 0.7162085772, alpha: 1)))
+                                    
+                                }.frame(width: 100, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .padding(5)
+                                .background(Color.white)
+                                .cornerRadius(10.0)
+                        }).padding(3)
+                        Spacer().frame(width: 100, height: 85, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).padding(5)
+                        Spacer()
+                    }
+                    .padding(.leading,-45)
+                    .padding(.trailing,-45)
+                }
+                
+                HStack {
+                    Spacer()
+                    VStack(alignment: .center) {
+                        HStack {
+                            Image(uiImage: #imageLiteral(resourceName: "Logo"))
+                                .resizable()
+                                .frame(width: 25, height: 25, alignment: .center)
+                                .cornerRadius(5)
+                            Text("Bricole")
+                                .fontWeight(.bold)
+                                .foregroundColor(.gray)
+                        }
+                        Text("Copyright © 2020 Bricole. All Rights Reserved")
+                            .fontWeight(.bold)
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                    }
+                    Spacer()
+                }
+                Spacer().frame(width: 85, height: 40, alignment: .center)
+            }
+            
+        }
     }
 }
 
