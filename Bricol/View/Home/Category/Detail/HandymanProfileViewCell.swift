@@ -14,6 +14,7 @@ class HandymanProfileViewCell: UICollectionViewCell {
             title.text = user?.name ?? ""
             name.text  = user?.name ?? ""
             works.text = user?.work ?? ""
+            picture.sd_setImage(with: URL(string: user?.pictureProfile ?? ""), placeholderImage: #imageLiteral(resourceName: "FaceTwo"))
             if user?.status == true {
                 status.text = "Available"
                 status.textColor = UIColor(Color.buttonsColor)

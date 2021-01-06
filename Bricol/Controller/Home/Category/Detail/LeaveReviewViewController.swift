@@ -6,12 +6,24 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct LeaveReviewViewController: View {
+    
+    @ObservedObject var user: User
+    
+    var name : String?
+    var image : String?
+    
     var dismiss: (() -> Void)?
-    init() {
+    init(user : User,image : String, name : String) {
+        self.image = image
+        self.name = name
+        self.user = user
             UITextView.appearance().backgroundColor = .clear
+        
         }
+
     @State private var isAnimated : Bool = false
     @State private var rating: Int?
     @State private var profileText: String = "Tell us more about your expierence with Zakaria Lahrach"
@@ -33,7 +45,7 @@ struct LeaveReviewViewController: View {
                     HStack {
                         Spacer()
                         Spacer()
-                        Image(uiImage: #imageLiteral(resourceName: "FaceTwo"))
+                        WebImage(url: URL(string: user.pictureProfile ?? ""))
                             .resizable()
                             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                             .overlay(Circle().stroke(Color.white,lineWidth: 2))
@@ -42,7 +54,7 @@ struct LeaveReviewViewController: View {
                             .position(x: isAnimated ?  15 : -250 , y: 100)
                             .frame(width: 125, height: 125)
                             .animation(.spring(response: 1, dampingFraction: 1, blendDuration: 0.55))
-                        Image(uiImage: #imageLiteral(resourceName: "jamal"))
+                        WebImage(url: URL(string: image ?? ""))
                             .resizable()
                             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                             .overlay(Circle().stroke(Color.white,lineWidth: 2))
@@ -52,9 +64,10 @@ struct LeaveReviewViewController: View {
                             .frame(width: 125, height: 125)
                             .animation(.spring(response: 1, dampingFraction: 1, blendDuration: 0.55))
                             .onAppear {
-                                self.isAnimated.toggle()}
+                                self.isAnimated.toggle()
+                            }
                     }
-                    Text("Zakaria Lahrach & Yasser Acbbach")
+                    Text("\(user.name) & \(name ?? "")")
                         .foregroundColor(Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)))
                         .fontWeight(.black)
                         .padding(9)
@@ -105,9 +118,10 @@ struct LeaveReviewViewController: View {
             
         }.onTapGesture {
             self.hideKeyboard()
-          }
+        }
        
     }
+    
 }
 extension LeaveReviewViewController {
     func hideKeyboard() {
@@ -144,6 +158,6 @@ struct RatingView: View {
 }
 struct LeaveReviewViewController_Previews: PreviewProvider {
     static var previews: some View {
-        LeaveReviewViewController()
+        LeaveReviewViewController(user: dummyUser, image: "", name: "")
     }
 }

@@ -21,6 +21,7 @@ class OfferViewCell : UICollectionViewCell {
             maxPriceLabel.text = " \(post.Max) DH "
             minPriceLabel.text = " \(post.Min) DH "
             descrptionLabel.text = post.about
+            picture.sd_setImage(with: URL(string: post.pictureProfile ?? ""), placeholderImage: #imageLiteral(resourceName: "jamal"))
             if post.isNegotiable == true {
                 yesLabel.text = " Yes "
             } else if post.isNegotiable == false {

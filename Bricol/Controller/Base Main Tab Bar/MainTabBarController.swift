@@ -7,17 +7,19 @@
 
 import SwiftUI
 
-
 class MainTabBarController: UITabBarController {
+    var user : User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setFunctions()
     }
-    
+
 }
 
 //MARK: Setup TabarFunctions
 extension MainTabBarController {
+    
     fileprivate func setFunctions() {
         let hostingController = UIHostingController(rootView: ProfileViewController())
         

@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		041D22712599F975007AD4FD /* IndustryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D22702599F975007AD4FD /* IndustryViewController.swift */; };
 		041D22742599FB7A007AD4FD /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D22732599FB7A007AD4FD /* SearchViewCell.swift */; };
+		043C463D25A47CEE00AB828B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C463C25A47CEE00AB828B /* EditProfileViewController.swift */; };
 		0444147525A228F6006D6D68 /* LeaveReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */; };
 		04540FB7259C836100F4A009 /* ReviewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04540FB6259C836100F4A009 /* ReviewsViewCell.swift */; };
 		045A032E259358DD0080EC80 /* PicturesCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A032D259358DD0080EC80 /* PicturesCellController.swift */; };
@@ -48,7 +49,6 @@
 		04A675D7259B47180064184E /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A675D6259B47180064184E /* CategoryViewCell.swift */; };
 		04B6DF4425A0F17F00D632D2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B6DF4325A0F17F00D632D2 /* ProfileViewController.swift */; };
 		04C615EF2599017A00EE88E6 /* ServiceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C615EE2599017A00EE88E6 /* ServiceStorage.swift */; };
-		04C615F32599261A00EE88E6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 04C615F22599261A00EE88E6 /* SDWebImage */; };
 		04C615F62599264A00EE88E6 /* ServiceDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C615F52599264A00EE88E6 /* ServiceDatabase.swift */; };
 		04C615F9259926A700EE88E6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C615F8259926A700EE88E6 /* Post.swift */; };
 		04D7EFF4258F7E35006AC05C /* HomeViewControllert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D7EFF3258F7E35006AC05C /* HomeViewControllert.swift */; };
@@ -69,6 +69,7 @@
 /* Begin PBXFileReference section */
 		041D22702599F975007AD4FD /* IndustryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndustryViewController.swift; sourceTree = "<group>"; };
 		041D22732599FB7A007AD4FD /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
+		043C463C25A47CEE00AB828B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveReviewViewController.swift; sourceTree = "<group>"; };
 		04540FB6259C836100F4A009 /* ReviewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewCell.swift; sourceTree = "<group>"; };
 		045A032D259358DD0080EC80 /* PicturesCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCellController.swift; sourceTree = "<group>"; };
@@ -134,7 +135,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04C615F32599261A00EE88E6 /* SDWebImage in Frameworks */,
 				47A4DA7F4215E1D26BC2CD5E /* Pods_Bricol.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				04B6DF4325A0F17F00D632D2 /* ProfileViewController.swift */,
+				043C463C25A47CEE00AB828B /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -475,7 +476,6 @@
 			);
 			name = Bricol;
 			packageProductDependencies = (
-				04C615F22599261A00EE88E6 /* SDWebImage */,
 			);
 			productName = Bricol;
 			productReference = 049E6A40258B99F0004FF0AC /* Bricol.app */;
@@ -505,7 +505,6 @@
 			);
 			mainGroup = 049E6A37258B99EF004FF0AC;
 			packageReferences = (
-				04C615F12599261A00EE88E6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 049E6A41258B99F0004FF0AC /* Products */;
 			projectDirPath = "";
@@ -609,6 +608,7 @@
 				04F953F9259215E900BC78F8 /* OfferViewCell.swift in Sources */,
 				049E6A44258B99F0004FF0AC /* AppDelegate.swift in Sources */,
 				049E6AB7258D5A9B004FF0AC /* VerificationView.swift in Sources */,
+				043C463D25A47CEE00AB828B /* EditProfileViewController.swift in Sources */,
 				045A033725936BF60080EC80 /* MoreDetailsViewController.swift in Sources */,
 				041D22742599FB7A007AD4FD /* SearchViewCell.swift in Sources */,
 				04718E352590BC2C0011E74D /* AddBudgetViewController.swift in Sources */,
@@ -823,25 +823,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		04C615F12599261A00EE88E6 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.10.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		04C615F22599261A00EE88E6 /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 04C615F12599261A00EE88E6 /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 049E6A38258B99EF004FF0AC /* Project object */;
 }

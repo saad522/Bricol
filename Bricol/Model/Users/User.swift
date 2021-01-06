@@ -7,17 +7,26 @@
 
 import Foundation
 
-struct User: Hashable {
-    let name         : String
-    let city         : String
-    let phone        : String
-    let userId       : String
-    let isClient     : Int
-    var aboutMe      : String?
-    var metier       : String?
-    var review       : String?
-    var status       : Bool?
-    var work         : String?
+class User: Hashable,ObservableObject {
+    func hash(into hasher: inout Hasher) {
+        print("")
+    }
+    
+    static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.userId == rhs.userId
+    }
+    
+    @Published var name         : String
+    @Published var city         : String
+    @Published var phone        : String
+    @Published var userId       : String
+    @Published var isClient     : Int
+    @Published var pictureProfile : String?
+    @Published var aboutMe      : String?
+    @Published var metier       : String?
+    @Published var review       : String?
+    @Published var status       : Bool?
+    @Published var work         : String?
     
     init(dectionary : [String : Any]) {
         self.name         = dectionary["name"] as? String ?? ""
@@ -30,5 +39,6 @@ struct User: Hashable {
         self.review       = dectionary["review"] as? String ?? ""
         self.status       = dectionary["status"] as? Bool ?? false
         self.work         = dectionary["work"] as? String ?? ""
+        self.pictureProfile = dectionary["pictureProfile"] as? String ?? ""
     }
 }

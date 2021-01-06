@@ -13,6 +13,7 @@ class CategoryViewCell: UICollectionViewCell {
         didSet {
             name.text = user?.name
             location.text = "Maroc, \(user?.city ?? "")"
+            picture.sd_setImage(with: URL(string: user?.pictureProfile ?? ""), placeholderImage: #imageLiteral(resourceName: "FaceTwo"))
             if user?.status == true {
                 status.text = "Available"
                 status.textColor = UIColor(Color.buttonsColor)

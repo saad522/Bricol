@@ -95,7 +95,8 @@ extension HomeViewControllert {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: firstCellID, for: indexPath) as! CardPosteViewCell
             cell.name.text = "Bonjour,\(user?.name ?? "")"
-            print("DEBUG:",user?.name ?? "Nadi Canadi")
+            
+            cell.profile.sd_setImage(with: URL(string: user?.pictureProfile ?? ""), placeholderImage: #imageLiteral(resourceName: "FaceTwo"))
             cell.backgroundColor = .systemGreen
             cell.didPostTapped = { [weak self] in
                 print("Did Post Taped")

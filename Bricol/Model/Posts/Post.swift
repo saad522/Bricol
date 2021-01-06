@@ -21,7 +21,8 @@ struct Post: Hashable {
     let lookingFor   : String
     let city         : String
     let fullName     : String
-    
+    var pictureProfile : String?
+
     
    
     init(dectionary : [String : Any]) {
@@ -39,5 +40,6 @@ struct Post: Hashable {
         self.lookingFor   = dectionary["lookingFor"]   as? String ?? ""
         self.fullName     = dectionary["fullName"]     as? String ?? ""
         self.city         = dectionary["city"]         as? String ?? ""
+        self.pictureProfile = dectionary["pictureProfile"] as? String ?? ""
     }
 }

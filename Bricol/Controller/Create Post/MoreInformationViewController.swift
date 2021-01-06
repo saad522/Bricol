@@ -45,6 +45,7 @@ extension MoreInformationViewController {
             guard let user = user else { return }
             data["fullName"] = user.name
             data["city"]     = user.city
+            data["pictureProfile"] = user.pictureProfile
             print("DEBUG: We Close")
             self?.uploadUserData(data)
         }

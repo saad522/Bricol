@@ -14,6 +14,7 @@ class HandymanProfileViewController: UICollectionViewController {
     private let secondCellID = "secondCellID"
     private let headerID     = "headerID"
     var user : User?
+    var currentUser : User?
     
     //init: ComposotionalLayout
     init(user : User?) {
@@ -51,6 +52,11 @@ class HandymanProfileViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
+        fetchUserData()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchUserData()
     }
     deinit {
         print("All looks  good ✅ ")
@@ -72,7 +78,9 @@ extension HandymanProfileViewController {
                 UIApplication.shared.open(url!, options: [:], completionHandler: nil)
             }
             cell.didLeaveReview = { [weak self] in
-                let hostingHeader = UIHostingController(rootView: LeaveReviewViewController())
+                let hostingHeader = UIHostingController(rootView: LeaveReviewViewController(user: self?.user ?? dummyUser, image: self?.currentUser?.pictureProfile ?? "", name: self?.currentUser?.name ?? ""))
+                
+                hostingHeader.rootView.name  = self?.currentUser?.name ?? ""
                 hostingHeader.modalPresentationStyle = .fullScreen
                 hostingHeader.rootView.dismiss = { [weak self] in
                     self?.dismiss(animated: true)
@@ -96,6 +104,18 @@ extension HandymanProfileViewController {
         collectionView.backgroundColor = .secondarySystemBackground
         navigationController?.isNavigationBarHidden = true
         cellRegistration()
+    
+    }
+   private func fetchUserData() {
+        ServiceDatabase.shared.fetchUserInfo { [weak self] (userLinving, error) in
+            if let error = error {
+                print("Failed to Load Data reason : ",error.localizedDescription)
+                return
+            }
+            self?.currentUser = userLinving
+//            name = userLinving?.name ?? ""
+//            image = userLinving?.pictureProfile ?? ""
+        }
     }
     private func cellRegistration() {
         collectionView.register(HandymanProfileViewCell.self, forCellWithReuseIdentifier: cellID)
