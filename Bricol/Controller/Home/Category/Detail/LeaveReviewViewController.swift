@@ -7,26 +7,27 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Firebase
 
+
+//Fix Broken Pipe 150 DH Floor installation 1000 DH \nMontage Mural 700 DH
 struct LeaveReviewViewController: View {
     
     @ObservedObject var user: User
     
-    var name : String?
-    var image : String?
-    
+    var currentUser : User
     var dismiss: (() -> Void)?
-    init(user : User,image : String, name : String) {
-        self.image = image
-        self.name = name
+    
+    var isSubmit : (() ->Void) = {}
+    
+    init(user : User,currentUser : User) {
+        self.currentUser = currentUser
         self.user = user
             UITextView.appearance().backgroundColor = .clear
-        
         }
-
     @State private var isAnimated : Bool = false
     @State private var rating: Int?
-    @State private var profileText: String = "Tell us more about your expierence with Zakaria Lahrach"
+    @State private var profileText: String = "Tell us more about your expierence with "
     var body: some View {
         ZStack {
             Color(#colorLiteral(red: 0.2206355631, green: 0.2583793998, blue: 0.5023958683, alpha: 1))
@@ -47,16 +48,16 @@ struct LeaveReviewViewController: View {
                         Spacer()
                         WebImage(url: URL(string: user.pictureProfile ?? ""))
                             .resizable()
-                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                            .clipShape(Circle())
                             .overlay(Circle().stroke(Color.white,lineWidth: 2))
                             .aspectRatio(contentMode: .fill)
                             .rotationEffect(.degrees(isAnimated ? 0 : 360))
                             .position(x: isAnimated ?  15 : -250 , y: 100)
                             .frame(width: 125, height: 125)
                             .animation(.spring(response: 1, dampingFraction: 1, blendDuration: 0.55))
-                        WebImage(url: URL(string: image ?? ""))
+                        WebImage(url: URL(string: currentUser.pictureProfile ?? ""))
                             .resizable()
-                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                            .clipShape(Circle())
                             .overlay(Circle().stroke(Color.white,lineWidth: 2))
                             .aspectRatio(contentMode: .fill)
                             .rotationEffect(.degrees(isAnimated ? 0 : 360))
@@ -64,10 +65,12 @@ struct LeaveReviewViewController: View {
                             .frame(width: 125, height: 125)
                             .animation(.spring(response: 1, dampingFraction: 1, blendDuration: 0.55))
                             .onAppear {
+                                profileText.append(" ")
+                                profileText.append(user.name)
                                 self.isAnimated.toggle()
                             }
                     }
-                    Text("\(user.name) & \(name ?? "")")
+                    Text("\(user.name) & \(currentUser.name )")
                         .foregroundColor(Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)))
                         .fontWeight(.black)
                         .padding(9)
@@ -86,7 +89,7 @@ struct LeaveReviewViewController: View {
                         .frame(width: 100, height: 100, alignment: .center)
                         .animation(.spring(response: 0.55, dampingFraction: 0.55, blendDuration: 0))
                     
-                    Spacer().frame(width: 0, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    Spacer().frame(width: 0, height: 20, alignment: .center)
                     RatingView(rating: $rating)
                     
                 }
@@ -95,22 +98,25 @@ struct LeaveReviewViewController: View {
                     TextEditor(text: $profileText)
                         .foregroundColor(.white)
                         .padding()
-                        .frame(width: UIScreen.main.bounds.width - 25, height: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .frame(width: UIScreen.main.bounds.width - 25, height: 150, alignment: .center)
                         .background(Color(#colorLiteral(red: 0.185518533, green: 0.2229340971, blue: 0.4625527859, alpha: 1)))
                         .cornerRadius(15)
                         .shadow(radius: 10)
                     
-                    Spacer().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    Button(action:{}, label: {
+                    Spacer().frame(width: 100, height: 30, alignment: .center)
+                    Button(action: {
+                        insertReview()
+                    }, label: {
                         Text("Submit")
                             .font(.largeTitle)
                             .fontWeight(.black)
                             .foregroundColor(Color(#colorLiteral(red: 0.185518533, green: 0.2229340971, blue: 0.4625527859, alpha: 1)))
-                            .frame(width: UIScreen.main.bounds.width - 55, height: 59, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: UIScreen.main.bounds.width - 55, height: 59, alignment: .center)
                             
                             .background(Color(#colorLiteral(red: 1, green: 0.9602848887, blue: 0.4598872662, alpha: 1)))
                             .cornerRadius(10)
                     })
+                    
                 }
                 Spacer().position(x: UIScreen.main.bounds.size.width / 2, y: 30)
             }
@@ -121,13 +127,41 @@ struct LeaveReviewViewController: View {
         }
        
     }
-    
+    func insertReview() {
+        let db = Firestore.firestore()
+        
+        let clientID = currentUser.userId
+        let clientName = currentUser.name
+        let clientPicture = currentUser.pictureProfile ?? ""
+        let ratin = rating ?? 1
+        let review = profileText
+        let idReview = UUID().uuidString
+        let handymanID = user.userId
+        
+        let values : [String: Any] = [
+                        "idReview":idReview,
+                        "clientID":clientID,
+                        "clientName":clientName,
+                        "clientPicture":clientPicture,
+                        "handymanID":handymanID,
+                        "ratin":ratin,
+                        "review": review]
+        
+        db.collection(DB_Keys.reviewCollectionKey).document().setData(values) {  ( error) in
+            if let error = error {
+                print("Failed To Set Data  reason : ",error.localizedDescription)
+            }
+            print("DEBUG: Add Review with success ✅")
+            isSubmit()
+        }
+    }
 }
 extension LeaveReviewViewController {
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
+
 struct RatingView: View {
     
     @Binding var rating: Int?
@@ -158,6 +192,6 @@ struct RatingView: View {
 }
 struct LeaveReviewViewController_Previews: PreviewProvider {
     static var previews: some View {
-        LeaveReviewViewController(user: dummyUser, image: "", name: "")
+        LeaveReviewViewController(user: dummyUser, currentUser: dummyUser)
     }
 }

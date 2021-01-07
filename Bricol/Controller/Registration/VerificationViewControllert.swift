@@ -142,8 +142,9 @@ private extension VerificationViewControllert {
 }
 
 enum DB_Keys {
-    static let usersCollectionKey = "users"
-    static let postsCollectionKey = "posts"
+    static let usersCollectionKey  = "users"
+    static let postsCollectionKey  = "posts"
+    static let reviewCollectionKey = "review"
 }
 struct VerificationViews: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {

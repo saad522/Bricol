@@ -149,9 +149,7 @@ extension HomeViewControllert {
             }
         }
     }
-    func setActions() {
-        sideMenuButton.addTarget(self, action: #selector(handleSideMenu), for: .touchUpInside)
-    }
+    
     func checkIfUserLoggedIn() {
         if Auth.auth().currentUser?.uid == nil {
             let loginController = RegisterViewController()
@@ -161,27 +159,11 @@ extension HomeViewControllert {
             present(controller, animated: true)
         }
     }
-    @objc func handleSideMenu() {
-        print("Side Menu Presented...")
-        signOut()
-    }
-     func signOut() {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-    }
-    func setupSideMenuButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: SFSymbols.sideMenu,withConfiguration:  UIImage.SymbolConfiguration(pointSize: 20, weight: .heavy, scale: .large))?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSideMenu))
-        navigationController?.navigationBar.barTintColor = UIColor.secondarySystemBackground
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
+
+     
+    
     func creatUI() {
-        setupSideMenuButton()
-        setActions()
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 

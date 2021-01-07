@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 class HandymanProfileViewController: UICollectionViewController {
     
@@ -14,6 +16,8 @@ class HandymanProfileViewController: UICollectionViewController {
     private let secondCellID = "secondCellID"
     private let headerID     = "headerID"
     var user : User?
+    var reviews : [Reviews] = []
+    
     var currentUser : User?
     
     //init: ComposotionalLayout
@@ -47,12 +51,12 @@ class HandymanProfileViewController: UICollectionViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
         fetchUserData()
+        fetchReviews()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -65,7 +69,7 @@ class HandymanProfileViewController: UICollectionViewController {
 //MARK: setup CollectionView
 extension HandymanProfileViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int { 2 }
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return section == 0 ? 1 : 5 }
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return section == 0 ? 1 : reviews.count }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! HandymanProfileViewCell
@@ -73,25 +77,32 @@ extension HandymanProfileViewController {
             cell.didPopTapped = { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
             }
-            cell.didCallTapped = {
-                let url = URL(string: "TEL://0694565607")
+            cell.didCallTapped = { [weak self] in
+                guard let phone = self?.user?.phone else { return }
+                let url = URL(string: "TEL://\(phone)")
                 UIApplication.shared.open(url!, options: [:], completionHandler: nil)
             }
             cell.didLeaveReview = { [weak self] in
-                let hostingHeader = UIHostingController(rootView: LeaveReviewViewController(user: self?.user ?? dummyUser, image: self?.currentUser?.pictureProfile ?? "", name: self?.currentUser?.name ?? ""))
-                
-                hostingHeader.rootView.name  = self?.currentUser?.name ?? ""
-                hostingHeader.modalPresentationStyle = .fullScreen
-                hostingHeader.rootView.dismiss = { [weak self] in
-                    self?.dismiss(animated: true)
+                if Auth.auth().currentUser?.uid != self?.user?.userId {
+                    let hostingHeader = UIHostingController(rootView: LeaveReviewViewController(user: self?.user ?? dummyUser, currentUser: self?.currentUser ?? dummyUser))
+                    hostingHeader.modalPresentationStyle = .fullScreen
+                    hostingHeader.rootView.dismiss = { [weak self] in
+                        self?.dismiss(animated: true)
+                    }
+                    hostingHeader.rootView.isSubmit = { [weak self] in
+                        self?.dismiss(animated: true)
+                    }
+                    self?.present(hostingHeader, animated: true)
                 }
-                self?.present(hostingHeader, animated: true)
             }
             cell.backgroundColor = .secondarySystemBackground
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCellID, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCellID, for: indexPath) as! ReviewsViewCell
             cell.backgroundColor = .tertiarySystemBackground
+            let review = reviews[indexPath.item]
+            print("Rate Rview : ",reviews[indexPath.item].rate)
+            cell.review = review
             return cell
         }
     }
@@ -106,6 +117,16 @@ extension HandymanProfileViewController {
         cellRegistration()
     
     }
+    private func fetchReviews() {
+        guard let handymaneID = user?.userId else { return  }
+         ServiceDatabase.shared.fetchHandyManReview(handymanID: handymaneID) { [weak self] (reviews, error) in
+            if let error = error {
+                print("Failed To Load Review reason : ",error.localizedDescription)
+                return
+            }
+                self?.reviews = reviews ?? []
+        }
+    }
    private func fetchUserData() {
         ServiceDatabase.shared.fetchUserInfo { [weak self] (userLinving, error) in
             if let error = error {
@@ -114,6 +135,9 @@ extension HandymanProfileViewController {
             }
             self?.currentUser = userLinving
 //            name = userLinving?.name ?? ""
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
 //            image = userLinving?.pictureProfile ?? ""
         }
     }

@@ -16,13 +16,41 @@ for feature jobs 👨🏻‍🔧 👍🏼
 
 class ReviewsViewCell: UICollectionViewCell {
     
+    var review : Reviews! {
+        didSet {
+            name.text = review.clientName
+            picture.sd_setImage(with: URL(string: review.clientPicture), placeholderImage: #imageLiteral(resourceName: "FaceTwo"))
+            reviewDescrption.text = review.review
+            if review.rate == 1 {
+                [starTwo,starTree,starFour,starFive].forEach({$0.isHidden = true})
+                starOne.isHidden = false
+            } else if review.rate == 2 {
+                [starTree,starFour,starFive].forEach({$0.isHidden = true})
+                [starOne,starTwo].forEach({$0.isHidden = false})
+            } else if review.rate == 3 {
+                [starFour,starFive].forEach({$0.isHidden = true})
+                [starOne,starTwo,starTree].forEach({$0.isHidden = false})
+            } else if review.rate == 4 {
+                [starFive].forEach({$0.isHidden = true})
+                [starOne,starTwo,starTree,starFour].forEach({$0.isHidden = false})
+            } else {
+                [starOne,starTwo,starTree,starFour,starFive].forEach({$0.isHidden = false})
+            }
+        }
+    }
+    
     private let picture = UIImageView(image : #imageLiteral(resourceName: "jamal"))
     private let name = UILabel(text: "Saad Saissi Hassani", font: .verdanaTitle, textColor: .titlesColor)
     private let date = UILabel(text: "2 weeks ago", font: .systemFont(ofSize: 16, weight: .bold), textColor: .titlesColor)
-    private let review = UILabel(text: randomReview, font: .verdanaSmall,numberOfLines: 10, textColor: .titlesColor)
+    private let reviewDescrption = UILabel(text: randomReview, font: .verdanaSmall,numberOfLines: 10, textColor: .titlesColor)
     private let pictureCircle = UIView()
-    var starIcons: [UIImageView] = []
-    
+    private let starOne  = UIImageView(SFSymbols.star,size: 12,.systemOrange)
+    private let starTwo  = UIImageView(SFSymbols.star,size: 12,.systemOrange)
+    private let starTree = UIImageView(SFSymbols.star,size: 12,.systemOrange)
+    private let starFour = UIImageView(SFSymbols.star,size: 12,.systemOrange)
+    private let starFive = UIImageView(SFSymbols.star,size: 12,.systemOrange)
+
+    var hStackStars = UIStackView()
     override init(frame: CGRect) {
         super.init(frame: frame)
         creatUI()
@@ -44,14 +72,14 @@ private extension ReviewsViewCell {
         pictureCircle.shadow()
         pictureCircle.addSubview(picture)
         picture.fillSuperview()
-        
-        let hStackStars = HStackView(arrangedSubviews: createStars(digits: 3), spacing: 5)
+        hStackStars = HStackView(arrangedSubviews:
+            [starOne,starTwo,starTree,starFour,starFive], spacing: 5)
         hStackStars.addArrangedSubview(UIView())
         let vStackName = VerticalStackView(arrangedSubviews: [name,hStackStars], spacing: 5)
         
         let hStack = HStackView(arrangedSubviews: [pictureCircle,vStackName], spacing: 10)
         
-        let vStackTimer = VerticalStackView(arrangedSubviews: [date,review], spacing: 5)
+        let vStackTimer = VerticalStackView(arrangedSubviews: [date,reviewDescrption], spacing: 5)
         
         let vStack = VerticalStackView(arrangedSubviews: [hStack,vStackTimer], spacing: 10)
         
@@ -64,17 +92,6 @@ private extension ReviewsViewCell {
             vStack.topAnchor.constraint(equalTo: topAnchor, constant: 10)
         ])
     }
-    func createStars(digits: Int) -> [UIImageView] {
-        var counter = 0
-        
-        for _ in 0..<digits {
-            let star = UIImageView(SFSymbols.star,size: 12,.systemOrange)
-            counter += 1
-            starIcons.append(star)
-//            if counter == digits {
-//                starIcons.append(UIImageView())
-//            }
-        }
-        return starIcons
-    }
+    
+   
 }

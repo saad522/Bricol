@@ -16,7 +16,7 @@ class EditProfileViewController: UIViewController {
     private let changeButton = UIButton(type : .system)
     private let personalButton = UIButton(type : .system)
     private let professionalButton = UIButton(type : .system)
-
+    
     private let picture        = UIImageView(image : #imageLiteral(resourceName: "jamal"))
     private let pictureCircle  = UIView()
     private let titleLabel     = UILabel(text: "Information", font: .verdanaTitle, textColor: .titlesColor)
@@ -40,7 +40,7 @@ extension EditProfileViewController {
         else { return }
         
         guard let imageData = picture.image?.jpegData(compressionQuality: compression) else { return }
-
+        
         let imagesPaths : String = "\(phoneNumber).jpg"
         let imageRef = imageReference.child(imagesPaths)
         
@@ -54,9 +54,7 @@ extension EditProfileViewController {
                     print("Failed to Dwonload URL reason : ",error.localizedDescription)
                     return
                 }
-                
                 guard let imageURL = url?.absoluteString else {return}
-                
                 let values : [String : Any] = ["pictureProfile":imageURL]
                 let db = Firestore.firestore()
                 db.collection(DB_Keys.usersCollectionKey).document(userId).setData(values, merge: true) { (error) in
@@ -65,6 +63,22 @@ extension EditProfileViewController {
                         return
                     }
                     Alert.showInteractiveAlert(self, with: "Image add successfully  ", and: "check out you New Image ✅")
+                    ServiceDatabase.shared.fetchAllUserPosts { (result) in
+                        switch result {
+                        case .success(let ids):
+                            ids.forEach { (id) in
+                                db.collection(DB_Keys.postsCollectionKey).document(id).setData(values, merge: true) {  (error) in
+                                    if let error = error {
+                                        print("Failed to set Data Image reason : ",error.localizedDescription)
+                                        return
+                                    }
+                                    print("DEBUG: All clear 🧭")
+                                }
+                            }
+                        case .failure(let error):
+                            print("Failed to Load Reason : ",error.localizedDescription)
+                        }
+                    }
                 }
             }
         }

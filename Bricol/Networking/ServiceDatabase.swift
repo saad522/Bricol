@@ -4,20 +4,64 @@
 //
 //  Created by mac on 12/27/20.
 //
- 
 
+import UIKit
 import Firebase
 import FirebaseFirestore
 
 class ServiceDatabase {
-    
+    var listener : ListenerRegistration?
     static let shared = ServiceDatabase()
     let db = Firestore.firestore()
-    lazy var postCollection = db.collection(DB_Keys.postsCollectionKey)
-    lazy var userCollection = db.collection(DB_Keys.usersCollectionKey)
+    lazy var postCollection   = db.collection(DB_Keys.postsCollectionKey)
+    lazy var userCollection   = db.collection(DB_Keys.usersCollectionKey)
+    lazy var reviewCollection = db.collection(DB_Keys.reviewCollectionKey)
+
+    
+    
+    func fetchHandyManReview(handymanID : String ,completion : @escaping  ([Reviews]?,Error?) -> Void)  {
+        
+        reviewCollection.whereField("handymanID", isEqualTo: handymanID).addSnapshotListener { (querySnapshot, error) in
+            
+            if let error = error {
+                completion(nil,error)
+                return
+            }
+
+              
+                guard let documents = querySnapshot?.documents else {
+                    return
+                }
+                
+                
+                let reviews = documents.compactMap { (snpashot) -> Reviews in
+                    let dectionary = snpashot.data()
+                    return Reviews(dectionary: dectionary)
+                }
+                completion(reviews,nil)
+            
+            
+            
+            
+        }
+        
+    }
+    func fetchAllUserPosts(completion : @escaping (Result<[String],Error>) -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        postCollection.whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            }
+            guard let documents = querySnapshot?.documents else { return }
+            let ids = documents.map { (snpashot) -> String in
+                return snpashot.documentID
+            }
+            completion(.success(ids))
+        }
+    }
     
     func fetchPostsData(industry : String,completion : @escaping([Post]?,Error?)->Void) {
-       
+        
         postCollection.whereField("lookingFor", isEqualTo: industry).addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print("Error : ",error.localizedDescription)
@@ -26,14 +70,14 @@ class ServiceDatabase {
             }
             guard let documents = querySnapshot?.documents else { return }
             
-        let post = documents.map { (snpashot) -> Post in
+            let post = documents.map { (snpashot) -> Post in
                 let dectionary = snpashot.data()
                 return Post(dectionary: dectionary)
             }
             completion(post,nil)
         }
-   }
-
+    }
+    
     func fetchUserInfo(completion : @escaping(User?,Error?)->Void) {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         userCollection.whereField("userId", isEqualTo: userID).getDocuments { (snpashot, error) in

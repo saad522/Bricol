@@ -23,6 +23,7 @@
 		04718E382590EA330011E74D /* MoreInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E372590EA330011E74D /* MoreInformationViewController.swift */; };
 		04846954259BB69A008320E4 /* HandymanProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04846953259BB69A008320E4 /* HandymanProfileViewController.swift */; };
 		04846958259BBC90008320E4 /* HandymanProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04846957259BBC90008320E4 /* HandymanProfileViewCell.swift */; };
+		0498ECB025A75A690000BFCD /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0498ECAF25A75A690000BFCD /* Reviews.swift */; };
 		049E6A44258B99F0004FF0AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6A43258B99F0004FF0AC /* AppDelegate.swift */; };
 		049E6A46258B99F0004FF0AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049E6A45258B99F0004FF0AC /* SceneDelegate.swift */; };
 		049E6A4D258B99F5004FF0AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049E6A4C258B99F5004FF0AC /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		04718E372590EA330011E74D /* MoreInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInformationViewController.swift; sourceTree = "<group>"; };
 		04846953259BB69A008320E4 /* HandymanProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandymanProfileViewController.swift; sourceTree = "<group>"; };
 		04846957259BBC90008320E4 /* HandymanProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandymanProfileViewCell.swift; sourceTree = "<group>"; };
+		0498ECAF25A75A690000BFCD /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		049E6A40258B99F0004FF0AC /* Bricol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bricol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049E6A43258B99F0004FF0AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		049E6A45258B99F0004FF0AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,14 @@
 				04540FB6259C836100F4A009 /* ReviewsViewCell.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		0498ECAE25A75A530000BFCD /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				0498ECAF25A75A690000BFCD /* Reviews.swift */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 		049E6A37258B99EF004FF0AC = {
@@ -242,6 +252,7 @@
 		04A675A1259B26B50064184E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0498ECAE25A75A530000BFCD /* Review */,
 				04A675B4259B2B620064184E /* Users */,
 				04A675B2259B29990064184E /* Skills */,
 				04A675B1259B298C0064184E /* Cities */,
@@ -608,6 +619,7 @@
 				04F953F9259215E900BC78F8 /* OfferViewCell.swift in Sources */,
 				049E6A44258B99F0004FF0AC /* AppDelegate.swift in Sources */,
 				049E6AB7258D5A9B004FF0AC /* VerificationView.swift in Sources */,
+				0498ECB025A75A690000BFCD /* Reviews.swift in Sources */,
 				043C463D25A47CEE00AB828B /* EditProfileViewController.swift in Sources */,
 				045A033725936BF60080EC80 /* MoreDetailsViewController.swift in Sources */,
 				041D22742599FB7A007AD4FD /* SearchViewCell.swift in Sources */,
