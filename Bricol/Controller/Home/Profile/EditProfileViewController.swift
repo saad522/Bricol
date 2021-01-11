@@ -12,14 +12,22 @@ import FirebaseFirestore
 
 class EditProfileViewController: UIViewController {
     
-    private let saveButton     = UIButton(type : .system)
-    private let changeButton = UIButton(type : .system)
-    private let personalButton = UIButton(type : .system)
-    private let professionalButton = UIButton(type : .system)
-    
+    private let saveButton          = UIButton(type : .system)
+    private let changeButton        = UIButton(type : .system)
+    private let personalButton      = UIButton(type : .system)
+    private let professionalButton  = UIButton(type : .system)
+    private let personalView        = UIView()
+    private let personalCard        = UIView()
+    private let professionalCard    = UIView()
+    private let professionalView    = UIView()
+    private let personalTitle       = UILabel(text: "Personal", font: .verdana, textColor: .white)
+    private let professionalTitle   = UILabel(text: "Professional", font: .verdanaTitle, textColor: .white)
+    private let presonalMessage     = UILabel(text: "Edite your Personal information ", font: .systemFont(ofSize: 20, weight: .semibold),numberOfLines: 2, textColor: .gray)
+    private let professionalMessage = UILabel(text: "Edite your Professional \ninformation ", font: .verdanaMedium, textColor: .white)
+
     private let picture        = UIImageView(image : #imageLiteral(resourceName: "jamal"))
     private let pictureCircle  = UIView()
-    private let titleLabel     = UILabel(text: "Information", font: .verdanaTitle, textColor: .titlesColor)
+    private let titleLabel     = UILabel(text: "Information", font: .verdana, textColor: .titlesColor)
     private let line           = UIView(.systemGreen)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +71,24 @@ extension EditProfileViewController {
                         return
                     }
                     Alert.showInteractiveAlert(self, with: "Image add successfully  ", and: "check out you New Image ✅")
+
+                    ServiceDatabase.shared.fetechAllUserReviews { (result) in
+                        let values : [String : Any] = ["clientPicture":imageURL]
+                        switch result {
+                        case .success(let ids):
+                            ids.forEach { (id) in
+                                db.collection(DB_Keys.reviewCollectionKey).document(id).setData(values, merge: true) { (error) in
+                                    if let error = error {
+                                        print("Failed To set New Image to reviews reason : ",error.localizedDescription)
+                                        return
+                                    }
+                                    print("DEBUG: All Set 👨🏻‍🔧")
+                                }
+                            }
+                        case .failure(let error):
+                            print("Failed To Load Reviews Ids reason : ",error.localizedDescription)
+                        }
+                    }
                     ServiceDatabase.shared.fetchAllUserPosts { (result) in
                         switch result {
                         case .success(let ids):
@@ -92,21 +118,32 @@ private extension EditProfileViewController {
         changeButton.addTarget(self, action: #selector(handlePickerImage), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
     }
-    func setupProfessionalButton() {
-        professionalButton.backgroundColor = UIColor(Color.buttonsColor)
-        professionalButton.shadow(UIColor(Color.buttonsColor))
-        professionalButton.setImage(UIImage.textEmbededImage(image: UIImage(systemName: SFSymbols.next)!, string: "Professional", color: .label, imageAlignment: 1, segFont : .verdanaTitle), for: .normal)
-        professionalButton.titleLabel?.font = .verdanaMedium
-        professionalButton.constrainWidth(constant: 180)
-        professionalButton.layer.cornerRadius = 8
+    func setupProfessionalCard() {
+        personalCard.constrainWidth(constant: view.frame.size.width - 25)
+        personalCard.constrainHeight(constant: 150)
+        personalCard.shadow()
+        personalCard.addSubview(personalView)
+        personalView.fillSuperview()
+        presonalMessage.constrainHeight(constant: 60)
+        presonalMessage.textColor = .init(white: 1, alpha: 0.8)
+        personalView.layer.cornerRadius = 12
+        personalButton.setTitle(" Edit ", for: .normal)
+        personalButton.backgroundColor = .systemBackground
+        personalButton.titleLabel?.font = .systemFont(ofSize: 25, weight: .semibold)
+        personalButton.layer.cornerRadius = 5
+        personalButton.shadow()
+        personalButton.setTitleColor(.label, for: .normal)
+        personalButton.constrainHeight(constant: 35)
+        personalButton.constrainWidth(constant: 100)
+        personalView.backgroundColor = .niceBlue
+        let hStack = HStackView(arrangedSubviews: [UIView(),personalButton], spacing: 10)
+        hStack.distribution = .equalSpacing
+        let vStack = VerticalStackView(arrangedSubviews: [personalTitle,presonalMessage,hStack], spacing: 5)
+        personalView.addSubview(vStack)
+        vStack.fillSuperview(padding: .init(allInset: 10))
     }
-    func setupPersonalButton() {
-        personalButton.backgroundColor = UIColor(Color.buttonsColor)
-        personalButton.shadow(UIColor(Color.buttonsColor))
-        personalButton.setImage(UIImage.textEmbededImage(image: UIImage(systemName: SFSymbols.next)!, string: "Personal", color: .label, imageAlignment: 1, segFont : .verdanaTitle), for: .normal)
-        personalButton.titleLabel?.font = .verdanaMedium
-        personalButton.constrainWidth(constant: 150)
-        personalButton.layer.cornerRadius = 8
+    func setupPersonalCard() {
+      
     }
     func setupNextButton() {
         saveButton.backgroundColor = UIColor(Color.buttonsColor)
@@ -130,8 +167,8 @@ private extension EditProfileViewController {
         setAction()
         setupNextButton()
         setupPreviousButton()
-        setupPersonalButton()
-        setupProfessionalButton()
+        setupPersonalCard()
+        setupProfessionalCard()
         
         let size : CGFloat = 115
         picture.contentMode = .scaleAspectFill
@@ -147,7 +184,7 @@ private extension EditProfileViewController {
         hStackButton.distribution = .fillEqually
         let hStackPicture = HStackView(arrangedSubviews: [UIView(),pictureCircle,UIView()], spacing: 5)
         hStackPicture.distribution = .equalCentering
-        let vStackEditeButton = HStackView(arrangedSubviews: [personalButton,professionalButton], spacing: 10)
+        let vStackEditeButton = HStackView(arrangedSubviews: [personalCard], spacing: 10)
         vStackEditeButton.distribution = .equalCentering
         let vStackTop = VerticalStackView(arrangedSubviews: [hStackPicture,hStackButton,line,vStackEditeButton], spacing: 20)
         view.addSubview(vStackTop)

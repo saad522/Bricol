@@ -46,6 +46,20 @@ class ServiceDatabase {
         }
         
     }
+    func fetechAllUserReviews(completion : @escaping (Result<[String],Error>) -> ()) {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        reviewCollection.whereField("clientID", isEqualTo: userID).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let documents = querySnapshot?.documents else { return }
+            let ids = documents.compactMap { (queryDocumentSnapshot) -> String? in
+                return queryDocumentSnapshot.documentID
+            }
+            completion(.success(ids))
+        }
+    }
     func fetchAllUserPosts(completion : @escaping (Result<[String],Error>) -> Void) {
         guard let userID = Auth.auth().currentUser?.uid else { return }
         postCollection.whereField("userID", isEqualTo: userID).getDocuments { (querySnapshot, error) in

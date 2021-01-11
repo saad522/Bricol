@@ -5,7 +5,7 @@
 //  Created by mac on 12/30/20.
 //
 
-import UIKit
+import SwiftUI
 
 let randomReview = """
 Very respectful and kind people.
@@ -63,6 +63,7 @@ class ReviewsViewCell: UICollectionViewCell {
 
 private extension ReviewsViewCell {
     func creatUI() {
+        backgroundColor = .tertiarySystemBackground
         let size : CGFloat = 55
         picture.contentMode = .scaleAspectFill
         picture.constrainWidth(constant: size)

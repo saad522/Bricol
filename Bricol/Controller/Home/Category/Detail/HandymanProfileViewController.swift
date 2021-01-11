@@ -14,11 +14,13 @@ class HandymanProfileViewController: UICollectionViewController {
     //MARK: Properties
     private let cellID       = "cellID"
     private let secondCellID = "secondCellID"
+    private let theirdCellID   = "theirdCellID"
     private let headerID     = "headerID"
     var user : User?
     var reviews : [Reviews] = []
-    
     var currentUser : User?
+    
+    
     
     //init: ComposotionalLayout
     init(user : User?) {
@@ -68,8 +70,19 @@ class HandymanProfileViewController: UICollectionViewController {
 }
 //MARK: setup CollectionView
 extension HandymanProfileViewController {
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int { 2 }
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return section == 0 ? 1 : reviews.count }
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else  {
+            if reviews.count == 0 {
+                return 1
+            } else {
+                return reviews.count
+            }
+        }
+    }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! HandymanProfileViewCell
@@ -98,12 +111,17 @@ extension HandymanProfileViewController {
             cell.backgroundColor = .secondarySystemBackground
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCellID, for: indexPath) as! ReviewsViewCell
-            cell.backgroundColor = .tertiarySystemBackground
-            let review = reviews[indexPath.item]
-            print("Rate Rview : ",reviews[indexPath.item].rate)
-            cell.review = review
-            return cell
+            if reviews.count != 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondCellID, for: indexPath) as! ReviewsViewCell
+                let review = reviews[indexPath.item]
+                print("DEBUG: Bali")
+                print("Rate Rview : ",reviews[indexPath.item].rate)
+                cell.review = review
+                return cell
+            } else  {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: theirdCellID, for: indexPath) as! ReviewImageDesignCell
+                return cell
+            }
         }
     }
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -134,16 +152,15 @@ extension HandymanProfileViewController {
                 return
             }
             self?.currentUser = userLinving
-//            name = userLinving?.name ?? ""
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
-//            image = userLinving?.pictureProfile ?? ""
         }
     }
     private func cellRegistration() {
         collectionView.register(HandymanProfileViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.register(ReviewsViewCell.self, forCellWithReuseIdentifier: secondCellID)
+        collectionView.register(ReviewImageDesignCell.self, forCellWithReuseIdentifier: theirdCellID)
         collectionView.register(CompositionalHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
     }
 }
