@@ -11,6 +11,7 @@
 		041D22742599FB7A007AD4FD /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D22732599FB7A007AD4FD /* SearchViewCell.swift */; };
 		042B2A0025ACAC5500B1A2A1 /* ReviewImageDesignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B29FF25ACAC5500B1A2A1 /* ReviewImageDesignCell.swift */; };
 		043C463D25A47CEE00AB828B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C463C25A47CEE00AB828B /* EditProfileViewController.swift */; };
+		043CDF6425ADED9400C3D8DF /* EditePersonalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CDF6325ADED9400C3D8DF /* EditePersonalInformationViewController.swift */; };
 		0444147525A228F6006D6D68 /* LeaveReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */; };
 		04540FB7259C836100F4A009 /* ReviewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04540FB6259C836100F4A009 /* ReviewsViewCell.swift */; };
 		045A032E259358DD0080EC80 /* PicturesCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A032D259358DD0080EC80 /* PicturesCellController.swift */; };
@@ -18,6 +19,7 @@
 		045A033725936BF60080EC80 /* MoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033625936BF60080EC80 /* MoreDetailsViewController.swift */; };
 		045A033A25936E570080EC80 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033925936E570080EC80 /* HeaderView.swift */; };
 		045A033D259370590080EC80 /* PicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A033C259370590080EC80 /* PicturesViewController.swift */; };
+		04677F9925ADFBDB00A0B4BB /* EditeOtherInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04677F9825ADFBDB00A0B4BB /* EditeOtherInformationViewController.swift */; };
 		04718E2F259097E30011E74D /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E2E259097E30011E74D /* CreatePostViewController.swift */; };
 		04718E322590A4A10011E74D /* AddPicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E312590A4A10011E74D /* AddPicturesViewController.swift */; };
 		04718E352590BC2C0011E74D /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04718E342590BC2C0011E74D /* AddBudgetViewController.swift */; };
@@ -73,6 +75,7 @@
 		041D22732599FB7A007AD4FD /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
 		042B29FF25ACAC5500B1A2A1 /* ReviewImageDesignCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewImageDesignCell.swift; sourceTree = "<group>"; };
 		043C463C25A47CEE00AB828B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		043CDF6325ADED9400C3D8DF /* EditePersonalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditePersonalInformationViewController.swift; sourceTree = "<group>"; };
 		0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveReviewViewController.swift; sourceTree = "<group>"; };
 		04540FB6259C836100F4A009 /* ReviewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewCell.swift; sourceTree = "<group>"; };
 		045A032D259358DD0080EC80 /* PicturesCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesCellController.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		045A033625936BF60080EC80 /* MoreDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDetailsViewController.swift; sourceTree = "<group>"; };
 		045A033925936E570080EC80 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		045A033C259370590080EC80 /* PicturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesViewController.swift; sourceTree = "<group>"; };
+		04677F9825ADFBDB00A0B4BB /* EditeOtherInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditeOtherInformationViewController.swift; sourceTree = "<group>"; };
 		04718E2E259097E30011E74D /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		04718E312590A4A10011E74D /* AddPicturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicturesViewController.swift; sourceTree = "<group>"; };
 		04718E342590BC2C0011E74D /* AddBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
@@ -450,6 +454,8 @@
 			children = (
 				04B6DF4325A0F17F00D632D2 /* ProfileViewController.swift */,
 				043C463C25A47CEE00AB828B /* EditProfileViewController.swift */,
+				043CDF6325ADED9400C3D8DF /* EditePersonalInformationViewController.swift */,
+				04677F9825ADFBDB00A0B4BB /* EditeOtherInformationViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -608,6 +614,7 @@
 				04846954259BB69A008320E4 /* HandymanProfileViewController.swift in Sources */,
 				045A033D259370590080EC80 /* PicturesViewController.swift in Sources */,
 				04C615EF2599017A00EE88E6 /* ServiceStorage.swift in Sources */,
+				043CDF6425ADED9400C3D8DF /* EditePersonalInformationViewController.swift in Sources */,
 				04A5C7C62597712500906AC6 /* CityController.swift in Sources */,
 				04A675D7259B47180064184E /* CategoryViewCell.swift in Sources */,
 				045A032E259358DD0080EC80 /* PicturesCellController.swift in Sources */,
@@ -618,6 +625,7 @@
 				049E6A9F258D15D0004FF0AC /* HStackView.swift in Sources */,
 				04A5C7C325976D9100906AC6 /* mountainsRawData.swift in Sources */,
 				04DF6E61258E3295009EC221 /* LookingForViewController.swift in Sources */,
+				04677F9925ADFBDB00A0B4BB /* EditeOtherInformationViewController.swift in Sources */,
 				04A675B6259B2B760064184E /* User.swift in Sources */,
 				04D7EFFD258FA4F4006AC05C /* CategoriesViewCell.swift in Sources */,
 				04F953F9259215E900BC78F8 /* OfferViewCell.swift in Sources */,

@@ -144,6 +144,7 @@ extension HomeViewControllert {
                 return
             }
             self?.user = user
+            UserDefaults.standard.set(user?.isClient ?? 0, forKey: "isClient")
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }

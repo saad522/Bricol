@@ -78,7 +78,7 @@ struct ProfileViewController: View {
                                     .background(Color.green)
                                     .cornerRadius(5)
                             }).sheet(isPresented: $isPresented, content: {
-                            EditProfileView()
+                            EditProfileView(image: image)
                             })
                         }
                         

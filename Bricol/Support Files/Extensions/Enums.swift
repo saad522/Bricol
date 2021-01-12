@@ -59,6 +59,7 @@ enum SFSymbols {
     static let back         = "arrow.left"
     static let tools        = "wrench.and.screwdriver"
     static let next         = "chevron.right"
+    static let info         = "info.circle"
 }
 
 enum Keys {

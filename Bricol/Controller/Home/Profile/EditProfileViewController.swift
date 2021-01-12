@@ -11,24 +11,27 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class EditProfileViewController: UIViewController {
+    var image = ""
     
     private let saveButton          = UIButton(type : .system)
     private let changeButton        = UIButton(type : .system)
     private let personalButton      = UIButton(type : .system)
     private let professionalButton  = UIButton(type : .system)
-    private let personalView        = UIView()
+    private var personalView        = UIView()
     private let personalCard        = UIView()
     private let professionalCard    = UIView()
     private let professionalView    = UIView()
+    private let iconTitle           = UIImageView(SFSymbols.info,UIColor(Color.titlesColor))
     private let personalTitle       = UILabel(text: "Personal", font: .verdana, textColor: .white)
-    private let professionalTitle   = UILabel(text: "Professional", font: .verdanaTitle, textColor: .white)
-    private let presonalMessage     = UILabel(text: "Edite your Personal information ", font: .systemFont(ofSize: 20, weight: .semibold),numberOfLines: 2, textColor: .gray)
-    private let professionalMessage = UILabel(text: "Edite your Professional \ninformation ", font: .verdanaMedium, textColor: .white)
+    private let professionalTitle   = UILabel(text: "Professional", font: .verdana, textColor: .white)
+    private let presonalMessage     = UILabel(text: "Edit your Personal Information ", font: .systemFont(ofSize: 25, weight: .regular),numberOfLines: 2, textColor: .gray)
+    private let professionalMessage = UILabel(text: "Edit your Professional information ", font: .systemFont(ofSize: 25, weight: .regular), numberOfLines: 2,textColor: .white)
 
-    private let picture        = UIImageView(image : #imageLiteral(resourceName: "jamal"))
+    private let picture        = UIImageView()
     private let pictureCircle  = UIView()
     private let titleLabel     = UILabel(text: "Information", font: .verdana, textColor: .titlesColor)
     private let line           = UIView(.systemGreen)
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
@@ -114,17 +117,75 @@ private extension EditProfileViewController {
     @objc func handleSave() {
         uploadProfilePicture()
     }
+    @objc func handleProfessionButtonTapped() {
+        let editePersonalInformationViewController = EditePersonalInformationViewController()
+        editePersonalInformationViewController.modalPresentationStyle = .fullScreen
+        present(editePersonalInformationViewController, animated: true)
+    }
+    @objc func handlePersonalButtonTapped() {
+        let editeOtherInformationViewController = EditeOtherInformationViewController()
+        editeOtherInformationViewController.modalPresentationStyle = .fullScreen
+        present(editeOtherInformationViewController, animated: true)
+    }
     func setAction() {
         changeButton.addTarget(self, action: #selector(handlePickerImage), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
+        professionalButton.addTarget(self, action: #selector(handleProfessionButtonTapped), for: .touchUpInside)
+        personalButton.addTarget(self, action: #selector(handlePersonalButtonTapped), for: .touchUpInside)
     }
     func setupProfessionalCard() {
+        professionalCard.constrainWidth(constant: view.frame.size.width - 25)
+        professionalCard.constrainHeight(constant: 150)
+        professionalCard.shadow()
+        professionalCard.addSubview(professionalView)
+        professionalView.fillSuperview()
+        professionalView.frame.size = CGSize(width: view.frame.size.width - 25, height: 150)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor(Color.buttonsColor).cgColor, UIColor.init(white: 0.8, alpha: 1).cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.3)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = personalView.bounds
+        gradientLayer.cornerRadius = 12
+        professionalView.clipsToBounds = false
+        professionalView.layer.insertSublayer(gradientLayer, at: 0)
+        presonalMessage.textColor = .init(white: 1, alpha: 0.8)
+        professionalView.layer.cornerRadius = 12
+        professionalButton.setTitle(" Edit ", for: .normal)
+        professionalButton.backgroundColor = .systemBackground
+        professionalButton.titleLabel?.font = .systemFont(ofSize: 25, weight: .semibold)
+        professionalButton.layer.cornerRadius = 5
+        professionalButton.shadow()
+        professionalButton.setTitleColor(.label, for: .normal)
+        professionalButton.constrainHeight(constant: 35)
+        professionalButton.constrainWidth(constant: 100)
+  
+        let hStack = HStackView(arrangedSubviews: [UIView(),professionalButton], spacing: 10)
+        hStack.distribution = .equalSpacing
+        let vStack = VerticalStackView(arrangedSubviews: [professionalTitle,professionalMessage,hStack], spacing: 10)
+        professionalView.addSubview(vStack)
+        vStack.fillSuperview(padding: .init(allInset: 10))
+    
+    }
+    
+    func setupPersonalCard() {
         personalCard.constrainWidth(constant: view.frame.size.width - 25)
         personalCard.constrainHeight(constant: 150)
         personalCard.shadow()
         personalCard.addSubview(personalView)
         personalView.fillSuperview()
-        presonalMessage.constrainHeight(constant: 60)
+        personalView.frame.size = CGSize(width: view.frame.size.width - 25, height: 150)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.systemBlue.cgColor, UIColor.init(white: 0.8, alpha: 1).cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = personalView.bounds
+        gradientLayer.cornerRadius = 12
+        personalView.clipsToBounds = false
+        personalView.layer.insertSublayer(gradientLayer, at: 0)
         presonalMessage.textColor = .init(white: 1, alpha: 0.8)
         personalView.layer.cornerRadius = 12
         personalButton.setTitle(" Edit ", for: .normal)
@@ -135,15 +196,15 @@ private extension EditProfileViewController {
         personalButton.setTitleColor(.label, for: .normal)
         personalButton.constrainHeight(constant: 35)
         personalButton.constrainWidth(constant: 100)
-        personalView.backgroundColor = .niceBlue
+        
+        
+       
+
         let hStack = HStackView(arrangedSubviews: [UIView(),personalButton], spacing: 10)
         hStack.distribution = .equalSpacing
-        let vStack = VerticalStackView(arrangedSubviews: [personalTitle,presonalMessage,hStack], spacing: 5)
+        let vStack = VerticalStackView(arrangedSubviews: [personalTitle,presonalMessage,hStack], spacing: 10)
         personalView.addSubview(vStack)
         vStack.fillSuperview(padding: .init(allInset: 10))
-    }
-    func setupPersonalCard() {
-      
     }
     func setupNextButton() {
         saveButton.backgroundColor = UIColor(Color.buttonsColor)
@@ -168,9 +229,13 @@ private extension EditProfileViewController {
         setupNextButton()
         setupPreviousButton()
         setupPersonalCard()
-        setupProfessionalCard()
-        
+        let isClient = UserDefaults.standard.integer(forKey: "isClient")
+        if isClient != 1 {
+            setupProfessionalCard()
+            print("DEBUG: isClient Var HERE : ",isClient)
+        }
         let size : CGFloat = 115
+        picture.sd_setImage(with: URL(string: image),placeholderImage: UIImage(systemName: SFSymbols.profile))
         picture.contentMode = .scaleAspectFill
         picture.constrainWidth(constant: size)
         picture.constrainHeight(constant: size)
@@ -184,8 +249,10 @@ private extension EditProfileViewController {
         hStackButton.distribution = .fillEqually
         let hStackPicture = HStackView(arrangedSubviews: [UIView(),pictureCircle,UIView()], spacing: 5)
         hStackPicture.distribution = .equalCentering
-        let vStackEditeButton = HStackView(arrangedSubviews: [personalCard], spacing: 10)
-        vStackEditeButton.distribution = .equalCentering
+        let hStack = HStackView(arrangedSubviews: [iconTitle,titleLabel,UIView()], spacing: 5)
+        
+        let vStackEditeButton = VerticalStackView(arrangedSubviews: [hStack,personalCard,professionalCard], spacing: 15)
+        vStackEditeButton.distribution = .fillProportionally
         let vStackTop = VerticalStackView(arrangedSubviews: [hStackPicture,hStackButton,line,vStackEditeButton], spacing: 20)
         view.addSubview(vStackTop)
         
@@ -216,8 +283,10 @@ extension EditProfileViewController: UIImagePickerControllerDelegate & UINavigat
     }
 }
 struct EditProfileView: UIViewControllerRepresentable {
+    var image = ""
     func makeUIViewController(context: Context) -> UIViewController {
         let controller = EditProfileViewController()
+        controller.image = image
         return controller
     }
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
