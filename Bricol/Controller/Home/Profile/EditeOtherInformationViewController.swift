@@ -6,32 +6,78 @@
 //
 
 import SwiftUI
+import Firebase
 
 class EditeOtherInformationViewController: UIViewController {
+    
+    //MARK: Properties
+    var values : [String : Any] = [:]
     private let fullNameLabel     = UILabel()
-    private let livingLabel     = UILabel()
-    private let saveButton   = UIButton(type : .system)
-    private let cancelButton = UIButton(type : .system)
+    private let livingLabel       = UILabel()
+    private let saveButton        = UIButton(type : .system)
+    private let cancelButton      = UIButton(type : .system)
     private var fullNameContainer = UIView()
     private var fullName          = UITextField()
     private var livingContainer   = UIView()
     private var living            = UITextField()
-    //UIPickeView
+    
+    //--: UIPickeView
     var pickerView = UIPickerView()
     let cities = CityController().generateMountains()
     var titles : [String] = []
+    
+    //MARK: LifeCycle
+    init(values : [String:Any] = [:]) {
+        self.values = values
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
+    }
+}
+//MARK: Setup Firebase
+extension EditeOtherInformationViewController {
+    func updatePersonalInfo() {
+        let db = Firestore.firestore()
+        guard
+            let fullName   = fullName.text,
+            let location   = living.text,
+            let documentID = Auth.auth().currentUser?.uid
+        else { return }
+        values["name"] = fullName
+        values["city"] = location
+        
+        db.collection(DB_Keys.usersCollectionKey).document(documentID).setData(values, merge: true) { (error) in
+            if let error = error {
+                print("Failed To Merge User Data reason : ",error.localizedDescription)
+                Alert.showInteractiveAlert(self, with: "Error", and: "Failed To Update Data Because : \(error.localizedDescription)")
+                return
+            }
+            Alert.showInteractiveAlert(self, with: "Update with success", and: "All your information is updated ✅")
+            print("DEBUG: All your information is updated ✅")
+        }
     }
 }
 extension EditeOtherInformationViewController {
     @objc func handleCancelButton() {
         dismiss(animated: true)
     }
+    @objc func handleUpdate() {
+        updatePersonalInfo()
+    }
     func setActions() {
         cancelButton.addTarget(self, action: #selector(handleCancelButton), for: .touchUpInside)
-//        nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(handleUpdate), for: .touchUpInside)
+    }
+    private func setValues() {
+        if (values["name"] as! String) != "" {
+            fullName.text = values["name"] as? String
+        }
     }
     private func setupLivingLabel() {
         fullNameLabel.text = "Full-Name"
@@ -45,7 +91,7 @@ extension EditeOtherInformationViewController {
         livingLabel.textColor = UIColor(Color.titlesColor)
         livingLabel.textAlignment = .center
     }
-   private func setFullNameContainer() {
+    private func setFullNameContainer() {
         //Container
         fullNameContainer.backgroundColor = .tertiarySystemBackground
         fullNameContainer.layer.cornerRadius = 12
@@ -57,7 +103,12 @@ extension EditeOtherInformationViewController {
         fullName.constrainHeight(constant: 59)
         fullName.borderStyle  = .none
         fullName.font = .verdanaLight
-        fullName.attributedPlaceholder = NSAttributedString(string: "What’s your Full-Name?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
+        if (values["name"] as! String) != "" {
+            fullName.text = values["name"] as? String
+        } else {
+            fullName.attributedPlaceholder = NSAttributedString(string: "What’s your Full-Name?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
+        }
+        
         fullNameContainer.addSubview(fullName)
         fullName.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -77,7 +128,12 @@ extension EditeOtherInformationViewController {
         living.constrainHeight(constant: 59)
         living.borderStyle  = .none
         living.font = .verdanaLight
-        living.attributedPlaceholder = NSAttributedString(string: "Where you are living?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
+        if (values["city"] as! String) != "" {
+            living.text = values["city"] as? String
+        } else {
+            living.attributedPlaceholder = NSAttributedString(string: "Where you are living?", attributes: [NSAttributedString.Key.foregroundColor : UIColor.systemGray,NSAttributedString.Key.font : UIFont.verdanaLight])
+        }
+        
         livingContainer.addSubview(living)
         living.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -163,7 +219,7 @@ extension EditeOtherInformationViewController : PickerConfiguer {
 }
 struct EditeOtherInformationView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        let controller = EditeOtherInformationViewController()
+        let controller = EditeOtherInformationViewController(values: [:])
         return controller
     }
     

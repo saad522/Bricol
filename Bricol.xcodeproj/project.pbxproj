@@ -10,6 +10,8 @@
 		041D22712599F975007AD4FD /* IndustryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D22702599F975007AD4FD /* IndustryViewController.swift */; };
 		041D22742599FB7A007AD4FD /* SearchViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041D22732599FB7A007AD4FD /* SearchViewCell.swift */; };
 		042B2A0025ACAC5500B1A2A1 /* ReviewImageDesignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B29FF25ACAC5500B1A2A1 /* ReviewImageDesignCell.swift */; };
+		0438A5E725AF658500CA85A8 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438A5E625AF658500CA85A8 /* PresentationController.swift */; };
+		0438A5EA25AF65F000CA85A8 /* MessageSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438A5E925AF65F000CA85A8 /* MessageSMSViewController.swift */; };
 		043C463D25A47CEE00AB828B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043C463C25A47CEE00AB828B /* EditProfileViewController.swift */; };
 		043CDF6425ADED9400C3D8DF /* EditePersonalInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043CDF6325ADED9400C3D8DF /* EditePersonalInformationViewController.swift */; };
 		0444147525A228F6006D6D68 /* LeaveReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */; };
@@ -74,6 +76,8 @@
 		041D22702599F975007AD4FD /* IndustryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndustryViewController.swift; sourceTree = "<group>"; };
 		041D22732599FB7A007AD4FD /* SearchViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewCell.swift; sourceTree = "<group>"; };
 		042B29FF25ACAC5500B1A2A1 /* ReviewImageDesignCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewImageDesignCell.swift; sourceTree = "<group>"; };
+		0438A5E625AF658500CA85A8 /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		0438A5E925AF65F000CA85A8 /* MessageSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSMSViewController.swift; sourceTree = "<group>"; };
 		043C463C25A47CEE00AB828B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		043CDF6325ADED9400C3D8DF /* EditePersonalInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditePersonalInformationViewController.swift; sourceTree = "<group>"; };
 		0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveReviewViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +159,8 @@
 			children = (
 				04846953259BB69A008320E4 /* HandymanProfileViewController.swift */,
 				0444147425A228F6006D6D68 /* LeaveReviewViewController.swift */,
+				0438A5E625AF658500CA85A8 /* PresentationController.swift */,
+				0438A5E925AF65F000CA85A8 /* MessageSMSViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -605,6 +611,7 @@
 				04D7EFF7258F8D53006AC05C /* CompositionalHeader.swift in Sources */,
 				049E6AAF258D427C004FF0AC /* RegisterViewController.swift in Sources */,
 				04540FB7259C836100F4A009 /* ReviewsViewCell.swift in Sources */,
+				0438A5EA25AF65F000CA85A8 /* MessageSMSViewController.swift in Sources */,
 				04A675D2259B42760064184E /* CategoryViewController.swift in Sources */,
 				04F953F62591EE6200BC78F8 /* OffersViewController.swift in Sources */,
 				049E6AA0258D15D0004FF0AC /* UIView+Layout.swift in Sources */,
@@ -652,6 +659,7 @@
 				04D7EFF4258F7E35006AC05C /* HomeViewControllert.swift in Sources */,
 				04DF6E70258E7438009EC221 /* ClientInformationViewController.swift in Sources */,
 				049E6AA3258D15D0004FF0AC /* Extension.swift in Sources */,
+				0438A5E725AF658500CA85A8 /* PresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

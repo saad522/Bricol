@@ -6,34 +6,76 @@
 //
 
 import SwiftUI
+import Firebase
 
 class EditePersonalInformationViewController: UIViewController {
-    private let titleLabel     = UILabel()
-    private let skillTitleLabel     = UILabel()
-    private let saveButton   = UIButton(type : .system)
-    private let cancelButton = UIButton(type : .system)
-    private let describeText   = UITextView()
-    private let texView = UIView()
-    private let icon          = UILabel()
-    private let skill     = UITextField()
-    private let line          = UIView(.gray)
+    //MARK: Properties
+    var values : [String:Any] = [:]
+    init(values : [String:Any] = [:]) {
+        self.values = values
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    private let titleLabel      = UILabel()
+    private let skillTitleLabel = UILabel()
+    private let saveButton      = UIButton(type : .system)
+    private let cancelButton    = UIButton(type : .system)
+    private let describeText    = UITextView()
+    private let texView         = UIView()
+    private let icon            = UILabel()
+    private let skill           = UITextField()
+    private let line            = UIView(.gray)
 
     let skills = MountainsController().generateMountains()
     var titles : [String] = []
     var pickerView = UIPickerView()
+    
+    //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
     }
 }
+//MARK: Setup Firebase
+extension EditePersonalInformationViewController {
+    func updateInformation() {
+        guard
+            let aboutMe = describeText.text,
+            let metier = skill.text,
+            let documentID = Auth.auth().currentUser?.uid
+        else { return }
+        
+        values["aboutMe"] = aboutMe
+        values["metier"]  = metier
+        let db = Firestore.firestore()
+        db.collection(DB_Keys.usersCollectionKey).document(documentID).setData(values, merge: true) { (error) in
+            if let error = error {
+                print("Failed To Merge user Data reason : ",error.localizedDescription)
+                Alert.showInteractiveAlert(self, with: "Update Failed", and: "Something wrong : \(error.localizedDescription)")
+                return
+            }
+            Alert.showInteractiveAlert(self, with: "Update with success", and: "All your information is updated ✅")
+            print("DEBUG: All Merge it ⚠️")
+        }
+    }
+}
 extension EditePersonalInformationViewController: UITextViewDelegate {
-    @objc func handlePrevious() {
+    @objc func handleCancel() {
         dismiss(animated: true)
     }
-    
+    @objc func handleUpdate() {
+        updateInformation()
+    }
     func setActions() {
-        cancelButton.addTarget(self, action: #selector(handlePrevious), for: .touchUpInside)
-//        posterButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(handleUpdate), for: .touchUpInside)
+    }
+    private func setValues() {
+        describeText.text = values["aboutMe"] as? String
+        skill.text        = values["metier"]  as? String
     }
     private  func setupNextButton() {
         saveButton.backgroundColor = UIColor(Color.buttonsColor)
@@ -75,7 +117,7 @@ extension EditePersonalInformationViewController: UITextViewDelegate {
         texView.layer.cornerRadius = 12
         texView.shadow()
         texView.backgroundColor = .tertiarySystemFill
-        describeText.text = "Tell us More about you as Handyman"
+        describeText.text = values["aboutMe"]  as? String
         describeText.font = .verdanaLight
         describeText.textColor = .systemGray
         describeText.constrainWidth(constant: 150)
@@ -96,6 +138,7 @@ extension EditePersonalInformationViewController: UITextViewDelegate {
 
     }
     private func setComponents() {
+        setValues()
         setupTextField()
         setupTitle()
         setupNextButton()
@@ -157,9 +200,25 @@ extension EditePersonalInformationViewController :  PickerConfiguer {
         skill.inputView = pickerView
     }
 }
+extension EditePersonalInformationViewController {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+
+        if describeText.textColor == UIColor.systemGray {
+            describeText.text = ""
+            describeText.textColor = .label
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+
+        if describeText.text == "" {
+            describeText.text = "Tell us more about you"
+            describeText.textColor = UIColor.lightGray
+        }
+    }
+}
 struct EditePersonalInformationView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        let controller = EditePersonalInformationViewController()
+        let controller = EditePersonalInformationViewController(values: [:])
         return controller
     }
     

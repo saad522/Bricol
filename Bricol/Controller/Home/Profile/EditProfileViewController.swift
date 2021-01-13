@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 class EditProfileViewController: UIViewController {
     var image = ""
+    var values : [String:Any] = [:]
     
     private let saveButton          = UIButton(type : .system)
     private let changeButton        = UIButton(type : .system)
@@ -35,6 +36,11 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         creatUI()
+        fetchuserInfo()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchuserInfo()
     }
 }
 //MARK: Setup Firebase
@@ -112,18 +118,30 @@ extension EditProfileViewController {
             }
         }
     }
+    func fetchuserInfo() {
+        ServiceDatabase.shared.fetchUserInfo { [weak self] (user, error) in
+            if let error = error {
+                print("Failed To Load User Info reason : ",error.localizedDescription)
+                return
+            }
+            self?.values["aboutMe"] = user?.aboutMe
+            self?.values["metier"]  = user?.metier
+            self?.values["city"]    = user?.city
+            self?.values["name"]    = user?.name
+        }
+    }
 }
 private extension EditProfileViewController {
     @objc func handleSave() {
         uploadProfilePicture()
     }
     @objc func handleProfessionButtonTapped() {
-        let editePersonalInformationViewController = EditePersonalInformationViewController()
+        let editePersonalInformationViewController = EditePersonalInformationViewController(values: values)
         editePersonalInformationViewController.modalPresentationStyle = .fullScreen
         present(editePersonalInformationViewController, animated: true)
     }
     @objc func handlePersonalButtonTapped() {
-        let editeOtherInformationViewController = EditeOtherInformationViewController()
+        let editeOtherInformationViewController = EditeOtherInformationViewController(values: values)
         editeOtherInformationViewController.modalPresentationStyle = .fullScreen
         present(editeOtherInformationViewController, animated: true)
     }

@@ -95,6 +95,12 @@ extension HandymanProfileViewController {
                 let url = URL(string: "TEL://\(phone)")
                 UIApplication.shared.open(url!, options: [:], completionHandler: nil)
             }
+            cell.didSMSTapped = { [weak self] in
+                let messageController = MessageSMSViewController()
+                messageController.modalPresentationStyle = .custom
+                messageController.transitioningDelegate = self
+                self?.present(messageController, animated: true)
+            }
             cell.didLeaveReview = { [weak self] in
                 if Auth.auth().currentUser?.uid != self?.user?.userId {
                     let hostingHeader = UIHostingController(rootView: LeaveReviewViewController(user: self?.user ?? dummyUser, currentUser: self?.currentUser ?? dummyUser))
@@ -180,5 +186,10 @@ struct HandymanProfileViewController_Previews: PreviewProvider {
     static var previews: some View {
         HandymanProfileView()
             .edgesIgnoringSafeArea(.all)
+    }
+}
+extension HandymanProfileViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        PresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

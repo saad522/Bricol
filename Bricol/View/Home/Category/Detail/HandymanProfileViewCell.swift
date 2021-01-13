@@ -27,9 +27,10 @@ class HandymanProfileViewCell: UICollectionViewCell {
         }
     }
     
-    var didPopTapped  : () -> Void = {}
-    var didCallTapped : () -> Void = {}
-    var didLeaveReview   : () -> Void = {}
+    var didPopTapped   : () -> Void = {}
+    var didCallTapped  : () -> Void = {}
+    var didLeaveReview : () -> Void = {}
+    var didSMSTapped   : () -> Void = {}
     
    private let title = UILabel(text: "Zakaria Lahrach", font: .systemFont(ofSize: 20, weight: .bold), textColor: .titlesColor)
     private  let name = UILabel(text: "Zakaria Lahrach", font: .verdana, textColor: .titlesColor)
@@ -68,6 +69,9 @@ class HandymanProfileViewCell: UICollectionViewCell {
 }
 
 private extension HandymanProfileViewCell {
+    @objc func handleSMSTapped() {
+        didSMSTapped()
+    }
     @objc func handleBack() {
         didPopTapped()
     }
@@ -81,6 +85,7 @@ private extension HandymanProfileViewCell {
         back.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
         callIcon.addTarget(self, action: #selector(handleCall), for: .touchUpInside)
         previousButton.addTarget(self, action: #selector(handleReview), for: .touchUpInside)
+        message.addTarget(self, action: #selector(handleSMSTapped), for: .touchUpInside)
     }
     func setupAboutMe() {
         cardView.constrainHeight(constant: 125)
