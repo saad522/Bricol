@@ -151,6 +151,7 @@ extension HandymanProfileViewController {
                 self?.reviews = reviews ?? []
         }
     }
+    
    private func fetchUserData() {
         ServiceDatabase.shared.fetchUserInfo { [weak self] (userLinving, error) in
             if let error = error {

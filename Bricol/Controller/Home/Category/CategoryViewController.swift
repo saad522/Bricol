@@ -70,8 +70,6 @@ extension CategoryViewController {
             messageOne.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
             messageOne.topAnchor.constraint(equalTo: imageDesing.bottomAnchor,constant: 15)
         ])
-    
-       
     }
     func fetchHadymans() {
         ServiceDatabase.shared.fetchHandymanInfo(city: city, metier: metier) { [weak self] (users, error) in

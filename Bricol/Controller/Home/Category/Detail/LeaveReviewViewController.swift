@@ -146,7 +146,23 @@ struct LeaveReviewViewController: View {
                         "handymanID":handymanID,
                         "ratin":ratin,
                         "review": review]
-        
+        ServiceDatabase.shared.fetchHandymanReviews(handymanID: handymanID) { (user, error) in
+            if let error = error {
+                print("DEBUG: Failed To Load Handymane reason : ",error.localizedDescription)
+                return
+            }
+            var values : [String:Any] = [:]
+            
+            values["review"] = (user?.review ?? 0 + ratin)
+            
+            db.collection(DB_Keys.usersCollectionKey).document(handymanID).setData(values, merge: true) {  (error) in
+                if let error = error {
+                    print("Failed To Set Data reason : ",error.localizedDescription)
+                    return
+                }
+                
+            }
+        }
         db.collection(DB_Keys.reviewCollectionKey).document().setData(values) {  ( error) in
             if let error = error {
                 print("Failed To Set Data  reason : ",error.localizedDescription)

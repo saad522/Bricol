@@ -55,7 +55,7 @@ extension HandymanInformationViewController {
         guard let name = fullName.text, let city = living.text, let metier = skill.text else { return }
         let isClient = 0
         let work = "0"
-        let review = "0"
+        let review = 0
         let status = false
         let aboutMe = ""
         guard let userID = Auth.auth().currentUser?.uid else { return }

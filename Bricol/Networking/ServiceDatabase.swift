@@ -109,6 +109,20 @@ class ServiceDatabase {
             
         }
     }
+    func fetchHandymanReviews(handymanID : String,completion : @escaping(User?,Error?)->Void) {
+        postCollection.whereField("handymanID", isEqualTo: handymanID).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(nil,error)
+                return
+            }
+            guard let documents = querySnapshot?.documents else { return }
+            for document in documents {
+                let dictionary = document.data()
+                let user = User(dectionary: dictionary)
+                completion(user,nil)
+            }
+        }
+    }
     func fetchHandymanInfo(city : String,metier : String, completion : @escaping([User]?,Error?)->Void) {
         userCollection
             .whereField("city", isEqualTo: city)

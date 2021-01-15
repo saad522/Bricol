@@ -24,7 +24,7 @@ class User: Hashable,ObservableObject {
     @Published var pictureProfile : String?
     @Published var aboutMe      : String?
     @Published var metier       : String?
-    @Published var review       : String?
+    @Published var review       : Int?
     @Published var status       : Bool?
     @Published var work         : String?
     
@@ -36,7 +36,7 @@ class User: Hashable,ObservableObject {
         self.isClient     = dectionary["isClient"] as? Int ?? 0
         self.aboutMe      = dectionary["aboutMe"] as? String ?? ""
         self.metier       = dectionary["metier"] as? String ?? ""
-        self.review       = dectionary["review"] as? String ?? ""
+        self.review       = dectionary["review"] as? Int ?? 0
         self.status       = dectionary["status"] as? Bool ?? false
         self.work         = dectionary["work"] as? String ?? ""
         self.pictureProfile = dectionary["pictureProfile"] as? String ?? ""
